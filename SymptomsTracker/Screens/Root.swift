@@ -32,22 +32,23 @@ struct RootScreen: View {
             .toolbarTitleDisplayMode(.inlineLarge)
             .navigationTitle(navigationTitle)
             .toolbar {
-                if selectedTabKey == .symptoms {
-                    ToolbarItem {
-                        NavigationLink {
-                            SymptomCreateScreen()
-                        } label: {
-                            Label("Add Symptom", systemImage: "plus")
+                switch selectedTabKey {
+                    case .symptoms:
+                        ToolbarItem {
+                            NavigationLink {
+                                SymptomCreateScreen()
+                            } label: {
+                                Label("Add Symptom", systemImage: "plus")
+                            }
                         }
-                    }
-                } else if selectedTabKey == .triggers {
-                    ToolbarItem {
-                        NavigationLink {
-                            TriggerCreateScreen()
-                        } label: {
-                            Label("Add Trigger", systemImage: "plus")
+                    case .triggers:
+                        ToolbarItem {
+                            NavigationLink {
+                                TriggerCreateScreen()
+                            } label: {
+                                Label("Add Trigger", systemImage: "plus")
+                            }
                         }
-                    }
                 }
             }
         }
@@ -56,5 +57,5 @@ struct RootScreen: View {
 
 #Preview {
     RootScreen()
-        .modelContainer(for: Symptom.self, inMemory: true)
+        .modelContainer(previewContainer)
 }

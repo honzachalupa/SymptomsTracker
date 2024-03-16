@@ -54,4 +54,5 @@ struct SymptomCreateScreen: View {
 
 #Preview {
     SymptomCreateScreen()
+        .modelContainer(previewContainer)
 }

@@ -22,9 +22,13 @@ struct SymptonsListView: View {
                         NavigationLink {
                             SymptomDetailScreen(symptom: symptom)
                         } label: {
-                            Text("Detail")
-                                .foregroundStyle(.blue)
-                                .padding(.top, 5)
+                            HStack {
+                                Spacer()
+                                
+                                Text("Detail")
+                                    .foregroundStyle(.blue)
+                                    .padding(.top, 5)
+                            }
                         }
                     }
                 }
@@ -35,5 +39,5 @@ struct SymptonsListView: View {
 
 #Preview {
     SymptonsListView()
-        // .modelContainer(for: [Symptom.self])
+        .modelContainer(previewContainer)
 }

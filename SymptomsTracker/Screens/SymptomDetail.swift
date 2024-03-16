@@ -133,5 +133,6 @@ struct SymptomDetailScreen: View {
 }
 
 #Preview {
-    SymptomDetailScreen(symptom: symptomMock)
+    SymptomDetailScreen(symptom: symptomsMock.first!)
+        .modelContainer(previewContainer)
 }

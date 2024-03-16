@@ -25,6 +25,7 @@
 		213064442BA58FE8007E55C0 /* TriggerCreate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213064432BA58FE8007E55C0 /* TriggerCreate.swift */; };
 		213064462BA5930C007E55C0 /* Trigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213064452BA5930C007E55C0 /* Trigger.swift */; };
 		2130644A2BA5FBD8007E55C0 /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213064492BA5FBD8007E55C0 /* Entry.swift */; };
+		21EFDD8F2BA615D200BD20BE /* PreviewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21EFDD8E2BA615D200BD20BE /* PreviewContainer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		213064472BA5F6CD007E55C0 /* SymptomsTracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SymptomsTracker.entitlements; sourceTree = "<group>"; };
 		213064482BA5F6F4007E55C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		213064492BA5FBD8007E55C0 /* Entry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
+		21EFDD8E2BA615D200BD20BE /* PreviewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewContainer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				2130641D2BA44FF8007E55C0 /* Preview Assets.xcassets */,
+				21EFDD8E2BA615D200BD20BE /* PreviewContainer.swift */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -231,6 +234,7 @@
 				213064422BA58F34007E55C0 /* TriggersList.swift in Sources */,
 				213064442BA58FE8007E55C0 /* TriggerCreate.swift in Sources */,
 				213064352BA46A88007E55C0 /* SymptomNameWithIcon.swift in Sources */,
+				21EFDD8F2BA615D200BD20BE /* PreviewContainer.swift in Sources */,
 				213064152BA44FF7007E55C0 /* SymptomsTrackerApp.swift in Sources */,
 				2130642E2BA4655A007E55C0 /* SymptomDetail.swift in Sources */,
 				213064332BA469CF007E55C0 /* EntryCreate.swift in Sources */,

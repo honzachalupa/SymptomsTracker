@@ -7,8 +7,6 @@ struct TriggersListView: View {
     
     private func deleteTrigger(_ trigger: Trigger) {
         modelContext.delete(trigger)
-        
-        do { try modelContext.save() } catch { print(error) }
     }
     
     var body: some View {
@@ -16,19 +14,18 @@ struct TriggersListView: View {
             ForEach(triggers) { trigger in
                 HStack {
                     SymptomNameWithIcon(name: trigger.name, icon: trigger.icon)
-                    // Text("Used: N times")
                 }
-                    .swipeActions {
-                        Button("Delete") {
-                            deleteTrigger(trigger)
-                        }
-                        .tint(.red)
-                        
-                        Button("Edit") {
-                            print("Edit")
-                        }
-                        .tint(.green)
+                .swipeActions {
+                    Button("Delete") {
+                        deleteTrigger(trigger)
                     }
+                    .tint(.red)
+                    
+                    Button("Edit") {
+                        print("Edit")
+                    }
+                    .tint(.green)
+                }
             }
         }
     }
@@ -36,4 +33,5 @@ struct TriggersListView: View {
 
 #Preview {
     TriggersListView()
+        .modelContainer(previewContainer)
 }
