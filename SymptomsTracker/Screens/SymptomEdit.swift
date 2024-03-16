@@ -2,7 +2,9 @@ import SwiftUI
 import SwiftData
 import MCEmojiPicker
 
-struct SymptomCreateScreen: View {
+struct SymptomEditScreen: View {
+    var symptom: Symptom
+    
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) var dismiss
     
@@ -11,16 +13,17 @@ struct SymptomCreateScreen: View {
     @State private var icon: String = ""
     @State private var isEmojiSelectorShown: Bool = false
     
-    private func create() {
-        withAnimation {
-            modelContext.insert(
-                Symptom(
-                    name: name,
-                    icon: icon,
-                    note: note
-                )
-            )
-        }
+    init(symptom: Symptom) {
+        self.symptom = symptom
+        _name = State(initialValue: symptom.name)
+        _note = State(initialValue: symptom.note ?? "")
+        _icon = State(initialValue: symptom.icon)
+    }
+    
+    private func update() {
+        symptom.name = name
+        symptom.icon = icon
+        symptom.note = note
     }
     
     var body: some View {
@@ -41,11 +44,11 @@ struct SymptomCreateScreen: View {
             
             TextField("Note", text: $note)
         }
-        .navigationTitle("New symptom")
+        .navigationTitle("Edit symptom")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar(content: {
-            Button("Create") {
-                create()
+            Button("Save") {
+                update()
                 dismiss()
             }
             .disabled(name.isEmpty)
@@ -55,7 +58,7 @@ struct SymptomCreateScreen: View {
 
 #Preview {
     NavigationStack {
-        SymptomCreateScreen()
+        SymptomEditScreen(symptom: symptomsMock.first!)
             .modelContainer(previewContainer)
     }
 }

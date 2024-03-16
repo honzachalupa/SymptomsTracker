@@ -29,8 +29,8 @@ struct RootScreen: View {
                 }
                 .tag(TabKey.triggers)
             }
-            .toolbarTitleDisplayMode(.inlineLarge)
             .navigationTitle(navigationTitle)
+            .toolbarTitleDisplayMode(.inlineLarge)
             .toolbar {
                 switch selectedTabKey {
                     case .symptoms:
@@ -38,7 +38,7 @@ struct RootScreen: View {
                             NavigationLink {
                                 SymptomCreateScreen()
                             } label: {
-                                Label("Add Symptom", systemImage: "plus")
+                                Label("Create symptom", systemImage: "plus")
                             }
                         }
                     case .triggers:
@@ -46,7 +46,7 @@ struct RootScreen: View {
                             NavigationLink {
                                 TriggerCreateScreen()
                             } label: {
-                                Label("Add Trigger", systemImage: "plus")
+                                Label("Create trigger", systemImage: "plus")
                             }
                         }
                 }

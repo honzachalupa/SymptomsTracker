@@ -16,15 +16,16 @@ struct TriggersListView: View {
                     SymptomNameWithIcon(name: trigger.name, icon: trigger.icon)
                 }
                 .swipeActions {
-                    Button("Delete") {
+                    Button("Delete", role: .destructive) {
                         deleteTrigger(trigger)
                     }
-                    .tint(.red)
                     
-                    Button("Edit") {
-                        print("Edit")
+                    NavigationLink {
+                        TriggerEditScreen(trigger: trigger)
+                    } label: {
+                        Text("Edit")
                     }
-                    .tint(.green)
+                    .tint(.gray)
                 }
             }
         }

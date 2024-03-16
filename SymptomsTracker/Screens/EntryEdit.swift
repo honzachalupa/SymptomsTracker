@@ -1,8 +1,8 @@
 import SwiftUI
 import SwiftData
 
-struct EntryCreateScreen: View {
-    var symptom: Symptom
+struct EntryEditScreen: View {
+    var entry: Entry
     
     @Environment(\.dismiss) var dismiss
     
@@ -10,6 +10,13 @@ struct EntryCreateScreen: View {
     @State private var date: Date = Date()
     @State private var severity: Severity = .moderate
     @State private var selectedTriggers: [Trigger] = []
+    
+    init(entry: Entry) {
+        self.entry = entry
+        _date = State(initialValue: entry.date)
+        _severity = State(initialValue: entry.severity)
+        _selectedTriggers = State(initialValue: entry.triggers!)
+    }
     
     private func selectTrigger(_ trigger: Trigger) {
         if selectedTriggers.contains(trigger) {
@@ -19,22 +26,14 @@ struct EntryCreateScreen: View {
         }
     }
     
-    private func create() {
-        symptom.entries!.append(
-            Entry(
-                date: date,
-                severity: severity,
-                triggers: selectedTriggers
-            )
-        )
+    private func update() {
+        entry.date = date
+        entry.severity = severity
+        entry.triggers = selectedTriggers
     }
     
     var body: some View {
         NavigationStack {
-            Text("New entry")
-                .fontWeight(.medium)
-                .padding(.top, 10)
-            
             List {
                 DatePicker("Date", selection: $date)
                 
@@ -72,17 +71,19 @@ struct EntryCreateScreen: View {
                     }
                 }
             }
-            
-            Button("Create") {
-                create()
+        }
+        .navigationTitle("Edit trigger")
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar(content: {
+            Button("Save") {
+                update()
                 dismiss()
             }
-            .buttonStyle(BorderedProminentButtonStyle())
-        }
+        })
     }
 }
 
 #Preview {
-    EntryCreateScreen(symptom: symptomsMock.first!)
+    EntryEditScreen(entry: entriesMock.first!)
         .modelContainer(previewContainer)
 }

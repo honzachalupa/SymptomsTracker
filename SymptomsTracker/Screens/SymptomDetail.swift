@@ -83,15 +83,16 @@ struct SymptomDetailScreen: View {
                                 }
                             }
                             .swipeActions {
-                                Button("Delete") {
+                                Button("Delete", role: .destructive) {
                                     deleteEntry(index)
                                 }
-                                .tint(.red)
                                 
-                                Button("Edit") {
-                                    print("Edit")
+                                NavigationLink {
+                                    EntryEditScreen(entry: entry)
+                                } label: {
+                                    Text("Edit")
                                 }
-                                .tint(.green)
+                                .tint(.gray)
                             }
                         }
                     }
@@ -103,6 +104,15 @@ struct SymptomDetailScreen: View {
             }
         }
         .toolbar {
+            ToolbarItem {
+                NavigationLink {
+                    SymptomEditScreen(symptom: symptom)
+                } label: {
+                    Label("Edit Symptom", systemImage: "pencil")
+                }
+
+            }
+            
             ToolbarItem {
                 Button(action: { isDeleteConfirmationShown.toggle() }, label: {
                     Label("Delete Symptom", systemImage: "trash")
@@ -133,6 +143,8 @@ struct SymptomDetailScreen: View {
 }
 
 #Preview {
-    SymptomDetailScreen(symptom: symptomsMock.first!)
-        .modelContainer(previewContainer)
+    NavigationStack {
+        SymptomDetailScreen(symptom: symptomsMock.first!)
+            .modelContainer(previewContainer)
+    }
 }

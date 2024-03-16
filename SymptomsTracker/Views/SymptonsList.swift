@@ -2,8 +2,6 @@ import SwiftUI
 import SwiftData
 
 struct SymptonsListView: View {
-    @Environment(\.modelContext) private var modelContext
-    
     @Query(sort: \Symptom.name) private var symptoms: [Symptom]
     
     var body: some View {
@@ -27,9 +25,9 @@ struct SymptonsListView: View {
                                 
                                 Text("Detail")
                                     .foregroundStyle(.blue)
-                                    .padding(.top, 5)
                             }
                         }
+                        .padding(.top, 3)
                     }
                 }
             }

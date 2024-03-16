@@ -10,7 +10,7 @@ struct TriggerCreateScreen: View {
     @State private var icon: String = ""
     @State private var isEmojiSelectorShown: Bool = false
     
-    private func createTrigger() {
+    private func create() {
         withAnimation {
             modelContext.insert(
                 Trigger(
@@ -37,10 +37,11 @@ struct TriggerCreateScreen: View {
                 TextField("Name", text: $name)
             }
         }
-        .navigationTitle("Add Trigger")
+        .navigationTitle("New trigger")
+        .navigationBarTitleDisplayMode(.inline)
         .toolbar(content: {
-            Button("Add") {
-                createTrigger()
+            Button("Create") {
+                create()
                 dismiss()
             }
             .disabled(name.isEmpty)
@@ -49,6 +50,8 @@ struct TriggerCreateScreen: View {
 }
 
 #Preview {
-    TriggerCreateScreen()
-        .modelContainer(previewContainer)
+    NavigationStack {
+        TriggerCreateScreen()
+            .modelContainer(previewContainer)
+    }
 }

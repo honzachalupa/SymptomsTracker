@@ -2,6 +2,7 @@
   "sourceLanguage" : "en",
   "strings" : {
     "Add" : {
+      "extractionState" : "stale",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -22,6 +23,7 @@
       }
     },
     "Add Symptom" : {
+      "extractionState" : "stale",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -32,6 +34,7 @@
       }
     },
     "Add Trigger" : {
+      "extractionState" : "stale",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -47,6 +50,36 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Opravdu si přejete smazat symptom?"
+          }
+        }
+      }
+    },
+    "Create" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vytvořit"
+          }
+        }
+      }
+    },
+    "Create symptom" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vytvořit symptom"
+          }
+        }
+      }
+    },
+    "Create trigger" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vytvořit spouštěč"
           }
         }
       }
@@ -101,6 +134,36 @@
         }
       }
     },
+    "Edit symptom" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upravit symptom"
+          }
+        }
+      }
+    },
+    "Edit Symptom" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upravit symptom"
+          }
+        }
+      }
+    },
+    "Edit trigger" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upravit spouštěč"
+          }
+        }
+      }
+    },
     "Entries" : {
       "localizations" : {
         "cs" : {
@@ -137,6 +200,36 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Popis"
+          }
+        }
+      }
+    },
+    "New entry" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nová záznam"
+          }
+        }
+      }
+    },
+    "New symptom" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nový symptom"
+          }
+        }
+      }
+    },
+    "New trigger" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nový spouštěč"
           }
         }
       }
