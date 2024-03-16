@@ -1,0 +1,475 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		213064152BA44FF7007E55C0 /* SymptomsTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213064142BA44FF7007E55C0 /* SymptomsTrackerApp.swift */; };
+		213064172BA44FF7007E55C0 /* Root.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213064162BA44FF7007E55C0 /* Root.swift */; };
+		213064192BA44FF7007E55C0 /* Symptom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213064182BA44FF7007E55C0 /* Symptom.swift */; };
+		2130641B2BA44FF8007E55C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2130641A2BA44FF8007E55C0 /* Assets.xcassets */; };
+		2130641E2BA44FF8007E55C0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2130641D2BA44FF8007E55C0 /* Preview Assets.xcassets */; };
+		213064292BA45A3F007E55C0 /* SymptomCreate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213064282BA45A3F007E55C0 /* SymptomCreate.swift */; };
+		2130642C2BA45E15007E55C0 /* MCEmojiPicker in Frameworks */ = {isa = PBXBuildFile; productRef = 2130642B2BA45E15007E55C0 /* MCEmojiPicker */; };
+		2130642E2BA4655A007E55C0 /* SymptomDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2130642D2BA4655A007E55C0 /* SymptomDetail.swift */; };
+		213064312BA46749007E55C0 /* Chart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213064302BA46749007E55C0 /* Chart.swift */; };
+		213064332BA469CF007E55C0 /* EntryCreate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213064322BA469CF007E55C0 /* EntryCreate.swift */; };
+		213064352BA46A88007E55C0 /* SymptomNameWithIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213064342BA46A88007E55C0 /* SymptomNameWithIcon.swift */; };
+		2130643A2BA47AE7007E55C0 /* Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213064392BA47AE7007E55C0 /* Formatting.swift */; };
+		2130643C2BA4A200007E55C0 /* SymptonsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2130643B2BA4A200007E55C0 /* SymptonsList.swift */; };
+		2130643E2BA4A9A5007E55C0 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2130643D2BA4A9A5007E55C0 /* Localizable.xcstrings */; };
+		213064422BA58F34007E55C0 /* TriggersList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213064412BA58F34007E55C0 /* TriggersList.swift */; };
+		213064442BA58FE8007E55C0 /* TriggerCreate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213064432BA58FE8007E55C0 /* TriggerCreate.swift */; };
+		213064462BA5930C007E55C0 /* Trigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213064452BA5930C007E55C0 /* Trigger.swift */; };
+		2130644A2BA5FBD8007E55C0 /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213064492BA5FBD8007E55C0 /* Entry.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		213064112BA44FF7007E55C0 /* SymptomsTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SymptomsTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		213064142BA44FF7007E55C0 /* SymptomsTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymptomsTrackerApp.swift; sourceTree = "<group>"; };
+		213064162BA44FF7007E55C0 /* Root.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Root.swift; sourceTree = "<group>"; };
+		213064182BA44FF7007E55C0 /* Symptom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Symptom.swift; sourceTree = "<group>"; };
+		2130641A2BA44FF8007E55C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2130641D2BA44FF8007E55C0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		213064282BA45A3F007E55C0 /* SymptomCreate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymptomCreate.swift; sourceTree = "<group>"; };
+		2130642D2BA4655A007E55C0 /* SymptomDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymptomDetail.swift; sourceTree = "<group>"; };
+		213064302BA46749007E55C0 /* Chart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chart.swift; sourceTree = "<group>"; };
+		213064322BA469CF007E55C0 /* EntryCreate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryCreate.swift; sourceTree = "<group>"; };
+		213064342BA46A88007E55C0 /* SymptomNameWithIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymptomNameWithIcon.swift; sourceTree = "<group>"; };
+		213064392BA47AE7007E55C0 /* Formatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatting.swift; sourceTree = "<group>"; };
+		2130643B2BA4A200007E55C0 /* SymptonsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymptonsList.swift; sourceTree = "<group>"; };
+		2130643D2BA4A9A5007E55C0 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		213064412BA58F34007E55C0 /* TriggersList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriggersList.swift; sourceTree = "<group>"; };
+		213064432BA58FE8007E55C0 /* TriggerCreate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriggerCreate.swift; sourceTree = "<group>"; };
+		213064452BA5930C007E55C0 /* Trigger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trigger.swift; sourceTree = "<group>"; };
+		213064472BA5F6CD007E55C0 /* SymptomsTracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SymptomsTracker.entitlements; sourceTree = "<group>"; };
+		213064482BA5F6F4007E55C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		213064492BA5FBD8007E55C0 /* Entry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2130640E2BA44FF7007E55C0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2130642C2BA45E15007E55C0 /* MCEmojiPicker in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		213064082BA44FF7007E55C0 = {
+			isa = PBXGroup;
+			children = (
+				2130643D2BA4A9A5007E55C0 /* Localizable.xcstrings */,
+				213064132BA44FF7007E55C0 /* SymptomsTracker */,
+				213064122BA44FF7007E55C0 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		213064122BA44FF7007E55C0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				213064112BA44FF7007E55C0 /* SymptomsTracker.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		213064132BA44FF7007E55C0 /* SymptomsTracker */ = {
+			isa = PBXGroup;
+			children = (
+				213064482BA5F6F4007E55C0 /* Info.plist */,
+				213064472BA5F6CD007E55C0 /* SymptomsTracker.entitlements */,
+				213064142BA44FF7007E55C0 /* SymptomsTrackerApp.swift */,
+				2130641A2BA44FF8007E55C0 /* Assets.xcassets */,
+				213064242BA458DB007E55C0 /* Models */,
+				213064272BA45A30007E55C0 /* Screens */,
+				2130642F2BA4670C007E55C0 /* Views */,
+				213064382BA47AD7007E55C0 /* Utilities */,
+				2130641C2BA44FF8007E55C0 /* Preview Content */,
+			);
+			path = SymptomsTracker;
+			sourceTree = "<group>";
+		};
+		2130641C2BA44FF8007E55C0 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				2130641D2BA44FF8007E55C0 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		213064242BA458DB007E55C0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				213064182BA44FF7007E55C0 /* Symptom.swift */,
+				213064492BA5FBD8007E55C0 /* Entry.swift */,
+				213064452BA5930C007E55C0 /* Trigger.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		213064272BA45A30007E55C0 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				213064162BA44FF7007E55C0 /* Root.swift */,
+				213064282BA45A3F007E55C0 /* SymptomCreate.swift */,
+				2130642D2BA4655A007E55C0 /* SymptomDetail.swift */,
+				213064432BA58FE8007E55C0 /* TriggerCreate.swift */,
+				213064322BA469CF007E55C0 /* EntryCreate.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		2130642F2BA4670C007E55C0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				213064302BA46749007E55C0 /* Chart.swift */,
+				213064342BA46A88007E55C0 /* SymptomNameWithIcon.swift */,
+				2130643B2BA4A200007E55C0 /* SymptonsList.swift */,
+				213064412BA58F34007E55C0 /* TriggersList.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		213064382BA47AD7007E55C0 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				213064392BA47AE7007E55C0 /* Formatting.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		213064102BA44FF7007E55C0 /* SymptomsTracker */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 213064212BA44FF8007E55C0 /* Build configuration list for PBXNativeTarget "SymptomsTracker" */;
+			buildPhases = (
+				2130640D2BA44FF7007E55C0 /* Sources */,
+				2130640E2BA44FF7007E55C0 /* Frameworks */,
+				2130640F2BA44FF7007E55C0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SymptomsTracker;
+			packageProductDependencies = (
+				2130642B2BA45E15007E55C0 /* MCEmojiPicker */,
+			);
+			productName = SymptomsTracker;
+			productReference = 213064112BA44FF7007E55C0 /* SymptomsTracker.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		213064092BA44FF7007E55C0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1530;
+				LastUpgradeCheck = 1530;
+				TargetAttributes = {
+					213064102BA44FF7007E55C0 = {
+						CreatedOnToolsVersion = 15.3;
+					};
+				};
+			};
+			buildConfigurationList = 2130640C2BA44FF7007E55C0 /* Build configuration list for PBXProject "SymptomsTracker" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				cs,
+			);
+			mainGroup = 213064082BA44FF7007E55C0;
+			packageReferences = (
+				2130642A2BA45E15007E55C0 /* XCRemoteSwiftPackageReference "MCEmojiPicker" */,
+			);
+			productRefGroup = 213064122BA44FF7007E55C0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				213064102BA44FF7007E55C0 /* SymptomsTracker */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2130640F2BA44FF7007E55C0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2130641E2BA44FF8007E55C0 /* Preview Assets.xcassets in Resources */,
+				2130641B2BA44FF8007E55C0 /* Assets.xcassets in Resources */,
+				2130643E2BA4A9A5007E55C0 /* Localizable.xcstrings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2130640D2BA44FF7007E55C0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2130644A2BA5FBD8007E55C0 /* Entry.swift in Sources */,
+				2130643C2BA4A200007E55C0 /* SymptonsList.swift in Sources */,
+				2130643A2BA47AE7007E55C0 /* Formatting.swift in Sources */,
+				213064312BA46749007E55C0 /* Chart.swift in Sources */,
+				213064172BA44FF7007E55C0 /* Root.swift in Sources */,
+				213064192BA44FF7007E55C0 /* Symptom.swift in Sources */,
+				213064422BA58F34007E55C0 /* TriggersList.swift in Sources */,
+				213064442BA58FE8007E55C0 /* TriggerCreate.swift in Sources */,
+				213064352BA46A88007E55C0 /* SymptomNameWithIcon.swift in Sources */,
+				213064152BA44FF7007E55C0 /* SymptomsTrackerApp.swift in Sources */,
+				2130642E2BA4655A007E55C0 /* SymptomDetail.swift in Sources */,
+				213064332BA469CF007E55C0 /* EntryCreate.swift in Sources */,
+				213064462BA5930C007E55C0 /* Trigger.swift in Sources */,
+				213064292BA45A3F007E55C0 /* SymptomCreate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		2130641F2BA44FF8007E55C0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		213064202BA44FF8007E55C0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		213064222BA44FF8007E55C0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SymptomsTracker/SymptomsTracker.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"SymptomsTracker/Preview Content\"";
+				DEVELOPMENT_TEAM = 4XV9V3GJPT;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SymptomsTracker/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Symptoms Tracker";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = janchalupa.SymptomsTracker;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		213064232BA44FF8007E55C0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SymptomsTracker/SymptomsTracker.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"SymptomsTracker/Preview Content\"";
+				DEVELOPMENT_TEAM = 4XV9V3GJPT;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SymptomsTracker/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Symptoms Tracker";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = janchalupa.SymptomsTracker;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2130640C2BA44FF7007E55C0 /* Build configuration list for PBXProject "SymptomsTracker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2130641F2BA44FF8007E55C0 /* Debug */,
+				213064202BA44FF8007E55C0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		213064212BA44FF8007E55C0 /* Build configuration list for PBXNativeTarget "SymptomsTracker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				213064222BA44FF8007E55C0 /* Debug */,
+				213064232BA44FF8007E55C0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2130642A2BA45E15007E55C0 /* XCRemoteSwiftPackageReference "MCEmojiPicker" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/izyumkin/MCEmojiPicker";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2130642B2BA45E15007E55C0 /* MCEmojiPicker */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2130642A2BA45E15007E55C0 /* XCRemoteSwiftPackageReference "MCEmojiPicker" */;
+			productName = MCEmojiPicker;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 213064092BA44FF7007E55C0 /* Project object */;
+}
