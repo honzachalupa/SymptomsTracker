@@ -1,17 +1,6 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "Add" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Přidat"
-          }
-        }
-      }
-    },
     "Add Entry" : {
       "localizations" : {
         "cs" : {
@@ -22,24 +11,13 @@
         }
       }
     },
-    "Add Symptom" : {
+    "All symptoms summary" : {
       "extractionState" : "stale",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Přidat symptom"
-          }
-        }
-      }
-    },
-    "Add Trigger" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Přidat spouštěč"
+            "value" : "Přehled všech symptomů"
           }
         }
       }
@@ -253,6 +231,9 @@
           }
         }
       }
+    },
+    "Pet type" : {
+
     },
     "Save" : {
       "localizations" : {

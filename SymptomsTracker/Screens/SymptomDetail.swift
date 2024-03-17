@@ -34,7 +34,7 @@ struct SymptomDetailScreen: View {
             List {
                 if !symptom.entries!.isEmpty {
                     Section {
-                        ChartView(symptomEntries: symptom.entries!)
+                        EntriesChartView(symptomEntries: symptom.entries!)
                             .aspectRatio(1.5, contentMode: .fit)
                     }
                 }

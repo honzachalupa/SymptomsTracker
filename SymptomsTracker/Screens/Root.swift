@@ -5,6 +5,8 @@ enum TabKey {
 }
 
 struct RootScreen: View {
+    // let healthKitConntector = HealthKitConnector()
+    
     @State private var selectedTabKey: TabKey = .symptoms
     
     var navigationTitle: String {
@@ -19,7 +21,7 @@ struct RootScreen: View {
     var body: some View {
         NavigationStack {
             TabView(selection: $selectedTabKey) {
-                SymptonsListView().tabItem {
+                SymptomsListView().tabItem {
                     Label("Symptoms", systemImage: "chart.bar.xaxis")
                 }
                 .tag(TabKey.symptoms)

@@ -1,17 +1,23 @@
 import SwiftUI
 import SwiftData
 
-struct SymptonsListView: View {
+struct SymptomsListView: View {
     @Query(sort: \Symptom.name) private var symptoms: [Symptom]
     
     var body: some View {
         List {
+            /* Section("All symptoms summary") {
+                SummaryChartView()
+                    .padding(.bottom, 10)
+                    .padding(.top, 20)
+            } */
+            
             ForEach(symptoms) { symptom in
                 Section {
                     VStack(alignment: .leading) {
                         SymptomNameWithIcon(name: symptom.name, icon: symptom.icon)
                     
-                        ChartView(symptomEntries: symptom.entries!)
+                        EntriesChartView(symptomEntries: symptom.entries!)
                             .aspectRatio(3, contentMode: .fit)
                             .padding(.vertical, 20)
                         
@@ -32,10 +38,11 @@ struct SymptonsListView: View {
                 }
             }
         }
+        .padding(.top, 10)
     }
 }
 
 #Preview {
-    SymptonsListView()
+    SymptomsListView()
         .modelContainer(previewContainer)
 }

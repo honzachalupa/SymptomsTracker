@@ -15,11 +15,11 @@
 		213064292BA45A3F007E55C0 /* SymptomCreate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213064282BA45A3F007E55C0 /* SymptomCreate.swift */; };
 		2130642C2BA45E15007E55C0 /* MCEmojiPicker in Frameworks */ = {isa = PBXBuildFile; productRef = 2130642B2BA45E15007E55C0 /* MCEmojiPicker */; };
 		2130642E2BA4655A007E55C0 /* SymptomDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2130642D2BA4655A007E55C0 /* SymptomDetail.swift */; };
-		213064312BA46749007E55C0 /* Chart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213064302BA46749007E55C0 /* Chart.swift */; };
+		213064312BA46749007E55C0 /* EntriesChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213064302BA46749007E55C0 /* EntriesChart.swift */; };
 		213064332BA469CF007E55C0 /* EntryCreate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213064322BA469CF007E55C0 /* EntryCreate.swift */; };
 		213064352BA46A88007E55C0 /* SymptomNameWithIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213064342BA46A88007E55C0 /* SymptomNameWithIcon.swift */; };
 		2130643A2BA47AE7007E55C0 /* Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213064392BA47AE7007E55C0 /* Formatting.swift */; };
-		2130643C2BA4A200007E55C0 /* SymptonsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2130643B2BA4A200007E55C0 /* SymptonsList.swift */; };
+		2130643C2BA4A200007E55C0 /* SymptomsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2130643B2BA4A200007E55C0 /* SymptomsList.swift */; };
 		2130643E2BA4A9A5007E55C0 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2130643D2BA4A9A5007E55C0 /* Localizable.xcstrings */; };
 		213064422BA58F34007E55C0 /* TriggersList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213064412BA58F34007E55C0 /* TriggersList.swift */; };
 		213064442BA58FE8007E55C0 /* TriggerCreate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213064432BA58FE8007E55C0 /* TriggerCreate.swift */; };
@@ -29,6 +29,8 @@
 		21EFDD912BA61D9300BD20BE /* SymptomEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21EFDD902BA61D9300BD20BE /* SymptomEdit.swift */; };
 		21EFDD932BA623FC00BD20BE /* EntryEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21EFDD922BA623FC00BD20BE /* EntryEdit.swift */; };
 		21EFDD952BA626CC00BD20BE /* TriggerEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21EFDD942BA626CC00BD20BE /* TriggerEdit.swift */; };
+		21EFDD972BA723D200BD20BE /* HealthKitConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21EFDD962BA723D200BD20BE /* HealthKitConnector.swift */; };
+		21EFDD992BA73DBA00BD20BE /* SummaryChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21EFDD982BA73DBA00BD20BE /* SummaryChart.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,11 +42,11 @@
 		2130641D2BA44FF8007E55C0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		213064282BA45A3F007E55C0 /* SymptomCreate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymptomCreate.swift; sourceTree = "<group>"; };
 		2130642D2BA4655A007E55C0 /* SymptomDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymptomDetail.swift; sourceTree = "<group>"; };
-		213064302BA46749007E55C0 /* Chart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chart.swift; sourceTree = "<group>"; };
+		213064302BA46749007E55C0 /* EntriesChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntriesChart.swift; sourceTree = "<group>"; };
 		213064322BA469CF007E55C0 /* EntryCreate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryCreate.swift; sourceTree = "<group>"; };
 		213064342BA46A88007E55C0 /* SymptomNameWithIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymptomNameWithIcon.swift; sourceTree = "<group>"; };
 		213064392BA47AE7007E55C0 /* Formatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatting.swift; sourceTree = "<group>"; };
-		2130643B2BA4A200007E55C0 /* SymptonsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymptonsList.swift; sourceTree = "<group>"; };
+		2130643B2BA4A200007E55C0 /* SymptomsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymptomsList.swift; sourceTree = "<group>"; };
 		2130643D2BA4A9A5007E55C0 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		213064412BA58F34007E55C0 /* TriggersList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriggersList.swift; sourceTree = "<group>"; };
 		213064432BA58FE8007E55C0 /* TriggerCreate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriggerCreate.swift; sourceTree = "<group>"; };
@@ -56,6 +58,8 @@
 		21EFDD902BA61D9300BD20BE /* SymptomEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymptomEdit.swift; sourceTree = "<group>"; };
 		21EFDD922BA623FC00BD20BE /* EntryEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryEdit.swift; sourceTree = "<group>"; };
 		21EFDD942BA626CC00BD20BE /* TriggerEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriggerEdit.swift; sourceTree = "<group>"; };
+		21EFDD962BA723D200BD20BE /* HealthKitConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitConnector.swift; sourceTree = "<group>"; };
+		21EFDD982BA73DBA00BD20BE /* SummaryChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryChart.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,9 +144,10 @@
 		2130642F2BA4670C007E55C0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				213064302BA46749007E55C0 /* Chart.swift */,
+				21EFDD982BA73DBA00BD20BE /* SummaryChart.swift */,
+				213064302BA46749007E55C0 /* EntriesChart.swift */,
 				213064342BA46A88007E55C0 /* SymptomNameWithIcon.swift */,
-				2130643B2BA4A200007E55C0 /* SymptonsList.swift */,
+				2130643B2BA4A200007E55C0 /* SymptomsList.swift */,
 				213064412BA58F34007E55C0 /* TriggersList.swift */,
 			);
 			path = Views;
@@ -152,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				213064392BA47AE7007E55C0 /* Formatting.swift */,
+				21EFDD962BA723D200BD20BE /* HealthKitConnector.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -235,10 +241,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				2130644A2BA5FBD8007E55C0 /* Entry.swift in Sources */,
-				2130643C2BA4A200007E55C0 /* SymptonsList.swift in Sources */,
+				2130643C2BA4A200007E55C0 /* SymptomsList.swift in Sources */,
 				2130643A2BA47AE7007E55C0 /* Formatting.swift in Sources */,
-				213064312BA46749007E55C0 /* Chart.swift in Sources */,
+				213064312BA46749007E55C0 /* EntriesChart.swift in Sources */,
 				21EFDD932BA623FC00BD20BE /* EntryEdit.swift in Sources */,
+				21EFDD992BA73DBA00BD20BE /* SummaryChart.swift in Sources */,
 				213064172BA44FF7007E55C0 /* Root.swift in Sources */,
 				21EFDD952BA626CC00BD20BE /* TriggerEdit.swift in Sources */,
 				213064192BA44FF7007E55C0 /* Symptom.swift in Sources */,
@@ -249,6 +256,7 @@
 				213064152BA44FF7007E55C0 /* SymptomsTrackerApp.swift in Sources */,
 				21EFDD912BA61D9300BD20BE /* SymptomEdit.swift in Sources */,
 				2130642E2BA4655A007E55C0 /* SymptomDetail.swift in Sources */,
+				21EFDD972BA723D200BD20BE /* HealthKitConnector.swift in Sources */,
 				213064332BA469CF007E55C0 /* EntryCreate.swift in Sources */,
 				213064462BA5930C007E55C0 /* Trigger.swift in Sources */,
 				213064292BA45A3F007E55C0 /* SymptomCreate.swift in Sources */,
@@ -392,6 +400,7 @@
 				INFOPLIST_FILE = SymptomsTracker/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Symptoms Tracker";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "This app uses HealtKit to track some of the symptoms";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -426,6 +435,7 @@
 				INFOPLIST_FILE = SymptomsTracker/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Symptoms Tracker";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "This app uses HealtKit to track some of the symptoms";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

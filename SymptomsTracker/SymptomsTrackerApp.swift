@@ -21,7 +21,6 @@ struct SymptomsTrackerApp: App {
         WindowGroup {
             RootScreen()
         }
-        // .modelContainer(sharedModelContainer)
         .modelContainer(for: [
             Symptom.self,
             Trigger.self
