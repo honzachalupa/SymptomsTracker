@@ -21,7 +21,7 @@ struct SettingsScreen: View {
                 Text("Delete all data")
             })
             .confirmationDialog(
-                "Are you sure?",
+                "Are you sure you want to delete all data?",
                 isPresented: $isDeleteConfirmationShown,
                 titleVisibility: .visible
             ) {

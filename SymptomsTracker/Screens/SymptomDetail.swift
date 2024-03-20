@@ -1,19 +1,10 @@
 import SwiftUI
 
-extension ForEach {
-    public init<T: RandomAccessCollection>(
-        data: T,
-        content: @escaping (T.Index, T.Element) -> Content
-    ) where T.Element: Identifiable, T.Element: Hashable, Content: View, Data == [(T.Index, T.Element)], ID == T.Element  {
-        self.init(Array(zip(data.indices, data)), id: \.1) { index, element in
-            content(index, element)
-        }
-    }
-}
-
 struct SymptomDetailScreen: View {
     @Environment(\.dismiss) var dismiss
     @Environment(\.modelContext) private var modelContext
+    
+    let healthKitConntector = HealthKitConnector()
     
     var symptom: Symptom
     
@@ -26,8 +17,12 @@ struct SymptomDetailScreen: View {
         }
     }
     
-    private func deleteEntry(_ index: Int) {
-        symptom.entries!.remove(at: index)
+    private func deleteEntry(_ entry: Entry) {
+        if symptom.typeIdentifier != nil {
+            healthKitConntector.delete(entry.id, symptom.typeIdentifier!)
+        }
+        
+        symptom.entries!.remove(at: symptom.entries!.firstIndex(of: entry)!)
     }
     
     var body: some View {
@@ -53,7 +48,7 @@ struct SymptomDetailScreen: View {
                 
                 Section("Entries") {
                     if !symptom.entries!.isEmpty {
-                        ForEach(data: symptom.entries!) { index, entry in
+                        ForEach(symptom.entries!, id: \.id) { entry in
                             VStack {
                                 HStack {
                                     Text(entry.date, formatter: dateFormatter)
@@ -88,7 +83,7 @@ struct SymptomDetailScreen: View {
                             }
                             .swipeActions {
                                 Button("Delete", role: .destructive) {
-                                    deleteEntry(index)
+                                    deleteEntry(entry)
                                 }
                                 
                                 NavigationLink {
@@ -103,6 +98,14 @@ struct SymptomDetailScreen: View {
                     
                     Button("Add Entry") {
                         isSheetShown.toggle()
+                    }
+                }
+                
+                if symptom.typeIdentifier != nil {
+                    Section {
+                        Button(action: openAppleHealth, label: {
+                            Text("Open Health app")
+                        })
                     }
                 }
             }
@@ -124,7 +127,7 @@ struct SymptomDetailScreen: View {
                     Label("Delete Symptom", systemImage: "trash")
                 })
                 .confirmationDialog(
-                    "Are you sure?",
+                    "Are you sure you want to delete the symptom \(symptom.name)?",
                     isPresented: $isDeleteConfirmationShown,
                     titleVisibility: .visible
                 ) {

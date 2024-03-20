@@ -3,4 +3,162 @@
    uuid = "B3D08B1E-B391-4DB6-990E-1B0857F2E5DD"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "680B6259-C40F-4703-A7C2-39185ED41C94"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SymptomsTracker/Screens/Root.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "getHealthKitData()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "680B6259-C40F-4703-A7C2-39185ED41C94 - ccf532234680cf2a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SymptomsTracker.RootScreen.getHealthKitData() -&gt; ()"
+                  moduleName = "SymptomsTracker"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/janchalupa/Projects/-%20iOS/SymptomsTracker/SymptomsTracker/Screens/Root.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29">
+               </Location>
+               <Location
+                  uuid = "680B6259-C40F-4703-A7C2-39185ED41C94 - cd43dd3e8390d430"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (SymptomsTracker.Symptom) -&gt; () in SymptomsTracker.RootScreen.getHealthKitData() -&gt; ()"
+                  moduleName = "SymptomsTracker"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/janchalupa/Projects/-%20iOS/SymptomsTracker/SymptomsTracker/Screens/Root.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "000C1CB7-CC20-47AF-8DDE-F642CEDE184A"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SymptomsTracker/Screens/Root.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "getHealthKitData()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "000C1CB7-CC20-47AF-8DDE-F642CEDE184A - 9f00863951c9c2f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Array&lt;SymptomsTracker.Entry&gt;) -&gt; () in closure #1 (SymptomsTracker.Symptom) -&gt; () in SymptomsTracker.RootScreen.getHealthKitData() -&gt; ()"
+                  moduleName = "SymptomsTracker"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/janchalupa/Projects/-%20iOS/SymptomsTracker/SymptomsTracker/Screens/Root.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "36"
+                  endingLineNumber = "36">
+               </Location>
+               <Location
+                  uuid = "000C1CB7-CC20-47AF-8DDE-F642CEDE184A - d63345559c754346"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (SymptomsTracker.Entry) -&gt; () in closure #1 (Swift.Array&lt;SymptomsTracker.Entry&gt;) -&gt; () in closure #1 (SymptomsTracker.Symptom) -&gt; () in SymptomsTracker.RootScreen.getHealthKitData() -&gt; ()"
+                  moduleName = "SymptomsTracker"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/janchalupa/Projects/-%20iOS/SymptomsTracker/SymptomsTracker/Screens/Root.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "37"
+                  endingLineNumber = "37">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EF2736EF-71E0-4620-97D0-7778A79503E1"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SymptomsTracker/Screens/Root.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "getHealthKitData()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F3A58CEB-2842-498B-9654-DD97DD823678"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SymptomsTracker/Screens/Root.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
+            landmarkName = "getHealthKitData()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F51B9A7B-F63A-4DE3-A799-3FFAFE8EFBD3"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SymptomsTracker/Screens/Root.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "getHealthKitData()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D5170A00-CC9C-42A4-9160-861EA6EEBB78"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SymptomsTracker/Screens/Root.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "getHealthKitData()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

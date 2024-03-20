@@ -98,6 +98,7 @@ struct HealthKitConnector {
                             }
                             
                             let entry = Entry(
+                                id: sample.uuid,
                                 date: sample.startDate,
                                 severity: self.decodeSymptomSeverity(sample.value),
                                 triggers: triggers
@@ -114,6 +115,23 @@ struct HealthKitConnector {
             } else {
                 requestPermissions(_typeIdentifier)
                 // readHKSample(_typeIdentifier)
+            }
+        }
+    }
+    
+    func delete(_ id: UUID, _ _typeIdentifier: TypeIdentifiers) {
+        print("DELETE", id, _typeIdentifier)
+        
+        if let typeIdentifier = typeIdentifierMapping[_typeIdentifier] {
+            let sampleType = HKObjectType.categoryType(forIdentifier: typeIdentifier)!
+            let predicate = HKQuery.predicateForObjects(withMetadataKey: HKMetadataKeySyncIdentifier, allowedValues: [id.uuidString])
+            
+            healthStore.deleteObjects(of: sampleType, predicate: predicate) { success, _, error in
+                if success {
+                    print("DELETE Data with ID \(id) deleted successfully")
+                } else {
+                    print("DELETE Error deleting data: \(error)")
+                }
             }
         }
     }

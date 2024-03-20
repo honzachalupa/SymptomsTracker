@@ -42,12 +42,22 @@
         }
       }
     },
-    "Are you sure?" : {
+    "Are you sure you want to delete all data?" : {
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Opravdu si přejete smazat symptom?"
+            "value" : "Opravdu si přejete smazat veškerá data?"
+          }
+        }
+      }
+    },
+    "Are you sure you want to delete the symptom %@?" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opravdu si přejete smazat symptom %@?"
           }
         }
       }
@@ -148,16 +158,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Smazat symtom"
-          }
-        }
-      }
-    },
-    "Detail" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Detail"
           }
         }
       }
@@ -288,6 +288,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Poznámka"
+          }
+        }
+      }
+    },
+    "Open Health app" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otevřít aplikaci Zdraví"
           }
         }
       }

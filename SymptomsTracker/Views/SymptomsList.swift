@@ -14,32 +14,22 @@ struct SymptomsListView: View {
             
             ForEach(symptoms) { symptom in
                 Section {
-                    VStack(alignment: .leading) {
-                        HStack {
-                            SymptomNameWithIcon(name: symptom.name, icon: symptom.icon)
-                            
-                            Spacer()
-                            
-                            HealthKitConnectionLabel(symptom: symptom)
-                        }
-                    
-                        EntriesChartView(symptomEntries: symptom.entries!)
-                            .aspectRatio(3, contentMode: .fit)
-                            .padding(.vertical, 20)
-                        
-                        Divider()
-                        
-                        NavigationLink {
-                            SymptomDetailScreen(symptom: symptom)
-                        } label: {
+                    NavigationLink {
+                        SymptomDetailScreen(symptom: symptom)
+                    } label: {
+                        VStack(alignment: .leading) {
                             HStack {
+                                SymptomNameWithIcon(name: symptom.name, icon: symptom.icon)
+                                
                                 Spacer()
                                 
-                                Text("Detail")
+                                HealthKitConnectionLabel(symptom: symptom)
                             }
-                            .foregroundStyle(.blue)
+                            
+                            EntriesChartView(symptomEntries: symptom.entries!)
+                                .aspectRatio(3, contentMode: .fit)
+                                .padding(.vertical, 20)
                         }
-                        .padding(.top, 3)
                     }
                 }
             }

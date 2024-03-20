@@ -60,7 +60,7 @@ struct EntriesChartView: View {
                         // width: 15,
                         // stacking: .unstacked
                     )
-                    .interpolationMethod(.cardinal)
+                    // .interpolationMethod(.cardinal)
                     // .foregroundStyle(getSeverityColor(record.severityInt))
                     .foregroundStyle(
                         .linearGradient(
@@ -70,6 +70,24 @@ struct EntriesChartView: View {
                         )
                     )
                     // .cornerRadius(5)
+                    
+                    PointMark(
+                        x: .value("Date", record.date),
+                        y: .value("Severity", record.severityInt)
+                        // width: 15,
+                        // stacking: .unstacked
+                    )
+                    .foregroundStyle(getSeverityColor(record.severityInt))
+                }
+                .chartYAxis {
+                    AxisMarks {
+                        let value = $0.as(Int.self)!
+                        AxisGridLine()
+                        AxisTick()
+                        AxisValueLabel {
+                            Text(getSeverityLabelFromInt(value))
+                        }
+                    }
                 }
                 .chartXScale(domain: calculateDateDomain())
                 // .chartScrollableAxes(.horizontal)
