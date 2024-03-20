@@ -83,7 +83,6 @@ struct SummaryChartView: View {
                         )
                         .foregroundStyle(getSeverityColor(record.severityInt))
                     }
-                    .symbol(by: .value("Pet type", recordSet.symptom.name))
                 }
                 .chartXScale(domain: calculateDateDomain())
                 .frame(height: 300)

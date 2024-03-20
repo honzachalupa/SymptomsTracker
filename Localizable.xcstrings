@@ -1,12 +1,32 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        }
+      }
+    },
     "Add Entry" : {
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Přidat záznam"
+          }
+        }
+      }
+    },
+    "Add from Health app" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Přidat z aplikace Zdraví"
           }
         }
       }
@@ -32,12 +52,32 @@
         }
       }
     },
+    "Connected to Health app" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Připojeno k aplikaci Zdraví"
+          }
+        }
+      }
+    },
     "Create" : {
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vytvořit"
+          }
+        }
+      }
+    },
+    "Create manualy" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vytvořit manuálně"
           }
         }
       }
@@ -62,6 +102,16 @@
         }
       }
     },
+    "Data type" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Typ dat"
+          }
+        }
+      }
+    },
     "Date" : {
       "localizations" : {
         "cs" : {
@@ -78,6 +128,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Smazat"
+          }
+        }
+      }
+    },
+    "Delete all data" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Smazat všechna data"
           }
         }
       }
@@ -232,15 +292,22 @@
         }
       }
     },
-    "Pet type" : {
-
-    },
     "Save" : {
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Uložit"
+          }
+        }
+      }
+    },
+    "Settings" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nastavení"
           }
         }
       }

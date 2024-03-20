@@ -47,18 +47,19 @@ struct EntryCreateScreen: View {
                 
                 Section("Triggers") {
                     ForEach(triggers) { trigger in
-                        HStack {
-                            SymptomNameWithIcon(name: trigger.name, icon: trigger.icon)
-                            
-                            if selectedTriggers.contains(trigger) {
-                                Spacer()
-                                
-                                Image(systemName:"checkmark")
-                                    .foregroundStyle(.blue)
+                        Toggle(isOn: Binding(
+                            get: {
+                                selectedTriggers.contains(trigger)
+                            },
+                            set: { value in
+                                if value {
+                                    selectedTriggers.append(trigger)
+                                } else {
+                                    selectedTriggers.removeAll { $0 == trigger }
+                                }
                             }
-                        }
-                        .onTapGesture {
-                            selectTrigger(trigger)
+                        )) {
+                            SymptomNameWithIcon(name: trigger.name, icon: trigger.icon)
                         }
                     }
                     

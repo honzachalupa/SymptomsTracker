@@ -54,13 +54,21 @@ struct EntriesChartView: View {
         ZStack {
             if data.count > 1 {
                 Chart(data, id: \.id) { record in
-                    PointMark(
+                    LineMark(
                         x: .value("Date", record.date),
                         y: .value("Severity", record.severityInt)
                         // width: 15,
                         // stacking: .unstacked
                     )
-                    .foregroundStyle(getSeverityColor(record.severityInt))
+                    .interpolationMethod(.cardinal)
+                    // .foregroundStyle(getSeverityColor(record.severityInt))
+                    .foregroundStyle(
+                        .linearGradient(
+                            colors: [.yellow, .orange, .red],
+                            startPoint: .bottom,
+                            endPoint: .top
+                        )
+                    )
                     // .cornerRadius(5)
                 }
                 .chartXScale(domain: calculateDateDomain())

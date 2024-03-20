@@ -15,7 +15,13 @@ struct SymptomsListView: View {
             ForEach(symptoms) { symptom in
                 Section {
                     VStack(alignment: .leading) {
-                        SymptomNameWithIcon(name: symptom.name, icon: symptom.icon)
+                        HStack {
+                            SymptomNameWithIcon(name: symptom.name, icon: symptom.icon)
+                            
+                            Spacer()
+                            
+                            HealthKitConnectionLabel(symptom: symptom)
+                        }
                     
                         EntriesChartView(symptomEntries: symptom.entries!)
                             .aspectRatio(3, contentMode: .fit)
@@ -30,8 +36,8 @@ struct SymptomsListView: View {
                                 Spacer()
                                 
                                 Text("Detail")
-                                    .foregroundStyle(.blue)
                             }
+                            .foregroundStyle(.blue)
                         }
                         .padding(.top, 3)
                     }

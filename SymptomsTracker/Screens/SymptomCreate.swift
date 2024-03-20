@@ -3,9 +3,13 @@ import SwiftData
 import MCEmojiPicker
 
 struct SymptomCreateScreen: View {
+    let healthKitConntector = HealthKitConnector()
+    
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) var dismiss
     
+    @State private var origin: SymptomOrigin = .healthKit
+    @State private var selectedHKSymptom: Symptom = HealthKitSymptoms.first!
     @State private var name: String = ""
     @State private var note: String = ""
     @State private var icon: String = ""
@@ -13,33 +17,73 @@ struct SymptomCreateScreen: View {
     
     private func create() {
         withAnimation {
-            modelContext.insert(
-                Symptom(
-                    name: name,
-                    icon: icon,
-                    note: note
+            if origin == .manual {
+                modelContext.insert(
+                    Symptom(
+                        name: name,
+                        icon: icon,
+                        origin: origin,
+                        note: note
+                    )
                 )
-            )
+            } else {
+                if let identifier = selectedHKSymptom.healthKitTypeIdentifier {
+                    healthKitConntector.requestHealthkitPermissions(identifier)
+                    
+                    modelContext.insert(
+                        Symptom(
+                            name: selectedHKSymptom.name,
+                            icon: selectedHKSymptom.icon,
+                            origin: origin,
+                            healthKitTypeIdentifier: identifier,
+                            note: selectedHKSymptom.note
+                        )
+                    )
+                }
+            }
         }
     }
     
     var body: some View {
-        List {
-            HStack {
-                Button(icon.count > 0 ? icon : "❓") {
-                    isEmojiSelectorShown.toggle()
+        VStack {
+            Picker("", selection: $origin) {
+                ForEach(SymptomOrigin.allCases, id: \.self) { origin in
+                    Text(getOriginLabel(origin))
+                        .tag(origin)
                 }
-                .emojiPicker(
-                    isPresented: $isEmojiSelectorShown,
-                    selectedEmoji: $icon
-                )
-                
-                Divider()
-                
-                TextField("Name", text: $name)
             }
+            .pickerStyle(.palette)
+            .padding(.horizontal)
             
-            TextField("Note", text: $note)
+            if origin == .manual {
+                List {
+                    HStack {
+                        Button(icon.count > 0 ? icon : "❓") {
+                            isEmojiSelectorShown.toggle()
+                        }
+                        .emojiPicker(
+                            isPresented: $isEmojiSelectorShown,
+                            selectedEmoji: $icon
+                        )
+                        
+                        Divider()
+                        
+                        TextField("Name", text: $name)
+                    }
+                    
+                    TextField("Note", text: $note)
+                }
+            } else {
+                List {
+                    Picker("Data type", selection: $selectedHKSymptom) {
+                        ForEach(HealthKitSymptoms) { symptom in
+                            SymptomNameWithIcon(name: symptom.name, icon: symptom.icon)
+                                .tag(symptom)
+                        }
+                    }
+                    .pickerStyle(.navigationLink)
+                }
+            }
         }
         .navigationTitle("New symptom")
         .navigationBarTitleDisplayMode(.inline)
@@ -48,7 +92,7 @@ struct SymptomCreateScreen: View {
                 create()
                 dismiss()
             }
-            .disabled(name.isEmpty)
+            .disabled(name.isEmpty && origin == .manual)
         })
     }
 }

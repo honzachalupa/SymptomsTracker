@@ -12,6 +12,7 @@ extension ForEach {
 }
 
 struct SymptomDetailScreen: View {
+    @Environment(\.dismiss) var dismiss
     @Environment(\.modelContext) private var modelContext
     
     var symptom: Symptom
@@ -30,7 +31,10 @@ struct SymptomDetailScreen: View {
     }
     
     var body: some View {
-        VStack {
+        VStack(alignment: .trailing) {
+            HealthKitConnectionLabel(symptom: symptom)
+                .padding(.trailing)
+            
             List {
                 if !symptom.entries!.isEmpty {
                     Section {
@@ -104,17 +108,19 @@ struct SymptomDetailScreen: View {
             }
         }
         .toolbar {
-            ToolbarItem {
-                NavigationLink {
-                    SymptomEditScreen(symptom: symptom)
-                } label: {
-                    Label("Edit Symptom", systemImage: "pencil")
-                }
+            if symptom.origin == .manual {
+                ToolbarItem {
+                    NavigationLink {
+                        SymptomEditScreen(symptom: symptom)
+                    } label: {
+                        Label("Edit Symptom", systemImage: "pencil")
+                    }
 
+                }
             }
             
             ToolbarItem {
-                Button(action: { isDeleteConfirmationShown.toggle() }, label: {
+                Button(role: .destructive, action: { isDeleteConfirmationShown.toggle() }, label: {
                     Label("Delete Symptom", systemImage: "trash")
                 })
                 .confirmationDialog(
@@ -122,9 +128,10 @@ struct SymptomDetailScreen: View {
                     isPresented: $isDeleteConfirmationShown,
                     titleVisibility: .visible
                 ) {
-                    Button("Delete") {
+                    Button("Delete", role: .destructive) {
                         withAnimation {
                             deleteSymptom()
+                            dismiss()
                         }
                     }
                     .keyboardShortcut(.defaultAction)

@@ -1,59 +1,81 @@
 import HealthKit
 
-class HealthKitConnector: ObservableObject {
-    public let healthStore: HKHealthStore
-        
+let typeIdentifierMapping: [TypeIdentifiers: HKCategoryTypeIdentifier] = [
+    .headache: .headache,
+    .coughing: .coughing,
+    .fever: .fever,
+    .acne: .acne
+]
+
+enum TypeIdentifiers: Codable {
+    case headache, coughing, fever, acne
+}
+
+struct HealthKitConnector {
+    var healthStore: HKHealthStore = HKHealthStore()
+
     init() {
         guard HKHealthStore.isHealthDataAvailable() else {
             fatalError("This app requires a device that supports HealthKit")
         }
-        
-        healthStore = HKHealthStore()
-        requestHealthkitPermissions()
     }
     
-    private func requestHealthkitPermissions() {
-        let sampleTypesToRead = Set([
-            HKObjectType.categoryType(forIdentifier: .headache)!,
-        ])
-        
-        healthStore.requestAuthorization(toShare: nil, read: sampleTypesToRead) { (success, error) in
-            print("Request Authorization -- Success: ", success, " Error: ", error ?? "nil")
+    func requestHealthkitPermissions(_ _identifier: TypeIdentifiers) {
+        if let identifier = typeIdentifierMapping[_identifier] {
+            let identifier = HKObjectType.categoryType(forIdentifier: identifier)!
+            
+            healthStore.requestAuthorization(toShare: [identifier], read: [identifier]) { _, error in
+                if let error = error {
+                    print("Error requesting HealthKit authorization", error)
+                }
+            }
         }
     }
     
-    public func readHKSample(_ identifier: HKCategoryTypeIdentifier) {
-        let sampleType  = HKObjectType.categoryType(forIdentifier: identifier)!
-        let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: false)
-        let sampleQuery = HKSampleQuery.init(
-            sampleType: sampleType,
-            predicate: get24hPredicate(),
-            limit: HKObjectQueryNoLimit,
-            sortDescriptors: [sortDescriptor],
-            resultsHandler: { (query, results, error) in
-                guard let samples = results as? [HKCategorySample] else {
-                    print(error!)
-                    
-                    return
-                }
-                
-                for sample in samples {
-                    // let mSample = sample.quantity.doubleValue(for: HKUnit(from: "count/min"))
-                    
-                    print("SAMPLE: ", sample.value, " ", sample.startDate, " ", sample.endDate, " ", sample.metadata ?? "nil")
-                    
-                    print("ENTRY: ",
-                          Entry(
-                              date: sample.startDate,
-                              severity: self.getSymptomSeverity(sample.value),
-                              triggers: []
-                          )
-                    )
-                }
-            }
-        )
+    func readHKSample(_ _identifier: TypeIdentifiers, completion: @escaping ([Entry]) -> Void) {
+        var entries: [Entry] = []
         
-        self.healthStore .execute(sampleQuery)
+        if let identifier = typeIdentifierMapping[_identifier] {
+            let authStatus = healthStore.authorizationStatus(for: HKObjectType.categoryType(forIdentifier: identifier)!)
+            
+            if authStatus == .sharingAuthorized {
+                let sampleType = HKObjectType.categoryType(forIdentifier: identifier)!
+                let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: false)
+                
+                let sampleQuery = HKSampleQuery(
+                    sampleType: sampleType,
+                    predicate: getPredicate(.year),
+                    limit: HKObjectQueryNoLimit,
+                    sortDescriptors: [sortDescriptor],
+                    resultsHandler: { query, results, error in
+                        guard let samples = results as? [HKCategorySample] else {
+                            if let error = error {
+                                print(error)
+                            }
+                            completion(entries)
+                            return
+                        }
+                        
+                        for sample in samples {
+                            let entry = Entry(
+                                date: sample.startDate,
+                                severity: self.getSymptomSeverity(sample.value),
+                                triggers: []
+                            )
+                            
+                            entries.append(entry)
+                        }
+                        
+                        completion(entries)
+                    }
+                )
+                
+                healthStore.execute(sampleQuery)
+            } else {
+                requestHealthkitPermissions(_identifier)
+                // readHKSample(_identifier)
+            }
+        }
     }
     
     private func getSymptomSeverity(_ sampleValue: Int) -> Severity {
@@ -67,10 +89,10 @@ class HealthKitConnector: ObservableObject {
         }
     }
     
-    private func get24hPredicate() ->  NSPredicate{
-        let today = Date()
-        let startDate = Calendar.current.date(byAdding: .hour, value: -24, to: today)
-        let predicate = HKQuery.predicateForSamples(withStart: startDate,end: today,options: [])
+    private func getPredicate(_ byAdding: Calendar.Component) -> NSPredicate {
+        let startDate = Calendar.current.date(byAdding: byAdding, value: -1, to: Date())
+        let predicate = HKQuery.predicateForSamples(withStart: startDate, end: Date(), options: [])
+        
         return predicate
     }
 }

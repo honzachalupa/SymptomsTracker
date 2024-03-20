@@ -11,6 +11,15 @@ func getSeverityLabel(_ severity: Severity) -> String {
     }
 }
 
+func getOriginLabel(_ origin: SymptomOrigin) -> String {
+    switch origin {
+        case .manual:
+            return String(localized: "Create manualy")
+        case .healthKit:
+            return String(localized: "Add from Health app")
+    }
+}
+
 let dateFormatter: DateFormatter = {
     let formatter = DateFormatter()
     
