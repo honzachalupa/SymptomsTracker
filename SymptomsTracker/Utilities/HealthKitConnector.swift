@@ -11,6 +11,11 @@ enum TypeIdentifiers: Codable {
     case headache, coughing, fever, acne
 }
 
+struct WriteDataModel {
+    var severity: Severity
+    var triggerIDsString: String
+}
+
 struct HealthKitConnector {
     var healthStore: HKHealthStore = HKHealthStore()
 
@@ -20,11 +25,11 @@ struct HealthKitConnector {
         }
     }
     
-    func requestHealthkitPermissions(_ _identifier: TypeIdentifiers) {
-        if let identifier = typeIdentifierMapping[_identifier] {
-            let identifier = HKObjectType.categoryType(forIdentifier: identifier)!
+    func requestPermissions(_ _typeIdentifier: TypeIdentifiers) {
+        if let typeIdentifier = typeIdentifierMapping[_typeIdentifier] {
+            let typeIdentifier = HKObjectType.categoryType(forIdentifier: typeIdentifier)!
             
-            healthStore.requestAuthorization(toShare: [identifier], read: [identifier]) { _, error in
+            healthStore.requestAuthorization(toShare: [typeIdentifier], read: [typeIdentifier]) { _, error in
                 if let error = error {
                     print("Error requesting HealthKit authorization", error)
                 }
@@ -32,14 +37,37 @@ struct HealthKitConnector {
         }
     }
     
-    func readHKSample(_ _identifier: TypeIdentifiers, completion: @escaping ([Entry]) -> Void) {
-        var entries: [Entry] = []
-        
-        if let identifier = typeIdentifierMapping[_identifier] {
-            let authStatus = healthStore.authorizationStatus(for: HKObjectType.categoryType(forIdentifier: identifier)!)
+    func write(_ _typeIdentifier: TypeIdentifiers, data: WriteDataModel, completion: @escaping (Never) -> Void) {
+        if let typeIdentifier = typeIdentifierMapping[_typeIdentifier] {
+            let sampleType = HKObjectType.categoryType(forIdentifier: .headache)!
+            let sample = HKCategorySample(
+                type: sampleType,
+                value: encodeSymptomSeverity(data.severity),
+                start: Date(),
+                end: Date(),
+                metadata: [
+                    "triggerIDs": data.triggerIDsString
+                ]
+            )
+            
+            healthStore.save(sample) { success, error in
+                if success {
+                    print("Heart rate sample saved successfully.")
+                } else {
+                    if let error = error {
+                        print("Error saving sample: \(error)")
+                    }
+                }
+            }
+        }
+    }
+    
+    func read(_ _typeIdentifier: TypeIdentifiers, triggersDefinition: [Trigger], completion: @escaping ([Entry]) -> Void) {
+        if let typeIdentifier = typeIdentifierMapping[_typeIdentifier] {
+            let authStatus = healthStore.authorizationStatus(for: HKObjectType.categoryType(forIdentifier: typeIdentifier)!)
             
             if authStatus == .sharingAuthorized {
-                let sampleType = HKObjectType.categoryType(forIdentifier: identifier)!
+                let sampleType = HKObjectType.categoryType(forIdentifier: typeIdentifier)!
                 let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: false)
                 
                 let sampleQuery = HKSampleQuery(
@@ -52,15 +80,27 @@ struct HealthKitConnector {
                             if let error = error {
                                 print(error)
                             }
-                            completion(entries)
+                            completion([])
                             return
                         }
                         
+                        var entries: [Entry] = []
+                        
                         for sample in samples {
+                            var triggers: [Trigger] = []
+                            
+                            if let metadata = sample.metadata, let _triggerIDs: String = metadata["triggerIDs"] as? String {
+                                let triggersIDs: [String] = _triggerIDs.split(separator: ";").map { String($0) }
+                                
+                                triggers = triggersDefinition.filter { trigger in
+                                    triggersIDs.contains(trigger.id.uuidString)
+                                }
+                            }
+                            
                             let entry = Entry(
                                 date: sample.startDate,
-                                severity: self.getSymptomSeverity(sample.value),
-                                triggers: []
+                                severity: self.decodeSymptomSeverity(sample.value),
+                                triggers: triggers
                             )
                             
                             entries.append(entry)
@@ -72,20 +112,31 @@ struct HealthKitConnector {
                 
                 healthStore.execute(sampleQuery)
             } else {
-                requestHealthkitPermissions(_identifier)
-                // readHKSample(_identifier)
+                requestPermissions(_typeIdentifier)
+                // readHKSample(_typeIdentifier)
             }
         }
     }
     
-    private func getSymptomSeverity(_ sampleValue: Int) -> Severity {
+    private func decodeSymptomSeverity(_ sampleValue: Int) -> Severity {
         switch sampleValue {
             case 2:
-                return Severity.mild
+                return .mild
             case 4:
-                return Severity.severe
+                return .severe
             default:
-                return Severity.moderate
+                return .moderate
+        }
+    }
+    
+    private func encodeSymptomSeverity(_ sampleValue: Severity) -> Int {
+        switch sampleValue {
+            case .mild:
+                return 2
+            case .severe:
+                return 4
+            default:
+                return 3
         }
     }
     

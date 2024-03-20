@@ -6,6 +6,7 @@ struct SymptomsTrackerApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             Symptom.self,
+            Entry.self,
             Trigger.self
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
@@ -23,6 +24,7 @@ struct SymptomsTrackerApp: App {
         }
         .modelContainer(for: [
             Symptom.self,
+            Entry.self,
             Trigger.self
         ])
     }

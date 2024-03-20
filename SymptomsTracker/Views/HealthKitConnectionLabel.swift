@@ -11,7 +11,7 @@ struct HealthKitConnectionLabel: View {
     var symptom: Symptom
     
     var body: some View {
-        if symptom.origin == .healthKit {
+        if symptom.typeIdentifier != nil {
             HStack {
                 Image("AppleHealthIcon")
                     .resizable()

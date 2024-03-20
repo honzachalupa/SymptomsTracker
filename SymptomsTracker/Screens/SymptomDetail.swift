@@ -31,9 +31,9 @@ struct SymptomDetailScreen: View {
     }
     
     var body: some View {
-        VStack(alignment: .trailing) {
+        VStack(alignment: .leading) {
             HealthKitConnectionLabel(symptom: symptom)
-                .padding(.trailing)
+                .padding(.leading, 25)
             
             List {
                 if !symptom.entries!.isEmpty {
@@ -108,7 +108,7 @@ struct SymptomDetailScreen: View {
             }
         }
         .toolbar {
-            if symptom.origin == .manual {
+            if symptom.typeIdentifier == nil {
                 ToolbarItem {
                     NavigationLink {
                         SymptomEditScreen(symptom: symptom)

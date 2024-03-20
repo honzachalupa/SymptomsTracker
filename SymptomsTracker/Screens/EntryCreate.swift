@@ -2,6 +2,8 @@ import SwiftUI
 import SwiftData
 
 struct EntryCreateScreen: View {
+    let healthKitConntector = HealthKitConnector()
+    
     var symptom: Symptom
     
     @Environment(\.dismiss) var dismiss
@@ -19,7 +21,7 @@ struct EntryCreateScreen: View {
         }
     }
     
-    private func create() {
+    private func createEntry() {
         symptom.entries!.append(
             Entry(
                 date: date,
@@ -27,6 +29,23 @@ struct EntryCreateScreen: View {
                 triggers: selectedTriggers
             )
         )
+    }
+    
+    private func create() {
+        if let typeIdentifier = symptom.typeIdentifier {
+            let data = WriteDataModel(
+                severity: severity,
+                triggerIDsString: selectedTriggers.map { $0.id.uuidString }.joined(separator: ";")
+            )
+            
+            healthKitConntector.write(typeIdentifier, data: data) { success in
+                print(777)
+                
+                // createEntry()
+            }
+        } else {
+            createEntry()
+        }
     }
     
     var body: some View {

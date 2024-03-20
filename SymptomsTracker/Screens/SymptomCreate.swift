@@ -2,6 +2,10 @@ import SwiftUI
 import SwiftData
 import MCEmojiPicker
 
+enum SymptomOrigin: CaseIterable {
+    case healthKit, manual
+}
+
 struct SymptomCreateScreen: View {
     let healthKitConntector = HealthKitConnector()
     
@@ -22,20 +26,18 @@ struct SymptomCreateScreen: View {
                     Symptom(
                         name: name,
                         icon: icon,
-                        origin: origin,
                         note: note
                     )
                 )
             } else {
-                if let identifier = selectedHKSymptom.healthKitTypeIdentifier {
-                    healthKitConntector.requestHealthkitPermissions(identifier)
+                if let typeIdentifier = selectedHKSymptom.typeIdentifier {
+                    healthKitConntector.requestPermissions(typeIdentifier)
                     
                     modelContext.insert(
                         Symptom(
                             name: selectedHKSymptom.name,
                             icon: selectedHKSymptom.icon,
-                            origin: origin,
-                            healthKitTypeIdentifier: identifier,
+                            typeIdentifier: typeIdentifier,
                             note: selectedHKSymptom.note
                         )
                     )

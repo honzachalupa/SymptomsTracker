@@ -11,6 +11,7 @@ struct RootScreen: View {
     let healthKitConntector = HealthKitConnector()
     
     @Query private var symptoms: [Symptom]
+    @Query private var triggers: [Trigger]
     @State private var selectedTabKey: TabKey = .symptoms
     
     var navigationTitle: String {
@@ -26,39 +27,24 @@ struct RootScreen: View {
     
     private func getHealthKitData() {
         symptoms.forEach { symptom in
-            if symptom.healthKitTypeIdentifier != nil {
-                print(666, "START")
-                print(2, symptom)
-                
-                guard let identifier = symptom.healthKitTypeIdentifier else {
+            if symptom.typeIdentifier != nil {
+                guard let typeIdentifier = symptom.typeIdentifier else {
                     return
                 }
                 
-                print(3, identifier)
-                
-                healthKitConntector.readHKSample(identifier) { newEntries in
-                    print(4, newEntries)
-                    
+                healthKitConntector.read(typeIdentifier, triggersDefinition: triggers) { newEntries in
                     newEntries.forEach { newEntry in
-                        print(5, newEntry, symptom.entries)
-                        
                         guard var existingEntries = symptom.entries else {
-                            print(8)
                             symptom.entries = [newEntry]
                             return
                         }
-                        
-                        print(6, existingEntries)
-                        
+                    
                         if !existingEntries.contains(newEntry) {
-                            print(7, newEntry)
                             existingEntries.append(newEntry)
                         }
                         
                         symptom.entries = newEntries
                     }
-                    
-                    print(666, "END")
                 }
             }
         }
