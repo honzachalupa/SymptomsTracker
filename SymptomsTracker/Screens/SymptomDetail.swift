@@ -2,24 +2,24 @@ import SwiftUI
 
 struct SymptomDetailScreen: View {
     @Environment(\.dismiss) var dismiss
-    @Environment(\.modelContext) private var modelContext
     
-    let healthKitConntector = HealthKitConnector()
+    let healthKit = HealthKitManager()
     
     var symptom: Symptom
     
+    @State private var dataStore = DataStoreManager()
     @State private var isSheetShown: Bool = false
     @State private var isDeleteConfirmationShown: Bool = false
     
     private func deleteSymptom() {
         withAnimation {
-            modelContext.delete(symptom)
+            dataStore.delete(symptom)
         }
     }
     
     private func deleteEntry(_ entry: Entry) {
-        if symptom.typeIdentifier != nil {
-            healthKitConntector.delete(entry.id, symptom.typeIdentifier!)
+       if let healthKitType = symptom.healthKitType {
+            healthKit.delete(entry.id, healthKitType.key)
         }
         
         symptom.entries!.remove(at: symptom.entries!.firstIndex(of: entry)!)
@@ -30,7 +30,8 @@ struct SymptomDetailScreen: View {
             HealthKitConnectionLabel(symptom: symptom)
                 .padding(.leading, 25)
             
-            List {
+            // vvv List vvv
+            VStack {
                 if !symptom.entries!.isEmpty {
                     Section {
                         EntriesChartView(symptomEntries: symptom.entries!)
@@ -101,7 +102,7 @@ struct SymptomDetailScreen: View {
                     }
                 }
                 
-                if symptom.typeIdentifier != nil {
+                if symptom.healthKitType != nil {
                     Section {
                         Button(action: openAppleHealth, label: {
                             Text("Open Health app")
@@ -111,7 +112,7 @@ struct SymptomDetailScreen: View {
             }
         }
         .toolbar {
-            if symptom.typeIdentifier == nil {
+            if symptom.healthKitType == nil {
                 ToolbarItem {
                     NavigationLink {
                         SymptomEditScreen(symptom: symptom)
@@ -133,8 +134,8 @@ struct SymptomDetailScreen: View {
                 ) {
                     Button("Delete", role: .destructive) {
                         withAnimation {
-                            deleteSymptom()
                             dismiss()
+                            deleteSymptom()
                         }
                     }
                     .keyboardShortcut(.defaultAction)
@@ -155,6 +156,6 @@ struct SymptomDetailScreen: View {
 #Preview {
     NavigationStack {
         SymptomDetailScreen(symptom: symptomsMock.first!)
-            .modelContainer(previewContainer)
+            // .modelContainer(previewContainer)
     }
 }

@@ -1,8 +1,7 @@
 import SwiftUI
-import SwiftData
 
 struct SymptomsListView: View {
-    @Query(sort: \Symptom.name) private var symptoms: [Symptom]
+    @State var dataStore = DataStoreManager()
     
     var body: some View {
         List {
@@ -12,7 +11,7 @@ struct SymptomsListView: View {
                     .padding(.top, 20)
             } */
             
-            ForEach(symptoms) { symptom in
+            ForEach(dataStore.symptoms) { symptom in
                 Section {
                     NavigationLink {
                         SymptomDetailScreen(symptom: symptom)
@@ -35,6 +34,9 @@ struct SymptomsListView: View {
             }
         }
         .padding(.top, 10)
+        .refreshable {
+            dataStore.refreshData()
+        }
     }
 }
 

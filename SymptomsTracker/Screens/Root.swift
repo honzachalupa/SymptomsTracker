@@ -7,11 +7,7 @@ enum TabKey {
 
 struct RootScreen: View {
     @Environment(\.scenePhase) var scenePhase
-    
-    let healthKitConntector = HealthKitConnector()
-    
-    @Query private var symptoms: [Symptom]
-    @Query private var triggers: [Trigger]
+
     @State private var selectedTabKey: TabKey = .symptoms
     
     var navigationTitle: String {
@@ -22,31 +18,6 @@ struct RootScreen: View {
                 return String(localized: "Triggers")
             case .settings:
                 return String(localized: "Settings")
-        }
-    }
-    
-    private func getHealthKitData() {
-        symptoms.forEach { symptom in
-            if symptom.typeIdentifier != nil {
-                guard let typeIdentifier = symptom.typeIdentifier else {
-                    return
-                }
-                
-                healthKitConntector.read(typeIdentifier, triggersDefinition: triggers) { newEntries in
-                    newEntries.forEach { newEntry in
-                        guard var existingEntries = symptom.entries else {
-                            symptom.entries = [newEntry]
-                            return
-                        }
-                    
-                        if !existingEntries.contains(newEntry) {
-                            existingEntries.append(newEntry)
-                        }
-                        
-                        symptom.entries = newEntries
-                    }
-                }
-            }
         }
     }
     
@@ -89,12 +60,6 @@ struct RootScreen: View {
                     }
                 }
             }
-            .refreshable {
-                getHealthKitData()
-            }
-        }
-        .onAppear() {
-            getHealthKitData()
         }
     }
 }

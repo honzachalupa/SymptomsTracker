@@ -72,6 +72,16 @@
         }
       }
     },
+    "Coughing" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kašel"
+          }
+        }
+      }
+    },
     "Create" : {
       "localizations" : {
         "cs" : {
@@ -208,6 +218,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Záznamy"
+          }
+        }
+      }
+    },
+    "Fever" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Horečka"
+          }
+        }
+      }
+    },
+    "Headache" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bolest hlavy"
           }
         }
       }
@@ -361,6 +391,9 @@
           }
         }
       }
+    },
+    "xxx" : {
+
     }
   },
   "version" : "1.0"

@@ -2,14 +2,21 @@ import Foundation
 import SwiftData
 
 @Model
-class Entry: Identifiable {
+final class Entry: Identifiable {
     var id = UUID()
     var date: Date = Date()
     var severity: Severity = Severity.moderate
     var symptomRel: Symptom?
-    @Relationship(deleteRule: .nullify, inverse: \Trigger.entriesRel) var triggers: [Trigger]? = [Trigger]()
     
-    init(id: UUID? = nil, date: Date, severity: Severity, triggers: [Trigger]) {
+    @Relationship(deleteRule: .nullify, inverse: \Trigger.entriesRel)
+    var triggers: [Trigger]? = [Trigger]()
+    
+    init(
+        id: UUID? = nil,
+        date: Date,
+        severity: Severity,
+        triggers: [Trigger]
+    ) {
         if let _id = id {
             self.id = _id
         }

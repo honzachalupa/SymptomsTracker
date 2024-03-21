@@ -27,12 +27,11 @@ struct SummaryChartRecords: Identifiable {
 }
 
 struct SummaryChartView: View {
-    @Query(sort: \Symptom.name) private var symptoms: [Symptom]
-    
+    @State private var dataStore = DataStoreManager()
     @State var data: [SummaryChartRecords] = []
     
     private func calculateDateDomain() -> ClosedRange<Date> {
-        let sortedDates = symptoms.flatMap { $0.entries ?? [] }.map { Locale.current.calendar.startOfDay(for: $0.date) }.sorted()
+        let sortedDates = dataStore.symptoms.flatMap { $0.entries ?? [] }.map { Locale.current.calendar.startOfDay(for: $0.date) }.sorted()
         let startDate = min(
             Calendar.current.date(byAdding: .day, value: -1, to: sortedDates.first ?? Date())!,
             Calendar.current.date(byAdding: .day, value: -7, to: Date())!
@@ -43,7 +42,7 @@ struct SummaryChartView: View {
     }
     
     private func proccessData() {
-        data = symptoms
+        data = dataStore.symptoms
             .map { symptom in
                 SummaryChartRecords(
                     symptom: symptom,
@@ -91,7 +90,7 @@ struct SummaryChartView: View {
         .onAppear {
             proccessData()
         }
-        .onChange(of: symptoms) {
+        .onChange(of: dataStore.symptoms) {
             proccessData()
         }
     }

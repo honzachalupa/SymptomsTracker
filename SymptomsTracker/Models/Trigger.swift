@@ -2,13 +2,16 @@ import Foundation
 import SwiftData
 
 @Model
-class Trigger: Identifiable {
+final class Trigger: Identifiable {
     var id = UUID()
     var name: String = ""
     var icon: String = ""
     var entriesRel: [Entry]? = []
     
-    init(name: String, icon: String) {
+    init(
+        name: String,
+        icon: String
+    ) {
         self.name = name
         self.icon = icon
     }

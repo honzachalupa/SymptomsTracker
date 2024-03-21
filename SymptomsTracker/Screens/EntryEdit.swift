@@ -6,7 +6,7 @@ struct EntryEditScreen: View {
     
     @Environment(\.dismiss) var dismiss
     
-    @Query(sort: \Trigger.name) private var triggers: [Trigger]
+    @State private var dataStore = DataStoreManager()
     @State private var date: Date = Date()
     @State private var severity: Severity = .moderate
     @State private var selectedTriggers: [Trigger] = []
@@ -45,7 +45,7 @@ struct EntryEditScreen: View {
                 }
                 
                 Section("Triggers") {
-                    ForEach(triggers) { trigger in
+                    ForEach(dataStore.triggers) { trigger in
                         HStack {
                             SymptomNameWithIcon(name: trigger.name, icon: trigger.icon)
                             
@@ -61,7 +61,7 @@ struct EntryEditScreen: View {
                         }
                     }
                     
-                    if triggers.isEmpty {
+                    if dataStore.triggers.isEmpty {
                         NavigationLink {
                             TriggerCreateScreen()
                         } label: {

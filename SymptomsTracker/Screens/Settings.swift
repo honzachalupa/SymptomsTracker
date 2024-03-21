@@ -1,18 +1,19 @@
 import SwiftUI
 
 struct SettingsScreen: View {
-    @Environment(\.modelContext) private var modelContext
-    
+    @State private var dataStore = DataStoreManager()
     @State private var isDeleteConfirmationShown: Bool = false
     
     private func flushData() {
-        do {
+        /* TODO: dataStore.deleteAll
+         
+         do {
             try modelContext.delete(model: Symptom.self)
             try modelContext.delete(model: Entry.self)
             try modelContext.delete(model: Trigger.self)
         } catch {
             print("Failed to clear all Country and City data.")
-        }
+        } */
     }
     
     var body: some View {

@@ -2,13 +2,13 @@ import SwiftUI
 import SwiftData
 
 struct EntryCreateScreen: View {
-    let healthKitConntector = HealthKitConnector()
+    let healthKit = HealthKitManager()
     
     var symptom: Symptom
     
     @Environment(\.dismiss) var dismiss
     
-    @Query(sort: \Trigger.name) private var triggers: [Trigger]
+    @State private var dataStore = DataStoreManager()
     @State private var date: Date = Date()
     @State private var severity: Severity = .moderate
     @State private var selectedTriggers: [Trigger] = []
@@ -32,13 +32,13 @@ struct EntryCreateScreen: View {
     }
     
     private func create() {
-        if let typeIdentifier = symptom.typeIdentifier {
+        if let healthKitType = symptom.healthKitType {
             let data = WriteDataModel(
                 severity: severity,
                 triggerIDsString: selectedTriggers.map { $0.id.uuidString }.joined(separator: ";")
             )
             
-            healthKitConntector.write(typeIdentifier, data: data) { success in
+            healthKit.write(healthKitType.key, data: data) { success in
                 print(777)
                 
                 // createEntry()
@@ -65,7 +65,7 @@ struct EntryCreateScreen: View {
                 }
                 
                 Section("Triggers") {
-                    ForEach(triggers) { trigger in
+                    ForEach(dataStore.triggers) { trigger in
                         Toggle(isOn: Binding(
                             get: {
                                 selectedTriggers.contains(trigger)
@@ -82,7 +82,7 @@ struct EntryCreateScreen: View {
                         }
                     }
                     
-                    if triggers.isEmpty {
+                    if dataStore.triggers.isEmpty {
                         NavigationLink {
                             TriggerCreateScreen()
                         } label: {

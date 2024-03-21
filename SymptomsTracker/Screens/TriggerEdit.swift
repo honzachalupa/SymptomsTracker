@@ -5,7 +5,6 @@ import MCEmojiPicker
 struct TriggerEditScreen: View {
     var trigger: Trigger
     
-    @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) var dismiss
     
     @State private var name: String = ""

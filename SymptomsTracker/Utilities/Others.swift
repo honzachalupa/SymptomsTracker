@@ -12,3 +12,16 @@ private func openUrl(_ urlString: String) {
     
     UIApplication.shared.open(url)
 }
+
+func removeDuplicates<T>(_ array: [T]) -> [T] {
+    let orderedSet: NSMutableOrderedSet = []
+    var modifiedArray = [T]()
+    
+    orderedSet.addObjects(from: array)
+    
+    for i in 0..<orderedSet.count {
+        modifiedArray.append(orderedSet[i] as! T)
+    }
+    
+    return modifiedArray
+}

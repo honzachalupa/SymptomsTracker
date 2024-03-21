@@ -5,7 +5,6 @@ import MCEmojiPicker
 struct SymptomEditScreen: View {
     var symptom: Symptom
     
-    @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) var dismiss
     
     @State private var name: String = ""

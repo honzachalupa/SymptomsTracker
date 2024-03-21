@@ -3,16 +3,16 @@ import SwiftData
 import MCEmojiPicker
 
 struct TriggerCreateScreen: View {
-    @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) var dismiss
     
+    @State private var dataStore = DataStoreManager()
     @State private var name: String = ""
     @State private var icon: String = ""
     @State private var isEmojiSelectorShown: Bool = false
     
     private func create() {
         withAnimation {
-            modelContext.insert(
+            dataStore.create(
                 Trigger(
                     name: name,
                     icon: icon

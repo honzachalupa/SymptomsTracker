@@ -3,11 +3,12 @@ import SwiftData
 
 @main
 struct SymptomsTrackerApp: App {
-    var sharedModelContainer: ModelContainer = {
+    /* var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             Symptom.self,
             Entry.self,
-            Trigger.self
+            Trigger.self,
+            HealthKitType.self
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
@@ -16,16 +17,17 @@ struct SymptomsTrackerApp: App {
         } catch {
             fatalError("Could not create ModelContainer: \(error)")
         }
-    }()
+    }() */
 
     var body: some Scene {
         WindowGroup {
             RootScreen()
         }
-        .modelContainer(for: [
+        /* .modelContainer(for: [
             Symptom.self,
             Entry.self,
-            Trigger.self
-        ])
+            Trigger.self,
+            HealthKitType.self
+        ]) */
     }
 }

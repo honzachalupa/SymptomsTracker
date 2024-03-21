@@ -7,41 +7,44 @@ enum SymptomOrigin: CaseIterable {
 }
 
 struct SymptomCreateScreen: View {
-    let healthKitConntector = HealthKitConnector()
+    let healthKit = HealthKitManager()
     
-    @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) var dismiss
     
+    @State private var dataStore = DataStoreManager()
     @State private var origin: SymptomOrigin = .healthKit
-    @State private var selectedHKSymptom: Symptom = HealthKitSymptoms.first!
+    @State private var selectedHealthKitType: HealthKitType = HealthKitTypes.first!
     @State private var name: String = ""
-    @State private var note: String = ""
     @State private var icon: String = ""
+    @State private var note: String = ""
     @State private var isEmojiSelectorShown: Bool = false
     
     private func create() {
         withAnimation {
-            if origin == .manual {
-                modelContext.insert(
+            if origin == .healthKit {
+                healthKit.requestPermissions(selectedHealthKitType.key)
+                
+                dataStore.create(
+                    Symptom(
+                        name: selectedHealthKitType.name,
+                        icon: selectedHealthKitType.icon,
+                        note: selectedHealthKitType.note,
+                        healthKitType: HealthKitType(
+                            key: selectedHealthKitType.key,
+                            name: selectedHealthKitType.name,
+                            icon: selectedHealthKitType.icon,
+                            note: selectedHealthKitType.note
+                        )
+                    )
+                )
+            } else {
+                dataStore.create(
                     Symptom(
                         name: name,
                         icon: icon,
                         note: note
                     )
                 )
-            } else {
-                if let typeIdentifier = selectedHKSymptom.typeIdentifier {
-                    healthKitConntector.requestPermissions(typeIdentifier)
-                    
-                    modelContext.insert(
-                        Symptom(
-                            name: selectedHKSymptom.name,
-                            icon: selectedHKSymptom.icon,
-                            typeIdentifier: typeIdentifier,
-                            note: selectedHKSymptom.note
-                        )
-                    )
-                }
             }
         }
     }
@@ -57,7 +60,17 @@ struct SymptomCreateScreen: View {
             .pickerStyle(.palette)
             .padding(.horizontal)
             
-            if origin == .manual {
+            if origin == .healthKit {
+                List {
+                    Picker("Data type", selection: $selectedHealthKitType) {
+                        ForEach(HealthKitTypes) { type in
+                            SymptomNameWithIcon(name: type.name, icon: type.icon)
+                                .tag(type)
+                        }
+                    }
+                    .pickerStyle(.navigationLink)
+                }
+            } else {
                 List {
                     HStack {
                         Button(icon.count > 0 ? icon : "❓") {
@@ -74,16 +87,6 @@ struct SymptomCreateScreen: View {
                     }
                     
                     TextField("Note", text: $note)
-                }
-            } else {
-                List {
-                    Picker("Data type", selection: $selectedHKSymptom) {
-                        ForEach(HealthKitSymptoms) { symptom in
-                            SymptomNameWithIcon(name: symptom.name, icon: symptom.icon)
-                                .tag(symptom)
-                        }
-                    }
-                    .pickerStyle(.navigationLink)
                 }
             }
         }
