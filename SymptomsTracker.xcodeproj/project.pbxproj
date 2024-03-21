@@ -29,7 +29,7 @@
 		2164D10F2BAAF1100051FDA8 /* HealthKitConnectionLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2164D10E2BAAF1100051FDA8 /* HealthKitConnectionLabel.swift */; };
 		2164D1112BAB1D510051FDA8 /* Others.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2164D1102BAB1D510051FDA8 /* Others.swift */; };
 		2164D1142BAB2D190051FDA8 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2164D1132BAB2D190051FDA8 /* DataStore.swift */; };
-		2164D1182BAC36B90051FDA8 /* TypeIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2164D1172BAC36B90051FDA8 /* TypeIdentifiers.swift */; };
+		2164D1182BAC36B90051FDA8 /* HealthKitType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2164D1172BAC36B90051FDA8 /* HealthKitType.swift */; };
 		21EFDD8F2BA615D200BD20BE /* PreviewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21EFDD8E2BA615D200BD20BE /* PreviewContainer.swift */; };
 		21EFDD912BA61D9300BD20BE /* SymptomEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21EFDD902BA61D9300BD20BE /* SymptomEdit.swift */; };
 		21EFDD932BA623FC00BD20BE /* EntryEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21EFDD922BA623FC00BD20BE /* EntryEdit.swift */; };
@@ -63,7 +63,7 @@
 		2164D10E2BAAF1100051FDA8 /* HealthKitConnectionLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitConnectionLabel.swift; sourceTree = "<group>"; };
 		2164D1102BAB1D510051FDA8 /* Others.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Others.swift; sourceTree = "<group>"; };
 		2164D1132BAB2D190051FDA8 /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
-		2164D1172BAC36B90051FDA8 /* TypeIdentifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeIdentifiers.swift; sourceTree = "<group>"; };
+		2164D1172BAC36B90051FDA8 /* HealthKitType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitType.swift; sourceTree = "<group>"; };
 		21EFDD8E2BA615D200BD20BE /* PreviewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewContainer.swift; sourceTree = "<group>"; };
 		21EFDD902BA61D9300BD20BE /* SymptomEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymptomEdit.swift; sourceTree = "<group>"; };
 		21EFDD922BA623FC00BD20BE /* EntryEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryEdit.swift; sourceTree = "<group>"; };
@@ -133,7 +133,7 @@
 				213064182BA44FF7007E55C0 /* Symptom.swift */,
 				213064492BA5FBD8007E55C0 /* Entry.swift */,
 				213064452BA5930C007E55C0 /* Trigger.swift */,
-				2164D1172BAC36B90051FDA8 /* TypeIdentifiers.swift */,
+				2164D1172BAC36B90051FDA8 /* HealthKitType.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -268,7 +268,7 @@
 				2130643C2BA4A200007E55C0 /* SymptomsList.swift in Sources */,
 				2130643A2BA47AE7007E55C0 /* Formatting.swift in Sources */,
 				213064312BA46749007E55C0 /* EntriesChart.swift in Sources */,
-				2164D1182BAC36B90051FDA8 /* TypeIdentifiers.swift in Sources */,
+				2164D1182BAC36B90051FDA8 /* HealthKitType.swift in Sources */,
 				21EFDD932BA623FC00BD20BE /* EntryEdit.swift in Sources */,
 				21EFDD992BA73DBA00BD20BE /* SummaryChart.swift in Sources */,
 				2164D1142BAB2D190051FDA8 /* DataStore.swift in Sources */,

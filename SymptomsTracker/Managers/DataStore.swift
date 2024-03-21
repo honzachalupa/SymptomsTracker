@@ -43,6 +43,10 @@ final class DataSource {
         }
     }
     
+    func save() {
+        try! modelContext.save()
+    }
+    
     func create<T: PersistentModel>(_ payload: T) {
         modelContext.insert(payload)
     }

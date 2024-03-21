@@ -11,6 +11,16 @@
         }
       }
     },
+    "Add a new symptom to start tracking." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vytvořte symptomy začněte zaznamenávat."
+          }
+        }
+      }
+    },
     "Add Entry" : {
       "localizations" : {
         "cs" : {
@@ -391,9 +401,6 @@
           }
         }
       }
-    },
-    "xxx" : {
-
     }
   },
   "version" : "1.0"

@@ -97,7 +97,7 @@ struct EntryCreateScreen: View {
                 create()
                 dismiss()
             }
-            .buttonStyle(BorderedProminentButtonStyle())
+            .buttonStyle(.borderedProminent)
         }
     }
 }
