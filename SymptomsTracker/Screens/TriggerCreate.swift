@@ -52,6 +52,6 @@ struct TriggerCreateScreen: View {
 #Preview {
     NavigationStack {
         TriggerCreateScreen()
-            .modelContainer(previewContainer)
+            // .modelContainer(previewContainer)
     }
 }

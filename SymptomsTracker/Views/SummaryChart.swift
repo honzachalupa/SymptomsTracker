@@ -98,5 +98,5 @@ struct SummaryChartView: View {
 
 #Preview {
     SummaryChartView()
-        .modelContainer(previewContainer)
+        // .modelContainer(previewContainer)
 }

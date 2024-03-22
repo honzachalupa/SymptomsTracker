@@ -50,9 +50,31 @@ struct EntryCreateScreen: View {
     
     var body: some View {
         NavigationStack {
-            Text("New entry")
-                .fontWeight(.medium)
-                .padding(.top, 10)
+            HStack(alignment: .center) {
+                Button(action: {
+                    dismiss()
+                }, label: {
+                    Text("Cancel")
+                })
+                
+                Spacer()
+                
+                Text("New entry")
+                    .fontWeight(.semibold)
+                
+                Spacer()
+                
+                Button(action: {
+                    create()
+                    dismiss()
+                }, label: {
+                    Text("Create")
+                })
+            }
+            .font(.title3)
+            .padding(.top, 20)
+            .padding(.bottom, 8)
+            .padding(.horizontal, 20)
             
             List {
                 DatePicker("Date", selection: $date)
@@ -92,17 +114,11 @@ struct EntryCreateScreen: View {
                     }
                 }
             }
-            
-            Button("Create") {
-                create()
-                dismiss()
-            }
-            .buttonStyle(.borderedProminent)
         }
     }
 }
 
 #Preview {
     EntryCreateScreen(symptom: symptomsMock.first!)
-        .modelContainer(previewContainer)
+        // .modelContainer(previewContainer)
 }

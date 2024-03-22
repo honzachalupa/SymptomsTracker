@@ -30,83 +30,106 @@ struct SymptomDetailScreen: View {
             HealthKitConnectionLabel(symptom: symptom)
                 .padding(.leading, 25)
             
-            List {
-                if !symptom.entries!.isEmpty {
-                    Section {
-                        EntriesChartView(symptomEntries: symptom.entries!)
-                            .aspectRatio(1.5, contentMode: .fit)
-                    }
-                }
-                
-                if let note = symptom.note {
-                    if !note.isEmpty {
-                        Section("Note") {
-                            Text(note)
+            ZStack {
+                List {
+                    if !symptom.entries!.isEmpty {
+                        Section {
+                            EntriesChartView(symptomEntries: symptom.entries!)
+                                .aspectRatio(1.5, contentMode: .fit)
                         }
                     }
-                }
-                
-                Section("Entries") {
-                    if !symptom.entries!.isEmpty {
-                        ForEach(symptom.entries!, id: \.id) { entry in
-                            VStack {
-                                HStack {
-                                    Text(entry.date, formatter: dateFormatter)
-                                    
-                                    Spacer()
-                                    
-                                    Text(getSeverityLabel(entry.severity))
-                                }
-                                
-                                if entry.triggers!.count > 0 {
-                                    VStack(alignment: .leading) {
-                                        Text("Triggers")
-                                            .textCase(.uppercase)
-                                            .font(.footnote)
-                                            .opacity(0.5)
-                                            .padding(.bottom, 2)
-                                        
-                                        HStack {
-                                            ForEach(entry.triggers!, id: \.self) { trigger in
-                                                SymptomNameWithIcon(name: trigger.name, icon: trigger.icon)
-                                                    .padding(.trailing, 10)
-                                            }
-                                            
-                                            Spacer()
-                                        }
-                                    }
-                                    
-                                    .padding()
-                                    .background(.gray.opacity(0.1))
-                                    .cornerRadius(10)
-                                }
-                            }
-                            .swipeActions {
-                                Button("Delete", role: .destructive) {
-                                    deleteEntry(entry)
-                                }
-                                
-                                NavigationLink {
-                                    EntryEditScreen(entry: entry)
-                                } label: {
-                                    Text("Edit")
-                                }
-                                .tint(.gray)
+                    
+                    if let note = symptom.note {
+                        if !note.isEmpty {
+                            Section("Note") {
+                                Text(note)
                             }
                         }
                     }
                     
-                    Button("Add Entry") {
-                        isSheetShown.toggle()
+                    if symptom.entries!.isEmpty {
+                        Text("Add your first entry.")
+                    } else {
+                        Section("Entries") {
+                            ForEach(symptom.entries!, id: \.id) { entry in
+                                VStack {
+                                    HStack {
+                                        Text(entry.date, formatter: dateFormatter)
+                                        
+                                        Spacer()
+                                        
+                                        Text(getSeverityLabel(entry.severity))
+                                    }
+                                    
+                                    if entry.triggers!.count > 0 {
+                                        VStack(alignment: .leading) {
+                                            Text("Triggers")
+                                                .textCase(.uppercase)
+                                                .font(.footnote)
+                                                .opacity(0.5)
+                                                .padding(.bottom, 2)
+                                            
+                                            HStack {
+                                                ForEach(entry.triggers!, id: \.self) { trigger in
+                                                    SymptomNameWithIcon(name: trigger.name, icon: trigger.icon)
+                                                        .padding(.trailing, 10)
+                                                }
+                                                
+                                                Spacer()
+                                            }
+                                        }
+                                        
+                                        .padding()
+                                        .background(.gray.opacity(0.1))
+                                        .cornerRadius(10)
+                                    }
+                                }
+                                .swipeActions {
+                                    Button("Delete", role: .destructive) {
+                                        deleteEntry(entry)
+                                    }
+                                    
+                                    NavigationLink {
+                                        EntryEditScreen(entry: entry)
+                                    } label: {
+                                        Text("Edit")
+                                    }
+                                    .tint(.gray)
+                                }
+                            }
+                        }
+                    }
+                    
+                    if symptom.healthKitType != nil {
+                        Section {
+                            Button(action: openAppleHealth, label: {
+                                Text("Open Health app")
+                            })
+                        }
                     }
                 }
+                .refreshable {
+                    dataStore.refreshData()
+                }
                 
-                if symptom.healthKitType != nil {
-                    Section {
-                        Button(action: openAppleHealth, label: {
-                            Text("Open Health app")
-                        })
-                    }
+                GeometryReader { screen in
+                    Button(action: {
+                        isSheetShown.toggle()
+                    }, label: {
+                        Image(systemName: "plus")
+                            .resizable()
+                            .frame(width: 20, height: 20)
+                            .foregroundStyle(.white)
+                            .padding(30)
+                            .background(
+                                Circle()
+                                    .frame(width: 50, height: 50)
+                            )
+                    })
+                    .position(
+                        x: screen.size.width - 40,
+                        y: screen.size.height - 20
+                    )
                 }
             }
         }
@@ -145,8 +168,8 @@ struct SymptomDetailScreen: View {
         }
         .sheet(isPresented: $isSheetShown, content: {
             EntryCreateScreen(symptom: symptom)
-                // .presentationDetents([.height(200)])
-                // .presentationDragIndicator(.visible)
+                .presentationDetents([.height(500)])
+                .presentationDragIndicator(.visible)
         })
         .navigationTitle(SymptomNameWithIcon(name: symptom.name, icon: symptom.icon))
     }

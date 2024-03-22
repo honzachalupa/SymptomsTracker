@@ -21,7 +21,7 @@ final class DataSource {
     
     func fetchSymptoms() -> [Symptom] {
         do {
-            return try modelContext.fetch(FetchDescriptor<Symptom>())
+            return try modelContext.fetch(FetchDescriptor<Symptom>(sortBy: [SortDescriptor(\.name)]))
         } catch {
             fatalError(error.localizedDescription)
         }
@@ -29,7 +29,7 @@ final class DataSource {
     
     func fetchEntries() -> [Entry] {
         do {
-            return try modelContext.fetch(FetchDescriptor<Entry>())
+            return try modelContext.fetch(FetchDescriptor<Entry>(sortBy: [SortDescriptor(\.date, order: .reverse)]))
         } catch {
             fatalError(error.localizedDescription)
         }
@@ -37,7 +37,7 @@ final class DataSource {
     
     func fetchTriggers() -> [Trigger] {
         do {
-            return try modelContext.fetch(FetchDescriptor<Trigger>())
+            return try modelContext.fetch(FetchDescriptor<Trigger>(sortBy: [SortDescriptor(\.name)]))
         } catch {
             fatalError(error.localizedDescription)
         }
@@ -121,7 +121,35 @@ struct DataStoreManagerPreview: View {
     }
 }
 
+struct DataStoreManagerPreviewWrapper<Content: View>: View {
+    @State private var dataStore = DataStoreManager()
+    
+    @ViewBuilder let content: Content
+    
+    var body: some View {
+        ZStack{
+            content
+        }
+            .onAppear(perform: {
+                if dataStore.symptoms.isEmpty {
+                    dataStore.symptoms = symptomsMock
+                }
+                
+                if dataStore.entries.isEmpty {
+                    dataStore.entries = entriesMock
+                }
+                
+                if dataStore.triggers.isEmpty {
+                    dataStore.triggers = triggersMock
+                }
+                
+                dataStore.refreshData()
+            })
+    }
+}
+
 #Preview {
-    DataStoreManagerPreview()
-        .modelContainer(previewContainer)
+    DataStoreManagerPreviewWrapper {
+        DataStoreManagerPreview()
+    }
 }

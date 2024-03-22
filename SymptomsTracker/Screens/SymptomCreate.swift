@@ -106,6 +106,6 @@ struct SymptomCreateScreen: View {
 #Preview {
     NavigationStack {
         SymptomCreateScreen()
-            .modelContainer(previewContainer)
+            // .modelContainer(previewContainer)
     }
 }

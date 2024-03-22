@@ -41,5 +41,5 @@ struct SettingsScreen: View {
 
 #Preview {
     SettingsScreen()
-        .modelContainer(previewContainer)
+        // .modelContainer(previewContainer)
 }

@@ -21,22 +21,22 @@
         }
       }
     },
-    "Add Entry" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Přidat záznam"
-          }
-        }
-      }
-    },
     "Add from Health app" : {
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Přidat z aplikace Zdraví"
+          }
+        }
+      }
+    },
+    "Add your first entry." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Přidejte váš první záznam."
           }
         }
       }
@@ -68,6 +68,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Opravdu si přejete smazat symptom %@?"
+          }
+        }
+      }
+    },
+    "Cancel" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zrušit"
           }
         }
       }
@@ -287,7 +297,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nová záznam"
+            "value" : "Nový záznam"
           }
         }
       }

@@ -66,5 +66,5 @@ struct SymptomsListView: View {
 
 #Preview {
     SymptomsListView()
-        .modelContainer(previewContainer)
+        // .modelContainer(previewContainer)
 }

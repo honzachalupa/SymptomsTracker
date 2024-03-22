@@ -66,5 +66,4 @@ struct RootScreen: View {
 
 #Preview {
     RootScreen()
-        // .modelContainer(previewContainer)
 }

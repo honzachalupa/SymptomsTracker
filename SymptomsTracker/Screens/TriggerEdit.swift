@@ -53,6 +53,6 @@ struct TriggerEditScreen: View {
 #Preview {
     NavigationStack {
         TriggerEditScreen(trigger: triggersMock.first!)
-            .modelContainer(previewContainer)
+            // .modelContainer(previewContainer)
     }
 }

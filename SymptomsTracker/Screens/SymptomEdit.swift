@@ -58,6 +58,6 @@ struct SymptomEditScreen: View {
 #Preview {
     NavigationStack {
         SymptomEditScreen(symptom: symptomsMock.first!)
-            .modelContainer(previewContainer)
+            // .modelContainer(previewContainer)
     }
 }
