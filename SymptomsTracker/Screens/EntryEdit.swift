@@ -85,5 +85,5 @@ struct EntryEditScreen: View {
 
 #Preview {
     EntryEditScreen(entry: entriesMock.first!)
-        .modelContainer(previewContainer)
+        // .modelContainer(previewContainer)
 }

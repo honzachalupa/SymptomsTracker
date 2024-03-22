@@ -46,8 +46,6 @@ struct SymptomsListView: View {
                                     }
                                     
                                     EntriesChartView(symptomEntries: symptom.entries!)
-                                        .aspectRatio(3, contentMode: .fit)
-                                        .padding(.vertical, 20)
                                 }
                             }
                         }

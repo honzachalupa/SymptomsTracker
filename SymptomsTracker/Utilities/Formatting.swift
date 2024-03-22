@@ -1,4 +1,4 @@
-import Foundation
+import SwiftUI
 
 let severityLabel_mild = String(localized: "Mild")
 let severityLabel_moderate = String(localized: "Moderate")
@@ -23,6 +23,17 @@ func getSeverityLabelFromInt(_ severity: Int) -> String {
             return severityLabel_moderate
         default:
             return severityLabel_severe
+    }
+}
+
+func getSeverityColor(_ severity: Severity) -> Color {
+    switch severity {
+        case .mild:
+            return .yellow
+        case .moderate:
+            return .orange
+        case .severe:
+            return .red
     }
 }
 

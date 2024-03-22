@@ -51,48 +51,46 @@ struct EntriesChartView: View {
     }
     
     var body: some View {
-        ZStack {
-            if data.count > 1 {
-                Chart(data, id: \.id) { record in
-                    LineMark(
-                        x: .value("Date", record.date),
-                        y: .value("Severity", record.severityInt)
-                        // width: 15,
-                        // stacking: .unstacked
-                    )
-                    // .interpolationMethod(.cardinal)
-                    // .foregroundStyle(getSeverityColor(record.severityInt))
-                    .foregroundStyle(
-                        .linearGradient(
-                            colors: [.yellow, .orange, .red],
-                            startPoint: .bottom,
-                            endPoint: .top
-                        )
-                    )
-                    // .cornerRadius(5)
-                    
-                    PointMark(
-                        x: .value("Date", record.date),
-                        y: .value("Severity", record.severityInt)
-                        // width: 15,
-                        // stacking: .unstacked
-                    )
-                    .foregroundStyle(getSeverityColor(record.severityInt))
+        Chart(data, id: \.id) { record in
+            LineMark(
+                x: .value("Date", record.date),
+                y: .value("Severity", record.severityInt)
+                // width: 15,
+                // stacking: .unstacked
+            )
+            // .interpolationMethod(.cardinal)
+            // .foregroundStyle(getSeverityColor(record.severityInt))
+            .foregroundStyle(
+                .linearGradient(
+                    colors: [.yellow, .orange, .red],
+                    startPoint: .bottom,
+                    endPoint: .top
+                )
+            )
+            // .cornerRadius(5)
+            
+            PointMark(
+                x: .value("Date", record.date),
+                y: .value("Severity", record.severityInt)
+                // width: 15,
+                // stacking: .unstacked
+            )
+            .foregroundStyle(getSeverityColor(record.severityInt))
+        }
+        .chartYAxis {
+            AxisMarks {
+                let value = $0.as(Int.self)!
+                AxisGridLine()
+                AxisTick()
+                AxisValueLabel {
+                    Text(getSeverityLabelFromInt(value))
                 }
-                .chartYAxis {
-                    AxisMarks {
-                        let value = $0.as(Int.self)!
-                        AxisGridLine()
-                        AxisTick()
-                        AxisValueLabel {
-                            Text(getSeverityLabelFromInt(value))
-                        }
-                    }
-                }
-                .chartXScale(domain: calculateDateDomain())
-                // .chartScrollableAxes(.horizontal)
             }
         }
+        .chartXScale(domain: calculateDateDomain())
+        // .chartScrollableAxes(.horizontal)
+        .aspectRatio(2, contentMode: .fit)
+        .padding(.vertical, 10)
         .onAppear {
             proccessData()
         }

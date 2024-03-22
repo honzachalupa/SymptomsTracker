@@ -8,6 +8,7 @@ struct SymptomDetailScreen: View {
     var symptom: Symptom
     
     @State private var dataStore = DataStoreManager()
+    @State private var entriesSorted: [Entry] = []
     @State private var isSheetShown: Bool = false
     @State private var isDeleteConfirmationShown: Bool = false
     
@@ -32,26 +33,21 @@ struct SymptomDetailScreen: View {
             
             ZStack {
                 List {
-                    if !symptom.entries!.isEmpty {
-                        Section {
-                            EntriesChartView(symptomEntries: symptom.entries!)
-                                .aspectRatio(1.5, contentMode: .fit)
+                    Section {
+                        EntriesChartView(symptomEntries: entriesSorted)
+                    }
+                    
+                    if let note = symptom.note, !note.isEmpty {
+                        Section("Note") {
+                            Text(note)
                         }
                     }
                     
-                    if let note = symptom.note {
-                        if !note.isEmpty {
-                            Section("Note") {
-                                Text(note)
-                            }
-                        }
-                    }
-                    
-                    if symptom.entries!.isEmpty {
+                    if entriesSorted.isEmpty {
                         Text("Add your first entry.")
                     } else {
                         Section("Entries") {
-                            ForEach(symptom.entries!, id: \.id) { entry in
+                            ForEach(entriesSorted, id: \.id) { entry in
                                 VStack {
                                     HStack {
                                         Text(entry.date, formatter: dateFormatter)
@@ -59,6 +55,7 @@ struct SymptomDetailScreen: View {
                                         Spacer()
                                         
                                         Text(getSeverityLabel(entry.severity))
+                                            .foregroundStyle(getSeverityColor(entry.severity))
                                     }
                                     
                                     if entry.triggers!.count > 0 {
@@ -172,6 +169,9 @@ struct SymptomDetailScreen: View {
                 .presentationDragIndicator(.visible)
         })
         .navigationTitle(SymptomNameWithIcon(name: symptom.name, icon: symptom.icon))
+        .onAppear() {
+            entriesSorted = symptom.entries!.sorted(by: { $0.date > $1.date })
+        }
     }
 }
 
