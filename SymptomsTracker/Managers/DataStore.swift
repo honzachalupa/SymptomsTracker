@@ -64,7 +64,7 @@ class DataStoreManager {
     var symptoms: [Symptom] = symptomsMock
     var entries: [Entry] = entriesMock
     var triggers: [Trigger] = triggersMock
-    var subscribedTypeIdentifiers: [TypeIdentifiers] = []
+    var subscribedTypeIdentifiers: [TypeIdentifier] = []
 
     init(dataSource: DataSource = DataSource.shared) {
         self.dataSource = dataSource
@@ -82,8 +82,6 @@ class DataStoreManager {
                 .filter { $0.healthKitType != nil }
                 .map { $0.healthKitType!.key }
         )
-        
-        print("DataStoreManager - symptoms typeIdentifiers", subscribedTypeIdentifiers)
         
         // TODO: reloadHealthKitData
     }

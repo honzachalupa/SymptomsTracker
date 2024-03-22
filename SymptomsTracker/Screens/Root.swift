@@ -40,7 +40,7 @@ struct RootScreen: View {
                 .tag(TabKey.settings)
             }
             .navigationTitle(navigationTitle)
-            .toolbarTitleDisplayMode(.inlineLarge)
+            // .toolbarTitleDisplayMode(.inlineLarge)
             .toolbar {
                 if selectedTabKey == .symptoms {
                     ToolbarItem {
@@ -66,5 +66,5 @@ struct RootScreen: View {
 
 #Preview {
     RootScreen()
-        .modelContainer(previewContainer)
+        // .modelContainer(previewContainer)
 }

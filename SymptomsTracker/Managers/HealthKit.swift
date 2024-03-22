@@ -5,7 +5,7 @@ struct WriteDataModel {
     var triggerIDsString: String
 }
 
-func convertTypeIdentifier(_ _typeIdentifier: TypeIdentifiers) -> HKCategoryTypeIdentifier {
+func convertTypeIdentifier(_ _typeIdentifier: TypeIdentifier) -> HKCategoryTypeIdentifier {
     guard let typeIdentifier = typeIdentifierMapping[_typeIdentifier] else {
         fatalError("Unable to convert typeIdentifier to HKCategoryTypeIdentifier")
     }
@@ -22,7 +22,7 @@ struct HealthKitManager {
         }
     }
     
-    func requestPermissions(_ _typeIdentifier: TypeIdentifiers) {
+    func requestPermissions(_ _typeIdentifier: TypeIdentifier) {
         let typeIdentifier = HKObjectType.categoryType(
             forIdentifier: convertTypeIdentifier(_typeIdentifier)
         )!
@@ -34,7 +34,7 @@ struct HealthKitManager {
         }
     }
     
-    func write(_ _typeIdentifier: TypeIdentifiers, data: WriteDataModel, completion: @escaping (Never) -> Void) {
+    func write(_ _typeIdentifier: TypeIdentifier, data: WriteDataModel, completion: @escaping (Never) -> Void) {
         let sampleType = HKObjectType.categoryType(forIdentifier: convertTypeIdentifier(_typeIdentifier))!
         let sample = HKCategorySample(
             type: sampleType,
@@ -47,17 +47,13 @@ struct HealthKitManager {
         )
         
         healthStore.save(sample) { success, error in
-            if success {
-                print("Heart rate sample saved successfully.")
-            } else {
-                if let error = error {
-                    print("Error saving sample: \(error)")
-                }
+            if let error = error {
+                print("Error saving sample: \(error)")
             }
         }
     }
     
-    func read(_ _typeIdentifier: TypeIdentifiers, triggersDefinition: [Trigger], completion: @escaping ([Entry]) -> Void) {
+    func read(_ _typeIdentifier: TypeIdentifier, triggersDefinition: [Trigger], completion: @escaping ([Entry]) -> Void) {
         let typeIdentifier = convertTypeIdentifier(_typeIdentifier)
         let authStatus = healthStore.authorizationStatus(for: HKObjectType.categoryType(forIdentifier: typeIdentifier)!)
         
@@ -113,7 +109,7 @@ struct HealthKitManager {
         }
     }
     
-    func delete(_ id: UUID, _ _typeIdentifier: TypeIdentifiers) {
+    func delete(_ id: UUID, _ _typeIdentifier: TypeIdentifier) {
         print("DELETE", id, _typeIdentifier)
         
         let sampleType = HKObjectType.categoryType(forIdentifier: convertTypeIdentifier(_typeIdentifier))!

@@ -53,7 +53,6 @@ struct SymptomsListView: View {
                         }
                     }
                 }
-                .padding(.top, 10)
                 .refreshable {
                     dataStore.refreshData()
                 }

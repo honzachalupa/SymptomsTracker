@@ -33,7 +33,8 @@ struct SymptomCreateScreen: View {
                             key: selectedHealthKitType.key,
                             name: selectedHealthKitType.name,
                             icon: selectedHealthKitType.icon,
-                            note: selectedHealthKitType.note
+                            note: selectedHealthKitType.note,
+                            category: selectedHealthKitType.category
                         )
                     )
                 )

@@ -29,5 +29,5 @@ struct TriggersListView: View {
 
 #Preview {
     TriggersListView()
-        .modelContainer(previewContainer)
+        // .modelContainer(previewContainer)
 }

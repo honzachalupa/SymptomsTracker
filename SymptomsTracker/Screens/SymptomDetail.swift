@@ -30,8 +30,7 @@ struct SymptomDetailScreen: View {
             HealthKitConnectionLabel(symptom: symptom)
                 .padding(.leading, 25)
             
-            // vvv List vvv
-            VStack {
+            List {
                 if !symptom.entries!.isEmpty {
                     Section {
                         EntriesChartView(symptomEntries: symptom.entries!)

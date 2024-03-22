@@ -30,6 +30,7 @@
 		2164D1112BAB1D510051FDA8 /* Others.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2164D1102BAB1D510051FDA8 /* Others.swift */; };
 		2164D1142BAB2D190051FDA8 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2164D1132BAB2D190051FDA8 /* DataStore.swift */; };
 		2164D1182BAC36B90051FDA8 /* HealthKitType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2164D1172BAC36B90051FDA8 /* HealthKitType.swift */; };
+		21C0E3892BAC8D0B00536E53 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C0E3882BAC8D0B00536E53 /* Data.swift */; };
 		21EFDD8F2BA615D200BD20BE /* PreviewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21EFDD8E2BA615D200BD20BE /* PreviewContainer.swift */; };
 		21EFDD912BA61D9300BD20BE /* SymptomEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21EFDD902BA61D9300BD20BE /* SymptomEdit.swift */; };
 		21EFDD932BA623FC00BD20BE /* EntryEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21EFDD922BA623FC00BD20BE /* EntryEdit.swift */; };
@@ -64,6 +65,7 @@
 		2164D1102BAB1D510051FDA8 /* Others.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Others.swift; sourceTree = "<group>"; };
 		2164D1132BAB2D190051FDA8 /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		2164D1172BAC36B90051FDA8 /* HealthKitType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitType.swift; sourceTree = "<group>"; };
+		21C0E3882BAC8D0B00536E53 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		21EFDD8E2BA615D200BD20BE /* PreviewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewContainer.swift; sourceTree = "<group>"; };
 		21EFDD902BA61D9300BD20BE /* SymptomEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymptomEdit.swift; sourceTree = "<group>"; };
 		21EFDD922BA623FC00BD20BE /* EntryEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryEdit.swift; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 			children = (
 				213064392BA47AE7007E55C0 /* Formatting.swift */,
 				2164D1102BAB1D510051FDA8 /* Others.swift */,
+				21C0E3882BAC8D0B00536E53 /* Data.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 				21EFDD912BA61D9300BD20BE /* SymptomEdit.swift in Sources */,
 				2130642E2BA4655A007E55C0 /* SymptomDetail.swift in Sources */,
 				21EFDD972BA723D200BD20BE /* HealthKit.swift in Sources */,
+				21C0E3892BAC8D0B00536E53 /* Data.swift in Sources */,
 				213064332BA469CF007E55C0 /* EntryCreate.swift in Sources */,
 				2164D10D2BAAECF20051FDA8 /* Settings.swift in Sources */,
 				213064462BA5930C007E55C0 /* Trigger.swift in Sources */,
