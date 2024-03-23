@@ -1,10 +1,5 @@
 import HealthKit
 
-struct WriteDataModel {
-    var severity: Severity
-    var triggerIDsString: String
-}
-
 func convertTypeIdentifier(_ _typeIdentifier: TypeIdentifier) -> HKCategoryTypeIdentifier {
     guard let typeIdentifier = typeIdentifierMapping[_typeIdentifier] else {
         fatalError("Unable to convert typeIdentifier to HKCategoryTypeIdentifier")
@@ -34,21 +29,26 @@ struct HealthKitManager {
         }
     }
     
-    func write(_ _typeIdentifier: TypeIdentifier, data: WriteDataModel, completion: @escaping (Never) -> Void) {
+    func write(_ _typeIdentifier: TypeIdentifier, _ entry: Entry, completion: @escaping () -> Void) {
         let sampleType = HKObjectType.categoryType(forIdentifier: convertTypeIdentifier(_typeIdentifier))!
         let sample = HKCategorySample(
             type: sampleType,
-            value: encodeSymptomSeverity(data.severity),
-            start: Date(),
-            end: Date(),
+            value: encodeSymptomSeverity(entry.severity),
+            start: entry.date,
+            end: entry.date,
             metadata: [
-                "triggerIDs": data.triggerIDsString
+                "triggerIDs": "" // entry.triggers.map { $0.id.uuidString }.joined(separator: ";")
             ]
         )
         
         healthStore.save(sample) { success, error in
-            if let error = error {
+            if success {
+                completion()
+            }
+            else if let error = error {
                 print("Error saving sample: \(error)")
+                
+                completion()
             }
         }
     }
@@ -104,22 +104,28 @@ struct HealthKitManager {
             
             healthStore.execute(sampleQuery)
         } else {
-            requestPermissions(_typeIdentifier)
+            fatalError("HealthKit authorization status is not sharingAuthorized.")
+            
+            // requestPermissions(_typeIdentifier)
             // readHKSample(_typeIdentifier)
         }
     }
     
-    func delete(_ id: UUID, _ _typeIdentifier: TypeIdentifier) {
+    func delete(_ id: UUID, _ _typeIdentifier: TypeIdentifier, completion: @escaping () -> Void) {
         print("DELETE", id, _typeIdentifier)
         
         let sampleType = HKObjectType.categoryType(forIdentifier: convertTypeIdentifier(_typeIdentifier))!
-        let predicate = HKQuery.predicateForObjects(withMetadataKey: HKMetadataKeySyncIdentifier, allowedValues: [id.uuidString])
+        let predicate = HKQuery.predicateForObjects(with: [id])
         
         healthStore.deleteObjects(of: sampleType, predicate: predicate) { success, _, error in
             if success {
                 print("DELETE Data with ID \(id) deleted successfully")
+                
+                completion()
             } else {
                 print("DELETE Error deleting data: \(error)")
+                
+                completion()
             }
         }
     }

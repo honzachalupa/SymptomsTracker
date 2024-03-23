@@ -2,13 +2,10 @@ import SwiftUI
 import SwiftData
 
 struct EntryCreateScreen: View {
-    let healthKit = HealthKitManager()
-    
     var symptom: Symptom
     
     @Environment(\.dismiss) var dismiss
-    
-    @State private var dataStore = DataStoreManager()
+    @State var dataStore = DataStoreManager()
     @State private var date: Date = Date()
     @State private var severity: Severity = .moderate
     @State private var selectedTriggers: [Trigger] = []
@@ -21,31 +18,15 @@ struct EntryCreateScreen: View {
         }
     }
     
-    private func createEntry() {
-        symptom.entries!.append(
+    private func create() {
+        dataStore.create(
             Entry(
                 date: date,
                 severity: severity,
                 triggers: selectedTriggers
-            )
+            ),
+            refSymptom: symptom
         )
-    }
-    
-    private func create() {
-        if let healthKitType = symptom.healthKitType {
-            let data = WriteDataModel(
-                severity: severity,
-                triggerIDsString: selectedTriggers.map { $0.id.uuidString }.joined(separator: ";")
-            )
-            
-            healthKit.write(healthKitType.key, data: data) { success in
-                print(777)
-                
-                // createEntry()
-            }
-        } else {
-            createEntry()
-        }
     }
     
     var body: some View {

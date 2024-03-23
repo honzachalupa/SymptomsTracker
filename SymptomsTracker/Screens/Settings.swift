@@ -1,20 +1,8 @@
 import SwiftUI
 
 struct SettingsScreen: View {
-    @State private var dataStore = DataStoreManager()
+    @State var dataStore = DataStoreManager()
     @State private var isDeleteConfirmationShown: Bool = false
-    
-    private func flushData() {
-        /* TODO: dataStore.deleteAll
-         
-         do {
-            try modelContext.delete(model: Symptom.self)
-            try modelContext.delete(model: Entry.self)
-            try modelContext.delete(model: Trigger.self)
-        } catch {
-            print("Failed to clear all Country and City data.")
-        } */
-    }
     
     var body: some View {
         List {
@@ -28,7 +16,7 @@ struct SettingsScreen: View {
             ) {
                 Button("Delete", role: .destructive) {
                     withAnimation {
-                        flushData()
+                        dataStore.deleteAll()
                     }
                 }
                 .keyboardShortcut(.defaultAction)

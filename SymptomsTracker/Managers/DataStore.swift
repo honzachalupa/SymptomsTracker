@@ -1,6 +1,20 @@
 import SwiftUI
 import SwiftData
 
+extension Sequence {
+    func asyncMap<T>(
+        _ transform: (Element) async throws -> T
+    ) async rethrows -> [T] {
+        var values = [T]()
+
+        for element in self {
+            try await values.append(transform(element))
+        }
+
+        return values
+    }
+}
+
 final class DataSource {
     private let modelContainer: ModelContainer
     private let modelContext: ModelContext
@@ -20,6 +34,8 @@ final class DataSource {
     }
     
     func fetchSymptoms() -> [Symptom] {
+        print("fetchSymptoms started")
+        
         do {
             return try modelContext.fetch(FetchDescriptor<Symptom>(sortBy: [SortDescriptor(\.name)]))
         } catch {
@@ -27,13 +43,13 @@ final class DataSource {
         }
     }
     
-    func fetchEntries() -> [Entry] {
+    /* func fetchEntries() -> [Entry] {
         do {
             return try modelContext.fetch(FetchDescriptor<Entry>(sortBy: [SortDescriptor(\.date, order: .reverse)]))
         } catch {
             fatalError(error.localizedDescription)
         }
-    }
+    } */
     
     func fetchTriggers() -> [Trigger] {
         do {
@@ -47,56 +63,122 @@ final class DataSource {
         try! modelContext.save()
     }
     
-    func create<T: PersistentModel>(_ payload: T) {
+    func create<T: PersistentModel>(_ payload: T, refSymptom: Symptom? = nil) {
         modelContext.insert(payload)
     }
 
-    func remove<T: PersistentModel>(_ payload: T) {
+    func delete<T: PersistentModel>(_ payload: T) {
         modelContext.delete(payload)
+    }
+    
+    func deleteAll() {
+        modelContainer.deleteAllData()
+        
+        /* try! modelContext.delete(model: Symptom.self)
+        try! modelContext.delete(model: Entry.self)
+        try! modelContext.delete(model: Trigger.self) */
     }
 }
 
 @Observable
 class DataStoreManager {
-    @ObservationIgnored
+    private let healthKit = HealthKitManager()
     private let dataSource: DataSource
-
-    var symptoms: [Symptom] = symptomsMock
-    var entries: [Entry] = entriesMock
-    var triggers: [Trigger] = triggersMock
-    var subscribedTypeIdentifiers: [TypeIdentifier] = []
+    
+    var symptoms: [Symptom] = []
+    // var entries: [Entry] = []
+    var triggers: [Trigger] = []
 
     init(dataSource: DataSource = DataSource.shared) {
         self.dataSource = dataSource
-        
-        refreshData()
     }
     
     func refreshData() {
-        symptoms = dataSource.fetchSymptoms()
-        entries = dataSource.fetchEntries()
+        print("refreshData started")
+        
+        symptoms = self.fetchHealthKitEntries(dataSource.fetchSymptoms())
+        // entries = dataSource.fetchEntries()
         triggers = dataSource.fetchTriggers()
+    }
+    
+    private func fetchHealthKitEntries(_ symptoms: [Symptom]) -> [Symptom] {
+        var symptomsClone: [Symptom] = []
         
-        subscribedTypeIdentifiers = removeDuplicates(
-            symptoms
-                .filter { $0.healthKitType != nil }
-                .map { $0.healthKitType!.key }
-        )
+        symptoms.forEach { symptom in
+            let symptomClone: Symptom = symptom
+            
+            print("HERE", 111, symptom.healthKitType?.key)
+            
+            if let typeIdentifier = symptom.healthKitType?.key {
+                healthKit.read(typeIdentifier, triggersDefinition: []) { entries in
+                    print("HERE", 222, entries)
+                    
+                    var entriesClone: [Entry] = []
+                    
+                    entries.forEach { entry in
+                        entriesClone.append(entry)
+                    }
+                    
+                    print("HERE", 333, entriesClone)
+                    
+                    symptomClone.entries = entriesClone
+                }
+                
+                print("HERE", 444, symptomClone.entries)
+            }
+            
+            print("HERE", 555, symptomClone)
+            
+            symptomsClone.append(symptomClone)
+        }
         
-        // TODO: reloadHealthKitData
+        print("HERE", 555, symptomsClone)
+        
+        symptomsClone.forEach { symptom in
+            print("xxxxxxx", symptom.name, symptom.healthKitType, symptom.entries)
+        }
+        
+        return symptomsClone
     }
 
-    func create<T: PersistentModel>(_ payload: T) {
-        dataSource.create(payload)
+    func create<T: PersistentModel>(_ payload: T, refSymptom: Symptom? = nil) {
+        dataSource.create(payload, refSymptom: refSymptom)
+        
+        if let entry = payload as? Entry, type(of: payload) == Entry.self {
+            guard let healthKitType = refSymptom?.healthKitType else { return }
+            
+            healthKit.write(
+                healthKitType.key,
+                entry
+            ) {
+                self.refreshData()
+            }
+        }
     }
 
-    func delete<T: PersistentModel>(_ payload: T) {
-        dataSource.remove(payload)
+    func delete<T: PersistentModel>(_ payload: T, refSymptom: Symptom? = nil) {
+        // dataSource.delete(payload)
+        
+        if let entry = payload as? Entry, type(of: payload) == Entry.self {
+            guard let healthKitType = refSymptom?.healthKitType else { return }
+            
+            healthKit.delete(entry.id, healthKitType.key) {
+                self.refreshData()
+            }
+        }
+    }
+    
+    func deleteAll() {
+        dataSource.deleteAll()
+        
+        symptoms = []
+        // entries = []
+        triggers = []
     }
 }
 
 struct DataStoreManagerPreview: View {
-    @State private var dataStore = DataStoreManager()
+    @State var dataStore = DataStoreManager()
     
     var body: some View {
         List {
@@ -106,11 +188,11 @@ struct DataStoreManagerPreview: View {
                 }
             }
             
-            Section("Entries") {
+            /* Section("Entries") {
                 ForEach(dataStore.entries, id: \.self) { item in
                     Text(item.date.formatted())
                 }
-            }
+            }*/
             
             Section("Triggers") {
                 ForEach(dataStore.triggers, id: \.self) { item in
@@ -122,7 +204,7 @@ struct DataStoreManagerPreview: View {
 }
 
 struct DataStoreManagerPreviewWrapper<Content: View>: View {
-    @State private var dataStore = DataStoreManager()
+    @State var dataStore = DataStoreManager()
     
     @ViewBuilder let content: Content
     
@@ -131,17 +213,17 @@ struct DataStoreManagerPreviewWrapper<Content: View>: View {
             content
         }
             .onAppear(perform: {
-                if dataStore.symptoms.isEmpty {
+                /* if dataStore.symptoms.isEmpty {
                     dataStore.symptoms = symptomsMock
                 }
                 
-                if dataStore.entries.isEmpty {
+                /* if dataStore.entries.isEmpty {
                     dataStore.entries = entriesMock
-                }
+                } */
                 
                 if dataStore.triggers.isEmpty {
                     dataStore.triggers = triggersMock
-                }
+                } */
                 
                 dataStore.refreshData()
             })

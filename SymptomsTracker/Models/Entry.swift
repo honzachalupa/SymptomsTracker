@@ -12,14 +12,12 @@ final class Entry: Identifiable {
     var triggers: [Trigger]? = [Trigger]()
     
     init(
-        id: UUID? = nil,
+        id: UUID = UUID(),
         date: Date,
         severity: Severity,
         triggers: [Trigger]
     ) {
-        if let _id = id {
-            self.id = _id
-        }
+        self.id = id
         self.date = date
         self.severity = severity
         self.triggers = triggers

@@ -10,8 +10,7 @@ struct SymptomCreateScreen: View {
     let healthKit = HealthKitManager()
     
     @Environment(\.dismiss) var dismiss
-    
-    @State private var dataStore = DataStoreManager()
+    @State var dataStore = DataStoreManager()
     @State private var origin: SymptomOrigin = .healthKit
     @State private var selectedHealthKitType: HealthKitType = HealthKitTypes.first!
     @State private var name: String = ""

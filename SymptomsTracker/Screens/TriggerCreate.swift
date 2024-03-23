@@ -4,8 +4,7 @@ import MCEmojiPicker
 
 struct TriggerCreateScreen: View {
     @Environment(\.dismiss) var dismiss
-    
-    @State private var dataStore = DataStoreManager()
+    @State var dataStore = DataStoreManager()
     @State private var name: String = ""
     @State private var icon: String = ""
     @State private var isEmojiSelectorShown: Bool = false

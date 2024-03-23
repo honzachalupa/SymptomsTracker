@@ -5,8 +5,7 @@ struct EntryEditScreen: View {
     var entry: Entry
     
     @Environment(\.dismiss) var dismiss
-    
-    @State private var dataStore = DataStoreManager()
+    @State var dataStore = DataStoreManager()
     @State private var date: Date = Date()
     @State private var severity: Severity = .moderate
     @State private var selectedTriggers: [Trigger] = []

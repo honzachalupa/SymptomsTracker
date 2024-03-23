@@ -1,30 +1,13 @@
 import SwiftUI
 
 struct SymptomDetailScreen: View {
-    @Environment(\.dismiss) var dismiss
-    
-    let healthKit = HealthKitManager()
-    
     var symptom: Symptom
     
-    @State private var dataStore = DataStoreManager()
+    @Environment(\.dismiss) var dismiss
+    @State var dataStore = DataStoreManager()
     @State private var entriesSorted: [Entry] = []
     @State private var isSheetShown: Bool = false
     @State private var isDeleteConfirmationShown: Bool = false
-    
-    private func deleteSymptom() {
-        withAnimation {
-            dataStore.delete(symptom)
-        }
-    }
-    
-    private func deleteEntry(_ entry: Entry) {
-       if let healthKitType = symptom.healthKitType {
-            healthKit.delete(entry.id, healthKitType.key)
-        }
-        
-        symptom.entries!.remove(at: symptom.entries!.firstIndex(of: entry)!)
-    }
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -58,33 +41,38 @@ struct SymptomDetailScreen: View {
                                             .foregroundStyle(getSeverityColor(entry.severity))
                                     }
                                     
-                                    if entry.triggers!.count > 0 {
-                                        VStack(alignment: .leading) {
-                                            Text("Triggers")
-                                                .textCase(.uppercase)
-                                                .font(.footnote)
-                                                .opacity(0.5)
-                                                .padding(.bottom, 2)
-                                            
-                                            HStack {
-                                                ForEach(entry.triggers!, id: \.self) { trigger in
-                                                    SymptomNameWithIcon(name: trigger.name, icon: trigger.icon)
-                                                        .padding(.trailing, 10)
-                                                }
+                                    if let triggers = entry.triggers {
+                                        if triggers.count > 0 {
+                                            VStack(alignment: .leading) {
+                                                Text("Triggers")
+                                                    .textCase(.uppercase)
+                                                    .font(.footnote)
+                                                    .opacity(0.5)
+                                                    .padding(.bottom, 2)
                                                 
-                                                Spacer()
+                                                HStack {
+                                                    ForEach(triggers, id: \.self) { trigger in
+                                                        SymptomNameWithIcon(name: trigger.name, icon: trigger.icon)
+                                                            .padding(.trailing, 10)
+                                                    }
+                                                    
+                                                    Spacer()
+                                                }
                                             }
+                                            
+                                            .padding()
+                                            .background(.gray.opacity(0.1))
+                                            .cornerRadius(10)
                                         }
-                                        
-                                        .padding()
-                                        .background(.gray.opacity(0.1))
-                                        .cornerRadius(10)
                                     }
                                 }
                                 .swipeActions {
-                                    Button("Delete", role: .destructive) {
-                                        deleteEntry(entry)
+                                    Button("Delete") {
+                                        withAnimation {
+                                            dataStore.delete(entry, refSymptom: symptom)
+                                        }
                                     }
+                                    .tint(.red)
                                     
                                     NavigationLink {
                                         EntryEditScreen(entry: entry)
@@ -154,7 +142,7 @@ struct SymptomDetailScreen: View {
                     Button("Delete", role: .destructive) {
                         withAnimation {
                             dismiss()
-                            deleteSymptom()
+                            dataStore.delete(symptom)
                         }
                     }
                     .keyboardShortcut(.defaultAction)
@@ -170,7 +158,9 @@ struct SymptomDetailScreen: View {
         })
         .navigationTitle(SymptomNameWithIcon(name: symptom.name, icon: symptom.icon))
         .onAppear() {
-            entriesSorted = symptom.entries!.sorted(by: { $0.date > $1.date })
+            if let entries = symptom.entries {
+                entriesSorted = entries.sorted(by: { $0.date > $1.date })
+            }
         }
     }
 }

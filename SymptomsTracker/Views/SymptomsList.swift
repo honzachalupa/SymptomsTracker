@@ -45,7 +45,9 @@ struct SymptomsListView: View {
                                         HealthKitConnectionLabel(symptom: symptom)
                                     }
                                     
-                                    EntriesChartView(symptomEntries: symptom.entries!)
+                                    if let entries = symptom.entries {
+                                        EntriesChartView(symptomEntries: entries)
+                                    }
                                 }
                             }
                         }

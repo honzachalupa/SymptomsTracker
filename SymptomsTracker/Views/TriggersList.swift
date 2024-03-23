@@ -2,7 +2,7 @@ import SwiftUI
 import SwiftData
 
 struct TriggersListView: View {
-    @State private var dataStore = DataStoreManager()
+    @State var dataStore = DataStoreManager()
     
     var body: some View {
         List(dataStore.triggers, id: \.id) { trigger in
@@ -16,6 +16,9 @@ struct TriggersListView: View {
                     dataStore.delete(trigger)
                 }
             }
+        }
+        .onAppear() {
+            dataStore.refreshData()
         }
     }
 }

@@ -1,7 +1,7 @@
 import SwiftUI
 import Charts
 
-struct EntreiesChartRecord: Identifiable {
+struct EntriesChartRecord: Identifiable {
     var id: UUID
     var date: Date
     var severityInt: Int
@@ -16,7 +16,7 @@ struct EntreiesChartRecord: Identifiable {
 struct EntriesChartView: View {
     var symptomEntries: [Entry]
     
-    @State var data: [EntreiesChartRecord] = []
+    @State var data: [EntriesChartRecord] = []
     
     private func calculateDateDomain() -> ClosedRange<Date> {
         let sortedDates = symptomEntries.map { Locale.current.calendar.startOfDay(for: $0.date) }.sorted()
@@ -32,7 +32,7 @@ struct EntriesChartView: View {
                 $0.date < $1.date
             })
             .map { entry in
-                EntreiesChartRecord(
+                EntriesChartRecord(
                     date: Locale.current.calendar.startOfDay(for: entry.date),
                     severity: entry.severity
                 )
