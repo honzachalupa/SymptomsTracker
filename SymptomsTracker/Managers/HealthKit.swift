@@ -29,7 +29,7 @@ struct HealthKitManager {
         }
     }
     
-    func write(_ _typeIdentifier: TypeIdentifier, _ entry: Entry, completion: @escaping () -> Void) {
+    func write(_ _typeIdentifier: TypeIdentifier, _ entry: Entry) async {
         let sampleType = HKObjectType.categoryType(forIdentifier: convertTypeIdentifier(_typeIdentifier))!
         let sample = HKCategorySample(
             type: sampleType,
@@ -41,19 +41,18 @@ struct HealthKitManager {
             ]
         )
         
-        healthStore.save(sample) { success, error in
-            if success {
-                completion()
-            }
-            else if let error = error {
-                print("Error saving sample: \(error)")
-                
-                completion()
-            }
+        entry.triggers?.forEach { trigger in
+            consoleLog("TRIGGER", trigger)
         }
+        
+        do {
+           try await healthStore.save(sample)
+       } catch {
+           print("Error saving sample: \(error)")
+       }
     }
     
-    func read(_ _typeIdentifier: TypeIdentifier, triggersDefinition: [Trigger], completion: @escaping ([Entry]) -> Void) {
+    func read(_ _typeIdentifier: TypeIdentifier, triggersDefinition: [Trigger], completion: @escaping ([Entry]) -> Void) async {
         let typeIdentifier = convertTypeIdentifier(_typeIdentifier)
         let authStatus = healthStore.authorizationStatus(for: HKObjectType.categoryType(forIdentifier: typeIdentifier)!)
         
@@ -111,22 +110,16 @@ struct HealthKitManager {
         }
     }
     
-    func delete(_ id: UUID, _ _typeIdentifier: TypeIdentifier, completion: @escaping () -> Void) {
-        print("DELETE", id, _typeIdentifier)
-        
+    func delete(_ id: UUID, _ _typeIdentifier: TypeIdentifier) async {
         let sampleType = HKObjectType.categoryType(forIdentifier: convertTypeIdentifier(_typeIdentifier))!
         let predicate = HKQuery.predicateForObjects(with: [id])
         
-        healthStore.deleteObjects(of: sampleType, predicate: predicate) { success, _, error in
-            if success {
-                print("DELETE Data with ID \(id) deleted successfully")
-                
-                completion()
-            } else {
-                print("DELETE Error deleting data: \(error)")
-                
-                completion()
-            }
+        do {
+            try await healthStore.deleteObjects(of: sampleType, predicate: predicate)
+            
+            consoleLog("FINISHED: healthStore.deleteObjects")
+        } catch {
+            print("Error deleting an entry: \(error)")
         }
     }
     

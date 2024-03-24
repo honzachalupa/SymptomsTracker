@@ -262,6 +262,16 @@
         }
       }
     },
+    "Loading..." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Načítání..."
+          }
+        }
+      }
+    },
     "Mild" : {
       "localizations" : {
         "cs" : {

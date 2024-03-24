@@ -5,7 +5,11 @@ struct SymptomsListView: View {
     
     var body: some View {
         VStack {
-            if dataStore.symptoms.isEmpty {
+            if dataStore.isLoading {
+                ProgressView {
+                    Text("Loading...")
+                }
+            } else if dataStore.symptoms.isEmpty {
                 Spacer()
                 
                 Text("Add a new symptom to start tracking.")
@@ -24,42 +28,46 @@ struct SymptomsListView: View {
                 
                 Spacer()
             } else {
-                List {
-                    /* Section("All symptoms summary") {
-                     SummaryChartView()
-                     .padding(.bottom, 10)
-                     .padding(.top, 20)
-                     } */
+                /* Section("All symptoms summary") {
+                 SummaryChartView()
+                 .padding(.bottom, 10)
+                 .padding(.top, 20)
+                 } */
                     
-                    ForEach(dataStore.symptoms) { symptom in
-                        Section {
-                            NavigationLink {
-                                SymptomDetailScreen(symptom: symptom)
-                            } label: {
-                                VStack(alignment: .leading) {
-                                    HStack {
-                                        SymptomNameWithIcon(name: symptom.name, icon: symptom.icon)
-                                        
-                                        Spacer()
-                                        
-                                        HealthKitConnectionLabel(symptom: symptom)
-                                    }
+                List(dataStore.symptoms, id: \.id) { symptom in
+                    Section {
+                        NavigationLink {
+                            SymptomDetailScreen(symptom: symptom)
+                        } label: {
+                            VStack(alignment: .leading) {
+                                HStack {
+                                    SymptomNameWithIcon(name: symptom.name, icon: symptom.icon)
                                     
-                                    if let entries = symptom.entries {
-                                        EntriesChartView(symptomEntries: entries)
-                                    }
+                                    Spacer()
+                                    
+                                    HealthKitConnectionLabel(symptom: symptom)
+                                }
+                                
+                                if let entries = symptom.entries {
+                                    EntriesChartView(symptomEntries: entries)
                                 }
                             }
                         }
                     }
                 }
                 .refreshable {
-                    dataStore.refreshData()
+                    Task {
+                        await dataStore.refreshData()
+                    }
                 }
             }
         }
-        .onAppear() {
-            dataStore.refreshData()
+        .task {
+            await dataStore.refreshData()
+        }
+        .onChange(of: dataStore.symptoms) { _, newValue in
+            consoleLog("DATASTORE onChange", newValue);
+            consoleLog("DATASTORE onChange isEmpty", dataStore.symptoms.isEmpty);
         }
     }
 }

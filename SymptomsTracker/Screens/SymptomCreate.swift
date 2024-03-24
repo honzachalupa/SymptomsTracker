@@ -19,11 +19,11 @@ struct SymptomCreateScreen: View {
     @State private var isEmojiSelectorShown: Bool = false
     
     private func create() {
-        withAnimation {
+        Task {
             if origin == .healthKit {
                 healthKit.requestPermissions(selectedHealthKitType.key)
                 
-                dataStore.create(
+                await dataStore.create(
                     Symptom(
                         name: selectedHealthKitType.name,
                         icon: selectedHealthKitType.icon,
@@ -38,7 +38,7 @@ struct SymptomCreateScreen: View {
                     )
                 )
             } else {
-                dataStore.create(
+                await dataStore.create(
                     Symptom(
                         name: name,
                         icon: icon,

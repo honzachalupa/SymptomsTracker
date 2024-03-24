@@ -19,14 +19,16 @@ struct EntryCreateScreen: View {
     }
     
     private func create() {
-        dataStore.create(
-            Entry(
-                date: date,
-                severity: severity,
-                triggers: selectedTriggers
-            ),
-            refSymptom: symptom
-        )
+        Task {
+            await dataStore.create(
+                Entry(
+                    date: date,
+                    severity: severity,
+                    triggers: selectedTriggers
+                ),
+                refSymptom: symptom
+            )
+        }
     }
     
     var body: some View {

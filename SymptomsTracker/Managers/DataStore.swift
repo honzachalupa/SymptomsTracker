@@ -1,21 +1,7 @@
 import SwiftUI
 import SwiftData
 
-extension Sequence {
-    func asyncMap<T>(
-        _ transform: (Element) async throws -> T
-    ) async rethrows -> [T] {
-        var values = [T]()
-
-        for element in self {
-            try await values.append(transform(element))
-        }
-
-        return values
-    }
-}
-
-final class DataSource {
+class DataSource {
     private let modelContainer: ModelContainer
     private let modelContext: ModelContext
 
@@ -88,84 +74,108 @@ class DataStoreManager {
     var symptoms: [Symptom] = []
     // var entries: [Entry] = []
     var triggers: [Trigger] = []
+    var isLoading: Bool = true
 
     init(dataSource: DataSource = DataSource.shared) {
         self.dataSource = dataSource
     }
     
-    func refreshData() {
-        print("refreshData started")
-        
-        symptoms = self.fetchHealthKitEntries(dataSource.fetchSymptoms())
-        // entries = dataSource.fetchEntries()
-        triggers = dataSource.fetchTriggers()
+    func refreshData() async {
+        Task {
+            consoleLog("STARTED: refreshData")
+            
+            symptoms = dataSource.fetchSymptoms()
+            // symptoms = await self.fetchHealthKitEntries(dataSource.fetchSymptoms())
+            // entries = dataSource.fetchEntries()
+            triggers = dataSource.fetchTriggers()
+            
+            isLoading = false
+            
+            consoleLog("FINISHED: refreshData")
+        }
     }
     
-    private func fetchHealthKitEntries(_ symptoms: [Symptom]) -> [Symptom] {
+    private func fetchHealthKitEntries(_ symptoms: [Symptom]) async -> [Symptom] {
         var symptomsClone: [Symptom] = []
         
         symptoms.forEach { symptom in
             let symptomClone: Symptom = symptom
             
-            print("HERE", 111, symptom.healthKitType?.key)
+            consoleLog("fetchHealthKitEntries 1", symptom.healthKitType?.key)
             
             if let typeIdentifier = symptom.healthKitType?.key {
-                healthKit.read(typeIdentifier, triggersDefinition: []) { entries in
-                    print("HERE", 222, entries)
-                    
-                    var entriesClone: [Entry] = []
-                    
-                    entries.forEach { entry in
-                        entriesClone.append(entry)
+                Task {
+                    await healthKit.read(typeIdentifier, triggersDefinition: []) { entries in
+                        consoleLog("fetchHealthKitEntries 2", entries)
+                        
+                        var entriesClone: [Entry] = []
+                        
+                        entries.forEach { entry in
+                            entriesClone.append(entry)
+                        }
+                        
+                        consoleLog("fetchHealthKitEntries 3", entriesClone)
+                        
+                        symptomClone.entries = entriesClone
                     }
                     
-                    print("HERE", 333, entriesClone)
-                    
-                    symptomClone.entries = entriesClone
+                    consoleLog("fetchHealthKitEntries 4", symptomClone.entries)
                 }
-                
-                print("HERE", 444, symptomClone.entries)
             }
             
-            print("HERE", 555, symptomClone)
+            consoleLog("fetchHealthKitEntries 5", symptomClone)
             
             symptomsClone.append(symptomClone)
         }
         
-        print("HERE", 555, symptomsClone)
+        consoleLog("fetchHealthKitEntries 5", symptomsClone)
         
         symptomsClone.forEach { symptom in
-            print("xxxxxxx", symptom.name, symptom.healthKitType, symptom.entries)
+            consoleLog("fetchHealthKitEntries 6", symptom)
         }
         
         return symptomsClone
     }
 
-    func create<T: PersistentModel>(_ payload: T, refSymptom: Symptom? = nil) {
+    func create<T: PersistentModel>(_ payload: T, refSymptom: Symptom? = nil) async {
         dataSource.create(payload, refSymptom: refSymptom)
         
-        if let entry = payload as? Entry, type(of: payload) == Entry.self {
-            guard let healthKitType = refSymptom?.healthKitType else { return }
-            
-            healthKit.write(
-                healthKitType.key,
-                entry
-            ) {
-                self.refreshData()
+        Task {
+            if let entry = payload as? Entry, type(of: payload) == Entry.self {
+                guard let healthKitType = refSymptom?.healthKitType else { return }
+                
+                await healthKit.write(
+                    healthKitType.key,
+                    entry
+                )
+                
+                await self.refreshData()
             }
         }
     }
 
-    func delete<T: PersistentModel>(_ payload: T, refSymptom: Symptom? = nil) {
-        // dataSource.delete(payload)
+    func delete<T: PersistentModel>(_ payload: T, refSymptom: Symptom? = nil) async {
+        consoleLog("DELETE STARTED")
         
         if let entry = payload as? Entry, type(of: payload) == Entry.self {
+            consoleLog("DELETE HK STARTED")
+            
             guard let healthKitType = refSymptom?.healthKitType else { return }
             
-            healthKit.delete(entry.id, healthKitType.key) {
-                self.refreshData()
+            Task {
+                await healthKit.delete(entry.id, healthKitType.key)
+                
+                consoleLog("DELETE HK FINISHED")
             }
         }
+        
+        dataSource.delete(payload)
+        
+        consoleLog("DELETE FINISHED")
+        
+        await refreshData()
+        
+        consoleLog("DELETE REFRESHING DATA")
     }
     
     func deleteAll() {
@@ -212,21 +222,21 @@ struct DataStoreManagerPreviewWrapper<Content: View>: View {
         ZStack{
             content
         }
-            .onAppear(perform: {
-                /* if dataStore.symptoms.isEmpty {
-                    dataStore.symptoms = symptomsMock
-                }
-                
-                /* if dataStore.entries.isEmpty {
-                    dataStore.entries = entriesMock
-                } */
-                
-                if dataStore.triggers.isEmpty {
-                    dataStore.triggers = triggersMock
-                } */
-                
-                dataStore.refreshData()
-            })
+        .task({
+            /* if dataStore.symptoms.isEmpty {
+                dataStore.symptoms = symptomsMock
+            }
+            
+            /* if dataStore.entries.isEmpty {
+                dataStore.entries = entriesMock
+            } */
+            
+            if dataStore.triggers.isEmpty {
+                dataStore.triggers = triggersMock
+            } */
+            
+            await dataStore.refreshData()
+        })
     }
 }
 

@@ -10,8 +10,8 @@ struct TriggerCreateScreen: View {
     @State private var isEmojiSelectorShown: Bool = false
     
     private func create() {
-        withAnimation {
-            dataStore.create(
+        Task {
+            await dataStore.create(
                 Trigger(
                     name: name,
                     icon: icon

@@ -4,6 +4,12 @@ import SwiftData
 struct TriggersListView: View {
     @State var dataStore = DataStoreManager()
     
+    func delete(_ trigger: Trigger) {
+        Task {
+            await dataStore.delete(trigger)
+        }
+    }
+    
     var body: some View {
         List(dataStore.triggers, id: \.id) { trigger in
             NavigationLink {
@@ -13,12 +19,12 @@ struct TriggersListView: View {
             }
             .swipeActions {
                 Button("Delete", role: .destructive) {
-                    dataStore.delete(trigger)
+                    delete(trigger)
                 }
             }
         }
-        .onAppear() {
-            dataStore.refreshData()
+        .task {
+            // await dataStore.refreshData()
         }
     }
 }
