@@ -4,7 +4,7 @@ struct SymptomDetailScreen: View {
     var symptom: Symptom?
     
     @Environment(\.dismiss) var dismiss
-    @State var dataStore = DataStoreManager()
+    @EnvironmentObject var dataStore: DataStoreManager
     @State private var entriesSorted: [Entry] = []
     @State private var isSheetShown: Bool = false
     @State private var isDeleteConfirmationShown: Bool = false

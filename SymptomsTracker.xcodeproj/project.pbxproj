@@ -32,6 +32,9 @@
 		2164D1182BAC36B90051FDA8 /* HealthKitType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2164D1172BAC36B90051FDA8 /* HealthKitType.swift */; };
 		217225E12BAF45D200F793C0 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217225E02BAF45D200F793C0 /* Logger.swift */; };
 		21C0E3892BAC8D0B00536E53 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C0E3882BAC8D0B00536E53 /* Data.swift */; };
+		21E6B6DE2BB1846800C4099C /* ChatGPTSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 21E6B6DD2BB1846800C4099C /* ChatGPTSwift */; };
+		21E6B6E72BB1C9DA00C4099C /* Insights.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E6B6E62BB1C9DA00C4099C /* Insights.swift */; };
+		21E6B6E92BB1C9EB00C4099C /* Insights.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E6B6E82BB1C9EB00C4099C /* Insights.swift */; };
 		21EFDD8F2BA615D200BD20BE /* PreviewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21EFDD8E2BA615D200BD20BE /* PreviewContainer.swift */; };
 		21EFDD912BA61D9300BD20BE /* SymptomEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21EFDD902BA61D9300BD20BE /* SymptomEdit.swift */; };
 		21EFDD932BA623FC00BD20BE /* EntryEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21EFDD922BA623FC00BD20BE /* EntryEdit.swift */; };
@@ -68,6 +71,8 @@
 		2164D1172BAC36B90051FDA8 /* HealthKitType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitType.swift; sourceTree = "<group>"; };
 		217225E02BAF45D200F793C0 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		21C0E3882BAC8D0B00536E53 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		21E6B6E62BB1C9DA00C4099C /* Insights.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Insights.swift; sourceTree = "<group>"; };
+		21E6B6E82BB1C9EB00C4099C /* Insights.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Insights.swift; sourceTree = "<group>"; };
 		21EFDD8E2BA615D200BD20BE /* PreviewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewContainer.swift; sourceTree = "<group>"; };
 		21EFDD902BA61D9300BD20BE /* SymptomEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymptomEdit.swift; sourceTree = "<group>"; };
 		21EFDD922BA623FC00BD20BE /* EntryEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryEdit.swift; sourceTree = "<group>"; };
@@ -81,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21E6B6DE2BB1846800C4099C /* ChatGPTSwift in Frameworks */,
 				2130642C2BA45E15007E55C0 /* MCEmojiPicker in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -167,6 +173,7 @@
 				2130643B2BA4A200007E55C0 /* SymptomsList.swift */,
 				213064412BA58F34007E55C0 /* TriggersList.swift */,
 				2164D10E2BAAF1100051FDA8 /* HealthKitConnectionLabel.swift */,
+				21E6B6E62BB1C9DA00C4099C /* Insights.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -187,6 +194,7 @@
 			children = (
 				21EFDD962BA723D200BD20BE /* HealthKit.swift */,
 				2164D1132BAB2D190051FDA8 /* DataStore.swift */,
+				21E6B6E82BB1C9EB00C4099C /* Insights.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -209,6 +217,7 @@
 			name = SymptomsTracker;
 			packageProductDependencies = (
 				2130642B2BA45E15007E55C0 /* MCEmojiPicker */,
+				21E6B6DD2BB1846800C4099C /* ChatGPTSwift */,
 			);
 			productName = SymptomsTracker;
 			productReference = 213064112BA44FF7007E55C0 /* SymptomsTracker.app */;
@@ -241,6 +250,7 @@
 			mainGroup = 213064082BA44FF7007E55C0;
 			packageReferences = (
 				2130642A2BA45E15007E55C0 /* XCRemoteSwiftPackageReference "MCEmojiPicker" */,
+				21E6B6DC2BB1846800C4099C /* XCRemoteSwiftPackageReference "ChatGPTSwift" */,
 			);
 			productRefGroup = 213064122BA44FF7007E55C0 /* Products */;
 			projectDirPath = "";
@@ -281,9 +291,11 @@
 				2164D1142BAB2D190051FDA8 /* DataStore.swift in Sources */,
 				213064172BA44FF7007E55C0 /* Root.swift in Sources */,
 				21EFDD952BA626CC00BD20BE /* TriggerEdit.swift in Sources */,
+				21E6B6E92BB1C9EB00C4099C /* Insights.swift in Sources */,
 				213064192BA44FF7007E55C0 /* Symptom.swift in Sources */,
 				213064422BA58F34007E55C0 /* TriggersList.swift in Sources */,
 				213064442BA58FE8007E55C0 /* TriggerCreate.swift in Sources */,
+				21E6B6E72BB1C9DA00C4099C /* Insights.swift in Sources */,
 				2164D10F2BAAF1100051FDA8 /* HealthKitConnectionLabel.swift in Sources */,
 				213064352BA46A88007E55C0 /* SymptomNameWithIcon.swift in Sources */,
 				21EFDD8F2BA615D200BD20BE /* PreviewContainer.swift in Sources */,
@@ -525,6 +537,14 @@
 				minimumVersion = 1.2.3;
 			};
 		};
+		21E6B6DC2BB1846800C4099C /* XCRemoteSwiftPackageReference "ChatGPTSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/alfianlosari/ChatGPTSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.4.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -532,6 +552,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2130642A2BA45E15007E55C0 /* XCRemoteSwiftPackageReference "MCEmojiPicker" */;
 			productName = MCEmojiPicker;
+		};
+		21E6B6DD2BB1846800C4099C /* ChatGPTSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 21E6B6DC2BB1846800C4099C /* XCRemoteSwiftPackageReference "ChatGPTSwift" */;
+			productName = ChatGPTSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

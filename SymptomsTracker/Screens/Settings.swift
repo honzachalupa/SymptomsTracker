@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct SettingsScreen: View {
-    @State var dataStore = DataStoreManager()
+    @EnvironmentObject var dataStore: DataStoreManager
     @State private var isDeleteConfirmationShown: Bool = false
     
     var body: some View {
@@ -29,5 +29,4 @@ struct SettingsScreen: View {
 
 #Preview {
     SettingsScreen()
-        // .modelContainer(previewContainer)
 }

@@ -2,7 +2,7 @@ import SwiftUI
 import SwiftData
 
 struct TriggersListView: View {
-    @State var dataStore = DataStoreManager()
+    @EnvironmentObject var dataStore: DataStoreManager
     
     func delete(_ trigger: Trigger) {
         Task {
@@ -24,7 +24,7 @@ struct TriggersListView: View {
             }
         }
         .task {
-            // await dataStore.refreshData()
+            await dataStore.refreshData()
         }
     }
 }

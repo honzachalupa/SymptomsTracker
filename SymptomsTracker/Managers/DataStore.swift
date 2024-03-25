@@ -19,7 +19,7 @@ class DataSource {
         self.modelContext = modelContainer.mainContext
     }
     
-    func fetchSymptoms() -> [Symptom] {
+    func fetchSymptoms() async -> [Symptom] {
         print("fetchSymptoms started")
         
         do {
@@ -29,15 +29,7 @@ class DataSource {
         }
     }
     
-    /* func fetchEntries() -> [Entry] {
-        do {
-            return try modelContext.fetch(FetchDescriptor<Entry>(sortBy: [SortDescriptor(\.date, order: .reverse)]))
-        } catch {
-            fatalError(error.localizedDescription)
-        }
-    } */
-    
-    func fetchTriggers() -> [Trigger] {
+    func fetchTriggers() async -> [Trigger] {
         do {
             return try modelContext.fetch(FetchDescriptor<Trigger>(sortBy: [SortDescriptor(\.name)]))
         } catch {
@@ -61,18 +53,16 @@ class DataSource {
         modelContainer.deleteAllData()
         
         /* try! modelContext.delete(model: Symptom.self)
-        try! modelContext.delete(model: Entry.self)
         try! modelContext.delete(model: Trigger.self) */
     }
 }
 
 @Observable
-class DataStoreManager {
+class DataStoreManager: ObservableObject {
     private let healthKit = HealthKitManager()
     private let dataSource: DataSource
     
     var symptoms: [Symptom] = []
-    // var entries: [Entry] = []
     var triggers: [Trigger] = []
     var isLoading: Bool = true
 
@@ -81,18 +71,15 @@ class DataStoreManager {
     }
     
     func refreshData() async {
-        Task {
-            consoleLog("STARTED: refreshData")
-            
-            symptoms = dataSource.fetchSymptoms()
-            // symptoms = await self.fetchHealthKitEntries(dataSource.fetchSymptoms())
-            // entries = dataSource.fetchEntries()
-            triggers = dataSource.fetchTriggers()
-            
-            isLoading = false
-            
-            consoleLog("FINISHED: refreshData")
-        }
+        consoleLog("STARTED: refreshData")
+        
+        // symptoms = await self.fetchHealthKitEntries(dataSource.fetchSymptoms())
+        symptoms = await dataSource.fetchSymptoms()
+        triggers = await dataSource.fetchTriggers()
+        
+        isLoading = false
+        
+        consoleLog("FINISHED: refreshData")
     }
     
     private func fetchHealthKitEntries(_ symptoms: [Symptom]) async -> [Symptom] {
@@ -182,13 +169,12 @@ class DataStoreManager {
         dataSource.deleteAll()
         
         symptoms = []
-        // entries = []
         triggers = []
     }
 }
 
 struct DataStoreManagerPreview: View {
-    @State var dataStore = DataStoreManager()
+    @EnvironmentObject var dataStore: DataStoreManager
     
     var body: some View {
         List {

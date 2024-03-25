@@ -7,7 +7,6 @@ enum TabKey {
 
 struct RootScreen: View {
     @Environment(\.scenePhase) private var scenePhase
-    @State private var dataStore = DataStoreManager()
     @State private var selectedTabKey: TabKey = .symptoms
     
     var navigationTitle: String {
@@ -60,9 +59,6 @@ struct RootScreen: View {
                     }
                 }
             }
-        }
-        .task {
-            await dataStore.refreshData()
         }
     }
 }

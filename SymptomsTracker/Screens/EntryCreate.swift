@@ -5,7 +5,7 @@ struct EntryCreateScreen: View {
     var symptom: Symptom
     
     @Environment(\.dismiss) var dismiss
-    @State var dataStore = DataStoreManager()
+    @EnvironmentObject var dataStore: DataStoreManager
     @State private var date: Date = Date()
     @State private var severity: Severity = .moderate
     @State private var selectedTriggers: [Trigger] = []

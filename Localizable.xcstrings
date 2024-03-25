@@ -41,6 +41,16 @@
         }
       }
     },
+    "AI insights" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AI doporučení"
+          }
+        }
+      }
+    },
     "All symptoms summary" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -138,6 +148,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vytvořit spouštěč"
+          }
+        }
+      }
+    },
+    "Creating AI insights..." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vytváření AI doporučení"
           }
         }
       }
@@ -358,6 +378,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Otevřít aplikaci Zdraví"
+          }
+        }
+      }
+    },
+    "Relates with: %@" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Souvisí s: %@"
           }
         }
       }

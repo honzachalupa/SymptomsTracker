@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct SymptomsListView: View {
-    @State var dataStore = DataStoreManager()
+    @EnvironmentObject var dataStore: DataStoreManager
     
     var body: some View {
         VStack {
@@ -28,28 +28,34 @@ struct SymptomsListView: View {
                 
                 Spacer()
             } else {
-                /* Section("All symptoms summary") {
-                 SummaryChartView()
-                 .padding(.bottom, 10)
-                 .padding(.top, 20)
-                 } */
+                List {
+                    /* Section("All symptoms summary") {
+                     SummaryChartView()
+                     .padding(.bottom, 10)
+                     .padding(.top, 20)
+                     } */
                     
-                List(dataStore.symptoms, id: \.id) { symptom in
-                    Section {
-                        NavigationLink {
-                            SymptomDetailScreen(symptom: symptom)
-                        } label: {
-                            VStack(alignment: .leading) {
-                                HStack {
-                                    SymptomNameWithIcon(name: symptom.name, icon: symptom.icon)
+                    Section("AI insights") {
+                        Insights()
+                    }
+                    
+                    ForEach(dataStore.symptoms, id: \.id) { symptom in
+                        Section {
+                            NavigationLink {
+                                SymptomDetailScreen(symptom: symptom)
+                            } label: {
+                                VStack(alignment: .leading) {
+                                    HStack {
+                                        SymptomNameWithIcon(name: symptom.name, icon: symptom.icon)
+                                        
+                                        Spacer()
+                                        
+                                        HealthKitConnectionLabel(symptom: symptom)
+                                    }
                                     
-                                    Spacer()
-                                    
-                                    HealthKitConnectionLabel(symptom: symptom)
-                                }
-                                
-                                if let entries = symptom.entries {
-                                    EntriesChartView(symptomEntries: entries)
+                                    if let entries = symptom.entries {
+                                        EntriesChartView(symptomEntries: entries)
+                                    }
                                 }
                             }
                         }

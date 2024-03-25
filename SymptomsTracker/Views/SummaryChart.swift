@@ -27,7 +27,7 @@ struct SummaryChartRecords: Identifiable {
 }
 
 struct SummaryChartView: View {
-    @State var dataStore = DataStoreManager()
+    @EnvironmentObject var dataStore: DataStoreManager
     @State var data: [SummaryChartRecords] = []
     
     private func calculateDateDomain() -> ClosedRange<Date> {
