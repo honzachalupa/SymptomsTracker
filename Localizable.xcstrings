@@ -383,6 +383,7 @@
       }
     },
     "Relates with: %@" : {
+      "extractionState" : "stale",
       "localizations" : {
         "cs" : {
           "stringUnit" : {

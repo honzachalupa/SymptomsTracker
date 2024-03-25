@@ -12,17 +12,18 @@ class InsightsManager: ObservableObject {
     private var lastTimeRefreshed: Date = Date()
     
     @Published var advices: [ChatGPTResponseItem] = []
-    @Published var isLoading: Bool = true
+    @Published var isLoading: Bool = false
     
     init() {
-        let oneHourElapsed = Calendar.current.date(byAdding: .hour, value: 1, to: lastTimeRefreshed)! > Date()
+        // let oneHourElapsed = Calendar.current.date(byAdding: .hour, value: 1, to: lastTimeRefreshed)! < Date()
         
-        if oneHourElapsed {
+        // if oneHourElapsed {
             self.refreshInsights()
-        }
+        // }
     }
     
     public func refreshInsights() {
+        isLoading = true
         lastTimeRefreshed = Date()
         
         let message = getMessage(dataStore.symptoms, dataStore.triggers)
