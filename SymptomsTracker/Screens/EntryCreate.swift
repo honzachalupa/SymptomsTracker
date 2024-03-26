@@ -97,6 +97,7 @@ struct EntryCreateScreen: View {
                     }
                 }
             }
+            .scrollContentBackground(.hidden)
         }
     }
 }

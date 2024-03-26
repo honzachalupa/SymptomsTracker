@@ -32,6 +32,8 @@
 		2164D1142BAB2D190051FDA8 /* DataStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2164D1132BAB2D190051FDA8 /* DataStoreManager.swift */; };
 		2164D1182BAC36B90051FDA8 /* HealthKitType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2164D1172BAC36B90051FDA8 /* HealthKitType.swift */; };
 		217225E12BAF45D200F793C0 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217225E02BAF45D200F793C0 /* Logger.swift */; };
+		21BDF5F52BB31B5300DAE45D /* CustomSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BDF5F42BB31B5300DAE45D /* CustomSection.swift */; };
+		21BDF5F72BB32A5600DAE45D /* Symptoms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BDF5F62BB32A5600DAE45D /* Symptoms.swift */; };
 		21C0E3892BAC8D0B00536E53 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C0E3882BAC8D0B00536E53 /* Data.swift */; };
 		21E6B6DE2BB1846800C4099C /* ChatGPTSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 21E6B6DD2BB1846800C4099C /* ChatGPTSwift */; };
 		21E6B6E72BB1C9DA00C4099C /* Insights.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E6B6E62BB1C9DA00C4099C /* Insights.swift */; };
@@ -72,6 +74,8 @@
 		2164D1132BAB2D190051FDA8 /* DataStoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStoreManager.swift; sourceTree = "<group>"; };
 		2164D1172BAC36B90051FDA8 /* HealthKitType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitType.swift; sourceTree = "<group>"; };
 		217225E02BAF45D200F793C0 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		21BDF5F42BB31B5300DAE45D /* CustomSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSection.swift; sourceTree = "<group>"; };
+		21BDF5F62BB32A5600DAE45D /* Symptoms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Symptoms.swift; sourceTree = "<group>"; };
 		21C0E3882BAC8D0B00536E53 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		21E6B6E62BB1C9DA00C4099C /* Insights.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Insights.swift; sourceTree = "<group>"; };
 		21E6B6E82BB1C9EB00C4099C /* InsightsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightsManager.swift; sourceTree = "<group>"; };
@@ -155,8 +159,9 @@
 			isa = PBXGroup;
 			children = (
 				213064162BA44FF7007E55C0 /* Root.swift */,
-				213064282BA45A3F007E55C0 /* SymptomCreate.swift */,
+				21BDF5F62BB32A5600DAE45D /* Symptoms.swift */,
 				2130642D2BA4655A007E55C0 /* SymptomDetail.swift */,
+				213064282BA45A3F007E55C0 /* SymptomCreate.swift */,
 				21EFDD902BA61D9300BD20BE /* SymptomEdit.swift */,
 				213064322BA469CF007E55C0 /* EntryCreate.swift */,
 				21EFDD922BA623FC00BD20BE /* EntryEdit.swift */,
@@ -177,6 +182,7 @@
 				213064412BA58F34007E55C0 /* TriggersList.swift */,
 				2164D10E2BAAF1100051FDA8 /* HealthKitConnectionLabel.swift */,
 				21E6B6E62BB1C9DA00C4099C /* Insights.swift */,
+				21BDF5F42BB31B5300DAE45D /* CustomSection.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -303,12 +309,14 @@
 				2164D10F2BAAF1100051FDA8 /* HealthKitConnectionLabel.swift in Sources */,
 				213064352BA46A88007E55C0 /* SymptomNameWithIcon.swift in Sources */,
 				21EFDD8F2BA615D200BD20BE /* PreviewContainer.swift in Sources */,
+				21BDF5F72BB32A5600DAE45D /* Symptoms.swift in Sources */,
 				213064152BA44FF7007E55C0 /* SymptomsTrackerApp.swift in Sources */,
 				21EFDD912BA61D9300BD20BE /* SymptomEdit.swift in Sources */,
 				2130642E2BA4655A007E55C0 /* SymptomDetail.swift in Sources */,
 				21EFDD972BA723D200BD20BE /* HealthKitManager.swift in Sources */,
 				21C0E3892BAC8D0B00536E53 /* Data.swift in Sources */,
 				213064332BA469CF007E55C0 /* EntryCreate.swift in Sources */,
+				21BDF5F52BB31B5300DAE45D /* CustomSection.swift in Sources */,
 				2164D10D2BAAECF20051FDA8 /* Settings.swift in Sources */,
 				213064462BA5930C007E55C0 /* Trigger.swift in Sources */,
 				213064292BA45A3F007E55C0 /* SymptomCreate.swift in Sources */,

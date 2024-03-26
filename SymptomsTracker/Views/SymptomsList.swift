@@ -2,6 +2,7 @@ import SwiftUI
 
 struct SymptomsListView: View {
     @EnvironmentObject var dataStore: DataStoreManager
+    @Binding var selectedSymptom: Symptom?
     
     var body: some View {
         VStack {
@@ -28,43 +29,27 @@ struct SymptomsListView: View {
                 
                 Spacer()
             } else {
-                List {
-                    /* Section("All symptoms summary") {
-                     SummaryChartView()
-                     .padding(.bottom, 10)
-                     .padding(.top, 20)
-                     } */
-                    
-                    Section("AI insights") {
-                        // InsightsView()
-                    }
-                    
-                    ForEach(dataStore.symptoms, id: \.id) { symptom in
-                        Section {
-                            NavigationLink {
-                                SymptomDetailScreen(symptom: symptom)
-                            } label: {
-                                VStack(alignment: .leading) {
-                                    HStack {
-                                        SymptomNameWithIcon(name: symptom.name, icon: symptom.icon)
-                                        
-                                        Spacer()
-                                        
-                                        HealthKitConnectionLabel(symptom: symptom)
-                                    }
+                ForEach(dataStore.symptoms, id: \.id) { symptom in // selection: $selectedSymptom
+                    CustomSection() {
+                        NavigationLink(value: symptom) {
+                            VStack(alignment: .leading) {
+                                HStack {
+                                    SymptomNameWithIcon(name: symptom.name, icon: symptom.icon)
                                     
-                                    if let entries = symptom.entries {
-                                        EntriesChartView(symptomEntries: entries)
-                                    }
+                                    Spacer()
+                                    
+                                    HealthKitConnectionLabel(symptom: symptom)
+                                }
+                                
+                                if let entries = symptom.entries {
+                                    EntriesChartView(symptomEntries: entries)
                                 }
                             }
                         }
                     }
                 }
-                .refreshable {
-                    Task {
-                        await dataStore.refreshData()
-                    }
+                .navigationDestination(for: Symptom.self) { symptom in
+                    SymptomDetailScreen(symptom: symptom)
                 }
             }
         }
@@ -78,7 +63,7 @@ struct SymptomsListView: View {
     }
 }
 
-#Preview {
+/* #Preview {
     SymptomsListView()
         // .modelContainer(previewContainer)
-}
+} */

@@ -21,6 +21,16 @@
         }
       }
     },
+    "Add entry" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Přidat záznam"
+          }
+        }
+      }
+    },
     "Add from Health app" : {
       "localizations" : {
         "cs" : {
@@ -52,6 +62,7 @@
       }
     },
     "AI insights" : {
+      "extractionState" : "stale",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -112,6 +123,12 @@
         }
       }
     },
+    "Content with title" : {
+
+    },
+    "Content without title" : {
+
+    },
     "Coughing" : {
       "localizations" : {
         "cs" : {
@@ -148,16 +165,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vytvořit symptom"
-          }
-        }
-      }
-    },
-    "Create trigger" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vytvořit spouštěč"
           }
         }
       }
@@ -233,16 +240,6 @@
       }
     },
     "Edit symptom" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Upravit symptom"
-          }
-        }
-      }
-    },
-    "Edit Symptom" : {
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -451,6 +448,9 @@
           }
         }
       }
+    },
+    "TODO" : {
+
     },
     "Triggers" : {
       "localizations" : {

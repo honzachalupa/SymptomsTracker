@@ -1,5 +1,6 @@
 import SwiftUI
 import SwiftData
+import CoreData
 
 class DataSource {
     private let modelContainer: ModelContainer
@@ -10,17 +11,55 @@ class DataSource {
 
     @MainActor
     private init() {
-        do {
-            self.modelContainer = try ModelContainer(for:
-                Symptom.self,
-                Entry.self,
-                Trigger.self,
-                HealthKitType.self
-                // Insight.self
-            )
-        } catch {
-            fatalError(error.localizedDescription)
-        }
+        let types: [any PersistentModel.Type] = [
+            Symptom.self,
+            Entry.self,
+            Trigger.self,
+            HealthKitType.self,
+            Insight.self
+        ]
+        
+        let schema = Schema(types)
+        
+        let config = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
+        
+        /* #if DEBUG
+         do {
+             // Use an autorelease pool to make sure Swift deallocates the persistent
+             // container before setting up the SwiftData stack.
+             try autoreleasepool {
+                 let desc = NSPersistentStoreDescription(url: config.url)
+                 let opts = NSPersistentCloudKitContainerOptions(containerIdentifier: "iCloud.janchalupa.SymptomsTracker")
+                 desc.cloudKitContainerOptions = opts
+                 // Load the store synchronously so it completes before initializing the
+                 // CloudKit schema.
+                 desc.shouldAddStoreAsynchronously = false
+                 if let mom = NSManagedObjectModel.makeManagedObjectModel(for: types) {
+                     let container = NSPersistentCloudKitContainer(name: "SymptomsTracker", managedObjectModel: mom)
+                     container.persistentStoreDescriptions = [desc]
+                     container.loadPersistentStores {_, err in
+                         if let err {
+                             fatalError(err.localizedDescription)
+                         }
+                     }
+                     // Initialize the CloudKit schema after the store finishes loading.
+                     try container.initializeCloudKitSchema()
+                     // Remove and unload the store from the persistent container.
+                     if let store = container.persistentStoreCoordinator.persistentStores.first {
+                         try container.persistentStoreCoordinator.remove(store)
+                     }
+                 }
+             }
+         } catch {
+             fatalError(error.localizedDescription)
+         }
+         #endif */
+        
+        self.modelContainer = try! ModelContainer(
+            for: schema,
+            configurations: config
+        )
+        
         self.modelContext = modelContainer.mainContext
     }
     
