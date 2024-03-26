@@ -41,6 +41,16 @@
         }
       }
     },
+    "Adding symptoms from Health app is only possible on iOS devices." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Přidávání symptomů z aplikace Zdraví je možné pouze na zařízeních s iOS."
+          }
+        }
+      }
+    },
     "AI insights" : {
       "localizations" : {
         "cs" : {

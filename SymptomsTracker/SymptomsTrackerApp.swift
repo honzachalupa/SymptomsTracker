@@ -10,5 +10,8 @@ struct SymptomsTrackerApp: App {
             RootScreen()
                 .environmentObject(dataStore)
         }
+        #if os(macOS)
+        .windowStyle(.hiddenTitleBar)
+        #endif
     }
 }

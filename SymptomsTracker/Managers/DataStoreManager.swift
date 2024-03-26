@@ -16,6 +16,7 @@ class DataSource {
                 Entry.self,
                 Trigger.self,
                 HealthKitType.self
+                // Insight.self
             )
         } catch {
             fatalError(error.localizedDescription)
@@ -61,9 +62,6 @@ class DataSource {
     
     func deleteAll() {
         modelContainer.deleteAllData()
-        
-        /* try! modelContext.delete(model: Symptom.self)
-        try! modelContext.delete(model: Trigger.self) */
     }
 }
 
@@ -87,7 +85,7 @@ class DataStoreManager: ObservableObject {
         // symptoms = await self.fetchHealthKitEntries(dataSource.fetchSymptoms())
         symptoms = await dataSource.fetchSymptoms()
         triggers = await dataSource.fetchTriggers()
-        // insights = await dataSource.fetchInsights()
+        insights = await dataSource.fetchInsights()
         
         isLoading = false
         
@@ -180,9 +178,9 @@ class DataStoreManager: ObservableObject {
     func deleteAll() {
         dataSource.deleteAll()
         
-        symptoms = []
+        /* symptoms = []
         triggers = []
-        insights = []
+        insights = [] */
     }
 }
 
@@ -228,9 +226,9 @@ struct DataStoreManagerPreviewWrapper<Content: View>: View {
                 dataStore.symptoms = symptomsMock
             }
             
-            /* if dataStore.entries.isEmpty {
+            if dataStore.entries.isEmpty {
                 dataStore.entries = entriesMock
-            } */
+            }
             
             if dataStore.triggers.isEmpty {
                 dataStore.triggers = triggersMock

@@ -10,13 +10,13 @@ func convertTypeIdentifier(_ _typeIdentifier: TypeIdentifier) -> HKCategoryTypeI
 
 struct HealthKitManager {
     var healthStore: HKHealthStore = HKHealthStore()
-    public var isHealthKitSupported: Bool = true
+    public var isHealthKitSupported: Bool = false
 
     init() {
         if !HKHealthStore.isHealthDataAvailable() {
             print("This app requires a device that supports HealthKit")
-            
-            isHealthKitSupported = false
+        } else {
+            isHealthKitSupported = true
         }
     }
     
