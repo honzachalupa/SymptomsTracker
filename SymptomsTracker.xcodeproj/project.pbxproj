@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		211710E92BB2C80B0064C2B3 /* Insight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211710E82BB2C80B0064C2B3 /* Insight.swift */; };
 		213064152BA44FF7007E55C0 /* SymptomsTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213064142BA44FF7007E55C0 /* SymptomsTrackerApp.swift */; };
 		213064172BA44FF7007E55C0 /* Root.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213064162BA44FF7007E55C0 /* Root.swift */; };
 		213064192BA44FF7007E55C0 /* Symptom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213064182BA44FF7007E55C0 /* Symptom.swift */; };
@@ -28,22 +29,23 @@
 		2164D10D2BAAECF20051FDA8 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2164D10C2BAAECF20051FDA8 /* Settings.swift */; };
 		2164D10F2BAAF1100051FDA8 /* HealthKitConnectionLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2164D10E2BAAF1100051FDA8 /* HealthKitConnectionLabel.swift */; };
 		2164D1112BAB1D510051FDA8 /* Others.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2164D1102BAB1D510051FDA8 /* Others.swift */; };
-		2164D1142BAB2D190051FDA8 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2164D1132BAB2D190051FDA8 /* DataStore.swift */; };
+		2164D1142BAB2D190051FDA8 /* DataStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2164D1132BAB2D190051FDA8 /* DataStoreManager.swift */; };
 		2164D1182BAC36B90051FDA8 /* HealthKitType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2164D1172BAC36B90051FDA8 /* HealthKitType.swift */; };
 		217225E12BAF45D200F793C0 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217225E02BAF45D200F793C0 /* Logger.swift */; };
 		21C0E3892BAC8D0B00536E53 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C0E3882BAC8D0B00536E53 /* Data.swift */; };
 		21E6B6DE2BB1846800C4099C /* ChatGPTSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 21E6B6DD2BB1846800C4099C /* ChatGPTSwift */; };
-		21E6B6E72BB1C9DA00C4099C /* InsightsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E6B6E62BB1C9DA00C4099C /* InsightsView.swift */; };
-		21E6B6E92BB1C9EB00C4099C /* Insights.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E6B6E82BB1C9EB00C4099C /* Insights.swift */; };
+		21E6B6E72BB1C9DA00C4099C /* Insights.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E6B6E62BB1C9DA00C4099C /* Insights.swift */; };
+		21E6B6E92BB1C9EB00C4099C /* InsightsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E6B6E82BB1C9EB00C4099C /* InsightsManager.swift */; };
 		21EFDD8F2BA615D200BD20BE /* PreviewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21EFDD8E2BA615D200BD20BE /* PreviewContainer.swift */; };
 		21EFDD912BA61D9300BD20BE /* SymptomEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21EFDD902BA61D9300BD20BE /* SymptomEdit.swift */; };
 		21EFDD932BA623FC00BD20BE /* EntryEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21EFDD922BA623FC00BD20BE /* EntryEdit.swift */; };
 		21EFDD952BA626CC00BD20BE /* TriggerEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21EFDD942BA626CC00BD20BE /* TriggerEdit.swift */; };
-		21EFDD972BA723D200BD20BE /* HealthKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21EFDD962BA723D200BD20BE /* HealthKit.swift */; };
+		21EFDD972BA723D200BD20BE /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21EFDD962BA723D200BD20BE /* HealthKitManager.swift */; };
 		21EFDD992BA73DBA00BD20BE /* SummaryChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21EFDD982BA73DBA00BD20BE /* SummaryChart.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		211710E82BB2C80B0064C2B3 /* Insight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Insight.swift; sourceTree = "<group>"; };
 		213064112BA44FF7007E55C0 /* SymptomsTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SymptomsTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		213064142BA44FF7007E55C0 /* SymptomsTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymptomsTrackerApp.swift; sourceTree = "<group>"; };
 		213064162BA44FF7007E55C0 /* Root.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Root.swift; sourceTree = "<group>"; };
@@ -67,17 +69,17 @@
 		2164D10C2BAAECF20051FDA8 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		2164D10E2BAAF1100051FDA8 /* HealthKitConnectionLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitConnectionLabel.swift; sourceTree = "<group>"; };
 		2164D1102BAB1D510051FDA8 /* Others.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Others.swift; sourceTree = "<group>"; };
-		2164D1132BAB2D190051FDA8 /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
+		2164D1132BAB2D190051FDA8 /* DataStoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStoreManager.swift; sourceTree = "<group>"; };
 		2164D1172BAC36B90051FDA8 /* HealthKitType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitType.swift; sourceTree = "<group>"; };
 		217225E02BAF45D200F793C0 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		21C0E3882BAC8D0B00536E53 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
-		21E6B6E62BB1C9DA00C4099C /* InsightsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightsView.swift; sourceTree = "<group>"; };
-		21E6B6E82BB1C9EB00C4099C /* Insights.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Insights.swift; sourceTree = "<group>"; };
+		21E6B6E62BB1C9DA00C4099C /* Insights.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Insights.swift; sourceTree = "<group>"; };
+		21E6B6E82BB1C9EB00C4099C /* InsightsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightsManager.swift; sourceTree = "<group>"; };
 		21EFDD8E2BA615D200BD20BE /* PreviewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewContainer.swift; sourceTree = "<group>"; };
 		21EFDD902BA61D9300BD20BE /* SymptomEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymptomEdit.swift; sourceTree = "<group>"; };
 		21EFDD922BA623FC00BD20BE /* EntryEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryEdit.swift; sourceTree = "<group>"; };
 		21EFDD942BA626CC00BD20BE /* TriggerEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriggerEdit.swift; sourceTree = "<group>"; };
-		21EFDD962BA723D200BD20BE /* HealthKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKit.swift; sourceTree = "<group>"; };
+		21EFDD962BA723D200BD20BE /* HealthKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
 		21EFDD982BA73DBA00BD20BE /* SummaryChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryChart.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -144,6 +146,7 @@
 				213064492BA5FBD8007E55C0 /* Entry.swift */,
 				213064452BA5930C007E55C0 /* Trigger.swift */,
 				2164D1172BAC36B90051FDA8 /* HealthKitType.swift */,
+				211710E82BB2C80B0064C2B3 /* Insight.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -173,7 +176,7 @@
 				2130643B2BA4A200007E55C0 /* SymptomsList.swift */,
 				213064412BA58F34007E55C0 /* TriggersList.swift */,
 				2164D10E2BAAF1100051FDA8 /* HealthKitConnectionLabel.swift */,
-				21E6B6E62BB1C9DA00C4099C /* InsightsView.swift */,
+				21E6B6E62BB1C9DA00C4099C /* Insights.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -192,9 +195,9 @@
 		2164D1122BAB2D000051FDA8 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				21EFDD962BA723D200BD20BE /* HealthKit.swift */,
-				2164D1132BAB2D190051FDA8 /* DataStore.swift */,
-				21E6B6E82BB1C9EB00C4099C /* Insights.swift */,
+				21EFDD962BA723D200BD20BE /* HealthKitManager.swift */,
+				2164D1132BAB2D190051FDA8 /* DataStoreManager.swift */,
+				21E6B6E82BB1C9EB00C4099C /* InsightsManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -279,6 +282,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				211710E92BB2C80B0064C2B3 /* Insight.swift in Sources */,
 				2164D1112BAB1D510051FDA8 /* Others.swift in Sources */,
 				2130644A2BA5FBD8007E55C0 /* Entry.swift in Sources */,
 				2130643C2BA4A200007E55C0 /* SymptomsList.swift in Sources */,
@@ -288,21 +292,21 @@
 				2164D1182BAC36B90051FDA8 /* HealthKitType.swift in Sources */,
 				21EFDD932BA623FC00BD20BE /* EntryEdit.swift in Sources */,
 				21EFDD992BA73DBA00BD20BE /* SummaryChart.swift in Sources */,
-				2164D1142BAB2D190051FDA8 /* DataStore.swift in Sources */,
+				2164D1142BAB2D190051FDA8 /* DataStoreManager.swift in Sources */,
 				213064172BA44FF7007E55C0 /* Root.swift in Sources */,
 				21EFDD952BA626CC00BD20BE /* TriggerEdit.swift in Sources */,
-				21E6B6E92BB1C9EB00C4099C /* Insights.swift in Sources */,
+				21E6B6E92BB1C9EB00C4099C /* InsightsManager.swift in Sources */,
 				213064192BA44FF7007E55C0 /* Symptom.swift in Sources */,
 				213064422BA58F34007E55C0 /* TriggersList.swift in Sources */,
 				213064442BA58FE8007E55C0 /* TriggerCreate.swift in Sources */,
-				21E6B6E72BB1C9DA00C4099C /* InsightsView.swift in Sources */,
+				21E6B6E72BB1C9DA00C4099C /* Insights.swift in Sources */,
 				2164D10F2BAAF1100051FDA8 /* HealthKitConnectionLabel.swift in Sources */,
 				213064352BA46A88007E55C0 /* SymptomNameWithIcon.swift in Sources */,
 				21EFDD8F2BA615D200BD20BE /* PreviewContainer.swift in Sources */,
 				213064152BA44FF7007E55C0 /* SymptomsTrackerApp.swift in Sources */,
 				21EFDD912BA61D9300BD20BE /* SymptomEdit.swift in Sources */,
 				2130642E2BA4655A007E55C0 /* SymptomDetail.swift in Sources */,
-				21EFDD972BA723D200BD20BE /* HealthKit.swift in Sources */,
+				21EFDD972BA723D200BD20BE /* HealthKitManager.swift in Sources */,
 				21C0E3892BAC8D0B00536E53 /* Data.swift in Sources */,
 				213064332BA469CF007E55C0 /* EntryCreate.swift in Sources */,
 				2164D10D2BAAECF20051FDA8 /* Settings.swift in Sources */,

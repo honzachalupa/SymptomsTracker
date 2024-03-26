@@ -36,7 +36,7 @@ struct SymptomsListView: View {
                      } */
                     
                     Section("AI insights") {
-                        Insights()
+                        // InsightsView()
                     }
                     
                     ForEach(dataStore.symptoms, id: \.id) { symptom in

@@ -1,7 +1,13 @@
 import SwiftUI
 
-struct Insights: View {
-    @ObservedObject var insightsManager = InsightsManager()
+struct InsightsView: View {
+    var insightsManager = InsightsManager()
+    
+    @EnvironmentObject var dataStore: DataStoreManager
+    
+    func formatRelations(_ relations: [String]) -> String {
+        return relations.joined(separator: ", ")
+    }
     
     var body: some View {
         VStack {
@@ -19,12 +25,12 @@ struct Insights: View {
                 }
             } else {
                 TabView {
-                    ForEach(insightsManager.advices, id: \.content) { advice in
+                    ForEach(dataStore.insights, id: \.content) { advice in
                         VStack {
                             Text(advice.content)
                                 .multilineTextAlignment(.center)
                             
-                            Text("Relates with: " + advice.relations.joined(separator: ", "))
+                            Text("Relates to: \(formatRelations(advice.relations))")
                                 .opacity(0.5)
                                 .font(.footnote)
                                 .padding(.top, 3)
@@ -42,5 +48,5 @@ struct Insights: View {
 }
 
 #Preview {
-    Insights()
+    InsightsView()
 }

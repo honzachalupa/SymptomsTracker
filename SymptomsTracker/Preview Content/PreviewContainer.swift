@@ -5,7 +5,12 @@ import SwiftData
 let previewContainer: ModelContainer = {
     do {
         let container = try ModelContainer(
-            for: Symptom.self, Trigger.self, Entry.self,
+            for:
+                Symptom.self,
+                Trigger.self,
+                Entry.self,
+                HealthKitType.self,
+                Insight.self,
             configurations: ModelConfiguration(
                 isStoredInMemoryOnly: true
             )

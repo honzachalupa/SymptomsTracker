@@ -10,18 +10,20 @@ class DataSource {
 
     @MainActor
     private init() {
-        self.modelContainer = try! ModelContainer(for:
-            Symptom.self,
-            Entry.self,
-            Trigger.self,
-            HealthKitType.self
-        )
+        do {
+            self.modelContainer = try ModelContainer(for:
+                Symptom.self,
+                Entry.self,
+                Trigger.self,
+                HealthKitType.self
+            )
+        } catch {
+            fatalError(error.localizedDescription)
+        }
         self.modelContext = modelContainer.mainContext
     }
     
     func fetchSymptoms() async -> [Symptom] {
-        print("fetchSymptoms started")
-        
         do {
             return try modelContext.fetch(FetchDescriptor<Symptom>(sortBy: [SortDescriptor(\.name)]))
         } catch {
@@ -32,6 +34,14 @@ class DataSource {
     func fetchTriggers() async -> [Trigger] {
         do {
             return try modelContext.fetch(FetchDescriptor<Trigger>(sortBy: [SortDescriptor(\.name)]))
+        } catch {
+            fatalError(error.localizedDescription)
+        }
+    }
+    
+    func fetchInsights() async -> [Insight] {
+        do {
+            return try modelContext.fetch(FetchDescriptor<Insight>())
         } catch {
             fatalError(error.localizedDescription)
         }
@@ -64,6 +74,7 @@ class DataStoreManager: ObservableObject {
     
     var symptoms: [Symptom] = []
     var triggers: [Trigger] = []
+    var insights: [Insight] = []
     var isLoading: Bool = true
 
     init(dataSource: DataSource = DataSource.shared) {
@@ -76,6 +87,7 @@ class DataStoreManager: ObservableObject {
         // symptoms = await self.fetchHealthKitEntries(dataSource.fetchSymptoms())
         symptoms = await dataSource.fetchSymptoms()
         triggers = await dataSource.fetchTriggers()
+        // insights = await dataSource.fetchInsights()
         
         isLoading = false
         
@@ -170,6 +182,7 @@ class DataStoreManager: ObservableObject {
         
         symptoms = []
         triggers = []
+        insights = []
     }
 }
 
@@ -179,19 +192,21 @@ struct DataStoreManagerPreview: View {
     var body: some View {
         List {
             Section("Symptoms") {
-                ForEach(dataStore.symptoms, id: \.self) { item in
+                ForEach(dataStore.symptoms, id: \.id) { item in
                     Text(item.name)
+                    
+                    Text("Entries")
+                    
+                    if let entries = item.entries {
+                        ForEach(entries, id: \.id) { entry in
+                            Text(entry.date.formatted())
+                        }
+                    }
                 }
             }
             
-            /* Section("Entries") {
-                ForEach(dataStore.entries, id: \.self) { item in
-                    Text(item.date.formatted())
-                }
-            }*/
-            
             Section("Triggers") {
-                ForEach(dataStore.triggers, id: \.self) { item in
+                ForEach(dataStore.triggers, id: \.id) { item in
                     Text(item.name)
                 }
             }

@@ -4,6 +4,7 @@ import HealthKit
 
 @Model
 final class Symptom: Identifiable {
+    // var id = UUID()
     var name: String = ""
     var icon: String = ""
     var note: String? = ""

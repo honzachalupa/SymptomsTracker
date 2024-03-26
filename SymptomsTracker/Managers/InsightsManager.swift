@@ -7,10 +7,9 @@ struct ChatGPTResponseItem: Codable {
 }
 
 class InsightsManager: ObservableObject {
-    private let api = ChatGPTAPI(apiKey: "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")
+    private let api = ChatGPTAPI(apiKey: ProcessInfo.processInfo.environment["OPEN_AI_API_KEY"] ?? "")
     private var dataStore = DataStoreManager()
     
-    @Published var advices: [ChatGPTResponseItem] = []
     @Published var isLoading: Bool = false
     
     init() {
@@ -36,13 +35,16 @@ class InsightsManager: ObservableObject {
             consoleLog("INSIGHTS response", response)
             
             let decoder = JSONDecoder()
-            let parsedResponse = try decoder.decode([ChatGPTResponseItem].self, from: response.data(using: .utf8)!)
+            let insights = try decoder.decode([ChatGPTResponseItem].self, from: response.data(using: .utf8)!)
             
-            parsedResponse.forEach { advice in
-                advices.append(advice)
-            }
+            /* dataStore.insights = insights.map {
+                 Insight(
+                     content: $0.content,
+                     relations: $0.relations
+                 )
+             } */
             
-            consoleLog("INSIGHTS cache set", parsedResponse)
+            consoleLog("INSIGHTS set", insights)
             
             isLoading = false
         } catch {

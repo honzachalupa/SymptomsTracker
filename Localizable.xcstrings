@@ -382,8 +382,7 @@
         }
       }
     },
-    "Relates with: %@" : {
-      "extractionState" : "stale",
+    "Relates to: %@" : {
       "localizations" : {
         "cs" : {
           "stringUnit" : {
