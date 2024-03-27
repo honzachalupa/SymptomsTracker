@@ -18,7 +18,7 @@ struct SymptomsScreen: View {
                 Text("TODO")
             }
             
-            SymptomsListView(selectedSymptom: $selectedSymptom)
+            SymptomsListSectionView(selectedSymptom: $selectedSymptom)
         }
         .refreshable {
             Task {

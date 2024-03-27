@@ -7,96 +7,49 @@ enum TabKey {
 
 struct RootScreen: View {
     @Environment(\.scenePhase) private var scenePhase
+    @EnvironmentObject var dataStore: DataStoreManager
     @State private var selectedSymptom: Symptom?
     @State private var isSidebarExpanded: NavigationSplitViewVisibility = .doubleColumn
     
-    /* var navigationTitle: String {
-        switch selectedTabKey {
-            case .symptoms:
-                return String(localized: "Symptoms")
-            case .triggers:
-                return String(localized: "Triggers")
-            case .settings:
-                return String(localized: "Settings")
-        }
-    } */
-    
     var body: some View {
         NavigationSplitView(columnVisibility: $isSidebarExpanded) {
-            SymptomsScreen(selectedSymptom: $selectedSymptom)
-                .navigationTitle("Symptoms")
-                .toolbar {
-                    // if selectedTabKey == .symptoms {
-                        ToolbarItem {
-                            NavigationLink {
-                                SymptomCreateScreen()
-                            } label: {
-                                Label("New symptom", systemImage: "plus")
-                            }
-                        }
-                    
-                    ToolbarItem {
-                        NavigationLink {
-                            SettingsScreen()
-                        } label: {
-                            Label("Settings", systemImage: "gearshape")
-                        }
+            if dataStore.symptoms.isEmpty {
+                Text("Add a your first symptom to start tracking.")
+                    .opacity(0.8)
+                    .padding(.top, 25)
+            }
+            
+            List {
+                SymptomsListSectionView(selectedSymptom: $selectedSymptom)
+                TriggersListSectionView()
+            }
+            .listStyle(.sidebar)
+            .navigationTitle("Symptoms")
+            .toolbar {
+                ToolbarItem {
+                    NavigationLink {
+                        SettingsScreen()
+                    } label: {
+                        Label("Settings", systemImage: "gearshape")
                     }
-                    /* } else if selectedTabKey == .triggers {
-                        ToolbarItem {
-                            NavigationLink {
-                                TriggerCreateScreen()
-                            } label: {
-                                Label("New trigger", systemImage: "plus")
-                            }
-                        }
-                    } */
-                }
-            } detail: {
-                if let symptom = selectedSymptom {
-                    SymptomDetailScreen(symptom: symptom)
-                        .navigationTitle(symptom.name)
                 }
             }
-            .navigationSplitViewStyle(.balanced)
-
-            /* TabView(selection: $selectedTabKey) {
-             SymptomsListView().tabItem {
-                 Label("Symptoms", systemImage: "chart.bar.xaxis")
-             }
-             .tag(TabKey.symptoms)
-             
-             TriggersListView().tabItem {
-                 Label("Triggers", systemImage: "list.bullet")
-             }
-             .tag(TabKey.triggers)
-             
-             SettingsScreen().tabItem {
-                 Label("Settings", systemImage: "gearshape")
-             }
-             .tag(TabKey.settings)
-         }
-         .navigationTitle(navigationTitle)
-         // .toolbarTitleDisplayMode(.inlineLarge)
-         .toolbar {
-             if selectedTabKey == .symptoms {
-                 ToolbarItem {
-                     NavigationLink {
-                         SymptomCreateScreen()
-                     } label: {
-                         Label("New symptom", systemImage: "plus")
-                     }
-                 }
-             } else if selectedTabKey == .triggers {
-                 ToolbarItem {
-                     NavigationLink {
-                         TriggerCreateScreen()
-                     } label: {
-                         Label("New trigger", systemImage: "plus")
-                     }
-                 }
-             }
-         } */
+            .refreshable {
+                Task {
+                    await dataStore.refreshData()
+                }
+            }
+        } detail: {
+            if let symptom = selectedSymptom {
+                SymptomDetailScreen(symptom: symptom)
+                    .navigationTitle(symptom.name)
+            }
+        }
+        .navigationSplitViewStyle(.balanced)
+        .onChange(of: dataStore.symptoms) { _, newValue in
+            consoleLog("DATASTORE onChange", newValue);
+            consoleLog("DATASTORE onChange isEmpty", dataStore.symptoms.isEmpty);
+        }
     }
 }
 

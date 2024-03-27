@@ -70,18 +70,15 @@ struct SymptomCreateScreen: View {
                     .padding(.horizontal)
             }
             
-            if mode == .healthKit {
-                List {
+            List {
+                if mode == .healthKit {
                     Picker("Data type", selection: $selectedHealthKitType) {
                         ForEach(HealthKitTypes) { type in
-                            SymptomNameWithIcon(name: type.name, icon: type.icon)
+                            SymptomNameWithIconText(type.name, type.icon)
                                 .tag(type)
                         }
                     }
-                    .pickerStyle(.navigationLink)
-                }
-            } else {
-                List {
+                } else {
                     HStack {
                         Button(icon.count > 0 ? icon : "❓") {
                             isEmojiSelectorShown.toggle()

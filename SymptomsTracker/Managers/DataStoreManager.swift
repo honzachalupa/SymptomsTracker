@@ -93,6 +93,7 @@ class DataSource {
     
     func create<T: PersistentModel>(_ payload: T, refSymptom: Symptom? = nil) {
         modelContext.insert(payload)
+        consoleLog("creating \(type(of: payload))", payload)
     }
 
     func delete<T: PersistentModel>(_ payload: T) {
@@ -113,16 +114,28 @@ class DataStoreManager: ObservableObject {
     var triggers: [Trigger] = []
     var insights: [Insight] = []
     var isLoading: Bool = true
+    
+    /* @Published var symptoms: [Symptom] = []
+     @Published var triggers: [Trigger] = []
+     @Published var insights: [Insight] = []
+     @Published var isLoading: Bool = true */
 
     init(dataSource: DataSource = DataSource.shared) {
         self.dataSource = dataSource
+        
+        Task {
+            await self.refreshData()
+        }
     }
     
     func refreshData() async {
         consoleLog("STARTED: refreshData")
         
         // symptoms = await self.fetchHealthKitEntries(dataSource.fetchSymptoms())
-        symptoms = await dataSource.fetchSymptoms()
+        let x = await dataSource.fetchSymptoms()
+        
+        consoleLog("9999999", x)
+        symptoms = x
         triggers = await dataSource.fetchTriggers()
         insights = await dataSource.fetchInsights()
         
@@ -176,10 +189,11 @@ class DataStoreManager: ObservableObject {
     func create<T: PersistentModel>(_ payload: T, refSymptom: Symptom? = nil) async {
         dataSource.create(payload, refSymptom: refSymptom)
         
-        Task {
-            if let entry = payload as? Entry, type(of: payload) == Entry.self {
-                guard let healthKitType = refSymptom?.healthKitType else { return }
-                
+       
+        if let entry = payload as? Entry, type(of: payload) == Entry.self {
+            guard let healthKitType = refSymptom?.healthKitType else { return }
+            
+            Task {
                 await healthKit.write(
                     healthKitType.key,
                     entry

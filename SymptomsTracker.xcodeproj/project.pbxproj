@@ -27,7 +27,6 @@
 		213064462BA5930C007E55C0 /* Trigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213064452BA5930C007E55C0 /* Trigger.swift */; };
 		2130644A2BA5FBD8007E55C0 /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213064492BA5FBD8007E55C0 /* Entry.swift */; };
 		2164D10D2BAAECF20051FDA8 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2164D10C2BAAECF20051FDA8 /* Settings.swift */; };
-		2164D10F2BAAF1100051FDA8 /* HealthKitConnectionLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2164D10E2BAAF1100051FDA8 /* HealthKitConnectionLabel.swift */; };
 		2164D1112BAB1D510051FDA8 /* Others.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2164D1102BAB1D510051FDA8 /* Others.swift */; };
 		2164D1142BAB2D190051FDA8 /* DataStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2164D1132BAB2D190051FDA8 /* DataStoreManager.swift */; };
 		2164D1182BAC36B90051FDA8 /* HealthKitType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2164D1172BAC36B90051FDA8 /* HealthKitType.swift */; };
@@ -69,7 +68,6 @@
 		213064482BA5F6F4007E55C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		213064492BA5FBD8007E55C0 /* Entry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
 		2164D10C2BAAECF20051FDA8 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
-		2164D10E2BAAF1100051FDA8 /* HealthKitConnectionLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitConnectionLabel.swift; sourceTree = "<group>"; };
 		2164D1102BAB1D510051FDA8 /* Others.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Others.swift; sourceTree = "<group>"; };
 		2164D1132BAB2D190051FDA8 /* DataStoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStoreManager.swift; sourceTree = "<group>"; };
 		2164D1172BAC36B90051FDA8 /* HealthKitType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitType.swift; sourceTree = "<group>"; };
@@ -180,7 +178,6 @@
 				213064342BA46A88007E55C0 /* SymptomNameWithIcon.swift */,
 				2130643B2BA4A200007E55C0 /* SymptomsList.swift */,
 				213064412BA58F34007E55C0 /* TriggersList.swift */,
-				2164D10E2BAAF1100051FDA8 /* HealthKitConnectionLabel.swift */,
 				21E6B6E62BB1C9DA00C4099C /* Insights.swift */,
 				21BDF5F42BB31B5300DAE45D /* CustomSection.swift */,
 			);
@@ -306,7 +303,6 @@
 				213064422BA58F34007E55C0 /* TriggersList.swift in Sources */,
 				213064442BA58FE8007E55C0 /* TriggerCreate.swift in Sources */,
 				21E6B6E72BB1C9DA00C4099C /* Insights.swift in Sources */,
-				2164D10F2BAAF1100051FDA8 /* HealthKitConnectionLabel.swift in Sources */,
 				213064352BA46A88007E55C0 /* SymptomNameWithIcon.swift in Sources */,
 				21EFDD8F2BA615D200BD20BE /* PreviewContainer.swift in Sources */,
 				21BDF5F72BB32A5600DAE45D /* Symptoms.swift in Sources */,
@@ -451,6 +447,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = SymptomsTracker/SymptomsTracker.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SymptomsTracker/Preview Content\"";
@@ -475,6 +472,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = janchalupa.SymptomsTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -487,6 +485,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = SymptomsTracker/SymptomsTracker.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SymptomsTracker/Preview Content\"";
@@ -511,6 +510,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = janchalupa.SymptomsTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

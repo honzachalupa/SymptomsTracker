@@ -24,13 +24,24 @@ struct SymptomDetailScreen: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            HealthKitConnectionLabel(symptom: symptom)
+            if symptom.healthKitType != nil {
+                HStack {
+                    Image("AppleHealthIcon")
+                        .resizable()
+                        .frame(width: 15, height: 15)
+                    
+                    Text("Connected to Health app")
+                        .opacity(0.7)
+                        .font(.subheadline)
+                }
                 .padding(.leading, 25)
+            }
             
             ZStack {
                 List {
                     Section {
                         EntriesChartView(symptomEntries: entriesSorted)
+                            .frame(height: 200)
                     }
                     
                     if let note = symptom.note, !note.isEmpty {
@@ -65,7 +76,7 @@ struct SymptomDetailScreen: View {
                                                 
                                                 HStack {
                                                     ForEach(triggers, id: \.self) { trigger in
-                                                        SymptomNameWithIcon(name: trigger.name, icon: trigger.icon)
+                                                        SymptomNameWithIcon(trigger.name, trigger.icon)
                                                             .padding(.trailing, 10)
                                                     }
                                                     
@@ -169,7 +180,7 @@ struct SymptomDetailScreen: View {
                 .presentationDragIndicator(.visible)
                 .presentationBackground(.thinMaterial)
         })
-        .navigationTitle(SymptomNameWithIcon(name: symptom.name, icon: symptom.icon))
+        .navigationTitle(SymptomNameWithIconText(symptom.name, symptom.icon))
         .onAppear() {
             if let entries = symptom.entries {
                 entriesSorted = entries.sorted(by: { $0.date > $1.date })

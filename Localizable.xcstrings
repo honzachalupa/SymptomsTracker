@@ -11,12 +11,12 @@
         }
       }
     },
-    "Add a new symptom to start tracking." : {
+    "Add a your first symptom to start tracking." : {
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vytvořte symptomy začněte zaznamenávat."
+            "value" : "Vytvořte svůj první symptom a začněte zaznamenávat."
           }
         }
       }
@@ -124,10 +124,24 @@
       }
     },
     "Content with title" : {
-
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        }
+      }
     },
     "Content without title" : {
-
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        }
+      }
     },
     "Coughing" : {
       "localizations" : {
@@ -165,6 +179,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vytvořit symptom"
+          }
+        }
+      }
+    },
+    "Create trigger" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vytvořit spouštěč"
           }
         }
       }
@@ -290,6 +314,7 @@
       }
     },
     "Loading..." : {
+      "extractionState" : "stale",
       "localizations" : {
         "cs" : {
           "stringUnit" : {

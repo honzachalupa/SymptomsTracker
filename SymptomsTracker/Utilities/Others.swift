@@ -25,3 +25,13 @@ func removeDuplicates<T>(_ array: [T]) -> [T] {
     
     return modifiedArray
 }
+
+extension UIDevice {
+    static var isIPad: Bool {
+        UIDevice.current.userInterfaceIdiom == .pad
+    }
+    
+    static var isIPhone: Bool {
+        UIDevice.current.userInterfaceIdiom == .phone
+    }
+}

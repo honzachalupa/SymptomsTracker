@@ -89,7 +89,7 @@ struct EntriesChartView: View {
         }
         .chartXScale(domain: calculateDateDomain())
         // .chartScrollableAxes(.horizontal)
-        .aspectRatio(2, contentMode: .fit)
+        // .aspectRatio(2, contentMode: .fit)
         .padding(.vertical, 10)
         .onAppear {
             proccessData()

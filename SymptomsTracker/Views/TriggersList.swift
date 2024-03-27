@@ -1,7 +1,7 @@
 import SwiftUI
 import SwiftData
 
-struct TriggersListView: View {
+struct TriggersListSectionView: View {
     @EnvironmentObject var dataStore: DataStoreManager
     
     func delete(_ trigger: Trigger) {
@@ -11,25 +11,38 @@ struct TriggersListView: View {
     }
     
     var body: some View {
-        List(dataStore.triggers, id: \.id) { trigger in
-            NavigationLink {
-                TriggerEditScreen(trigger: trigger)
-            } label: {
-                SymptomNameWithIcon(name: trigger.name, icon: trigger.icon)
-            }
-            .swipeActions {
-                Button("Delete", role: .destructive) {
-                    delete(trigger)
+        Section("Triggers") {
+            ForEach(dataStore.triggers, id: \.id) { trigger in
+                NavigationLink {
+                    TriggerEditScreen(trigger: trigger)
+                } label: {
+                    Group {
+                        if UIDevice.isIPad {
+                            SymptomNameWithIcon(trigger.name, trigger.icon, spacing: 3)
+                        } else {
+                            SymptomNameWithIcon(trigger.name, trigger.icon, spacing: 8)
+                        }
+                    }
+                    .padding(.leading, 3)
+                }
+                .swipeActions {
+                    Button("Delete", role: .destructive) {
+                        delete(trigger)
+                    }
                 }
             }
-        }
-        .task {
-            await dataStore.refreshData()
+            
+            NavigationLink {
+                TriggerCreateScreen()
+            } label: {
+                Label("Create trigger", systemImage: "plus")
+                    
+            }
         }
     }
 }
 
 #Preview {
-    TriggersListView()
+    TriggersListSectionView()
         // .modelContainer(previewContainer)
 }

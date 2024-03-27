@@ -1,69 +1,42 @@
 import SwiftUI
 
-struct SymptomsListView: View {
+struct SymptomsListSectionView: View {
     @EnvironmentObject var dataStore: DataStoreManager
     @Binding var selectedSymptom: Symptom?
     
     var body: some View {
-        VStack {
-            if dataStore.isLoading {
-                ProgressView {
-                    Text("Loading...")
-                }
-            } else if dataStore.symptoms.isEmpty {
-                Spacer()
-                
-                Text("Add a new symptom to start tracking.")
-                    .frame(maxWidth: 300)
-                    .opacity(0.8)
-                    .multilineTextAlignment(.center)
-                    .padding(.bottom, 5)
-                
+        Section {
+            ForEach(dataStore.symptoms, id: \.id) { symptom in
                 NavigationLink {
-                    SymptomCreateScreen()
+                    SymptomDetailScreen(symptom: symptom)
                 } label: {
-                    Label("Create symptom", systemImage: "plus")
-                        
-                }
-                .buttonStyle(.borderedProminent)
-                
-                Spacer()
-            } else {
-                ForEach(dataStore.symptoms, id: \.id) { symptom in // selection: $selectedSymptom
-                    CustomSection() {
-                        NavigationLink(value: symptom) {
-                            VStack(alignment: .leading) {
-                                HStack {
-                                    SymptomNameWithIcon(name: symptom.name, icon: symptom.icon)
-                                    
-                                    Spacer()
-                                    
-                                    HealthKitConnectionLabel(symptom: symptom)
-                                }
-                                
-                                if let entries = symptom.entries {
-                                    EntriesChartView(symptomEntries: entries)
-                                }
-                            }
+                    Group {
+                        if UIDevice.isIPad {
+                            SymptomNameWithIcon(symptom.name, symptom.icon, spacing: 3)
+                        } else {
+                            SymptomNameWithIcon(symptom.name, symptom.icon, spacing: 8)
                         }
                     }
-                }
-                .navigationDestination(for: Symptom.self) { symptom in
-                    SymptomDetailScreen(symptom: symptom)
+                    .padding(.leading, 3)
                 }
             }
+            
+            NavigationLink {
+                SymptomCreateScreen()
+            } label: {
+                Label("Create symptom", systemImage: "plus")
+                    
+            }
         }
-        .task {
-            await dataStore.refreshData()
-        }
-        .onChange(of: dataStore.symptoms) { _, newValue in
-            consoleLog("DATASTORE onChange", newValue);
-            consoleLog("DATASTORE onChange isEmpty", dataStore.symptoms.isEmpty);
+        .onAppear() {
+            if let symptom = dataStore.symptoms.first {
+                selectedSymptom = symptom
+            }
         }
     }
 }
 
 /* #Preview {
-    SymptomsListView()
+    SymptomsListSectionView()
         // .modelContainer(previewContainer)
 } */

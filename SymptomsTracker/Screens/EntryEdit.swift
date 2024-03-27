@@ -46,7 +46,7 @@ struct EntryEditScreen: View {
                 Section("Triggers") {
                     ForEach(dataStore.triggers) { trigger in
                         HStack {
-                            SymptomNameWithIcon(name: trigger.name, icon: trigger.icon)
+                            SymptomNameWithIcon(trigger.name, trigger.icon)
                             
                             if selectedTriggers.contains(trigger) {
                                 Spacer()

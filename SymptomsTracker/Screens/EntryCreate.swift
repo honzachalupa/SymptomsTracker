@@ -83,7 +83,7 @@ struct EntryCreateScreen: View {
                                 }
                             }
                         )) {
-                            SymptomNameWithIcon(name: trigger.name, icon: trigger.icon)
+                            SymptomNameWithIconText(trigger.name, trigger.icon)
                         }
                     }
                     

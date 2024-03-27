@@ -3,20 +3,20 @@ import SwiftData
 
 @main
 struct SymptomsTrackerApp: App {
-    @ObservedObject private var dataStore = DataStoreManager()
+    @StateObject private var dataStore = DataStoreManager()
     
     var body: some Scene {
         WindowGroup {
             RootScreen()
                 .environmentObject(dataStore)
         }
-        .modelContainer(for: [
+        /* .modelContainer(for: [
             Symptom.self,
             Entry.self,
             Trigger.self,
             HealthKitType.self,
             Insight.self
-        ])
+        ]) */
         #if os(macOS)
         .windowStyle(.hiddenTitleBar)
         #endif
