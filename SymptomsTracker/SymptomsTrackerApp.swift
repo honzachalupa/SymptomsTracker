@@ -17,8 +17,5 @@ struct SymptomsTrackerApp: App {
             HealthKitType.self,
             Insight.self
         ]) */
-        #if os(macOS)
-        .windowStyle(.hiddenTitleBar)
-        #endif
     }
 }

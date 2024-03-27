@@ -9,6 +9,12 @@ struct SymptomDetailScreen: View {
     @State private var isSheetShown: Bool = false
     @State private var isDeleteConfirmationShown: Bool = false
     
+    func processData() {
+        if let entries = symptom.entries {
+            entriesSorted = entries.sorted(by: { $0.date > $1.date })
+        }
+    }
+    
     func deleteEntry(_ entry: Entry) {
         Task {
             await dataStore.delete(entry, refSymptom: symptom)
@@ -182,9 +188,10 @@ struct SymptomDetailScreen: View {
         })
         .navigationTitle(SymptomNameWithIconText(symptom.name, symptom.icon))
         .onAppear() {
-            if let entries = symptom.entries {
-                entriesSorted = entries.sorted(by: { $0.date > $1.date })
-            }
+            processData()
+        }
+        .onChange(of: symptom) {
+            processData()
         }
     }
 }

@@ -25,7 +25,6 @@ struct SymptomsListSectionView: View {
                 SymptomCreateScreen()
             } label: {
                 Label("Create symptom", systemImage: "plus")
-                    
             }
         }
         .onAppear() {

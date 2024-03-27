@@ -2,6 +2,8 @@ import SwiftUI
 import SwiftData
 import CoreData
 
+// https://dev.to/jameson/swiftui-with-swiftdata-through-repository-36d1
+
 class DataSource {
     private let modelContainer: ModelContainer
     private let modelContext: ModelContext
@@ -92,8 +94,20 @@ class DataSource {
     }
     
     func create<T: PersistentModel>(_ payload: T, refSymptom: Symptom? = nil) {
-        modelContext.insert(payload)
-        consoleLog("creating \(type(of: payload))", payload)
+        if type(of: payload) == Entry.self {
+            guard let symptom = refSymptom else {
+                print("Attribute \"refSymptom\" must be provied when creating Entry.")
+                return
+            }
+            
+            symptom.entries?.append(payload as! Entry)
+            
+            consoleLog("creating entry \(symptom)", payload)
+        } else {
+            modelContext.insert(payload)
+            
+            consoleLog("creating \(type(of: payload))", payload)
+        }
     }
 
     func delete<T: PersistentModel>(_ payload: T) {
@@ -129,19 +143,22 @@ class DataStoreManager: ObservableObject {
     }
     
     func refreshData() async {
-        consoleLog("STARTED: refreshData")
-        
         // symptoms = await self.fetchHealthKitEntries(dataSource.fetchSymptoms())
-        let x = await dataSource.fetchSymptoms()
-        
-        consoleLog("9999999", x)
-        symptoms = x
+        symptoms = await dataSource.fetchSymptoms()
         triggers = await dataSource.fetchTriggers()
         insights = await dataSource.fetchInsights()
         
-        isLoading = false
+        consoleLog("DATA_MANAGER", [symptoms, triggers])
         
-        consoleLog("FINISHED: refreshData")
+        symptoms.forEach { symptom in
+            consoleLog("DATA_MANAGER - Symptom", symptom)
+            
+            symptom.entries!.forEach { entry in
+                consoleLog("DATA_MANAGER - Entries", entry.severity)
+            }
+        }
+        
+        isLoading = false
     }
     
     private func fetchHealthKitEntries(_ symptoms: [Symptom]) async -> [Symptom] {
