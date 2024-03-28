@@ -1,6 +1,8 @@
 import SwiftUI
 import SwiftData
 
+// TODO: How to work with ENV secrets?
+
 @main
 struct SymptomsTrackerApp: App {
     @StateObject private var dataStore = DataStoreManager()

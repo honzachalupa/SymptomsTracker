@@ -4,6 +4,9 @@ import CoreData
 
 // https://dev.to/jameson/swiftui-with-swiftdata-through-repository-36d1
 
+// TODO: Data won't update properly
+// TODO: Data won't sync between device
+
 class DataSource {
     private let modelContainer: ModelContainer
     private let modelContext: ModelContext

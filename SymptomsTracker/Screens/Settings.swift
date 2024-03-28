@@ -6,9 +6,9 @@ struct SettingsScreen: View {
     
     var body: some View {
         List {
-            Button(role: .destructive, action: { isDeleteConfirmationShown.toggle() }, label: {
-                Text("Delete all data")
-            })
+            Button("Delete all data", role: .destructive) {
+                isDeleteConfirmationShown.toggle()
+            }
             .confirmationDialog(
                 "Are you sure you want to delete all data?",
                 isPresented: $isDeleteConfirmationShown,

@@ -67,6 +67,8 @@ struct SymptomDetailScreen: View {
                                         
                                         Spacer()
                                         
+                                        Text("Severity:")
+                                            .opacity(0.5)
                                         Text(getSeverityLabel(entry.severity))
                                             .foregroundStyle(getSeverityColor(entry.severity))
                                     }
@@ -139,7 +141,7 @@ struct SymptomDetailScreen: View {
                             } label: {
                                 Label("Add entry", systemImage: "plus")
                                     .padding()
-                                    .background(.blue.opacity(0.8))
+                                    .background(.blue.gradient)
                                     .foregroundColor(.white)
                             }
                             .background(.ultraThinMaterial)
@@ -156,7 +158,7 @@ struct SymptomDetailScreen: View {
                     NavigationLink {
                         SymptomEditScreen(symptom: symptom)
                     } label: {
-                        Label("Edit symptom", systemImage: "pencil")
+                        Label("Edit symptom", systemImage: "square.and.pencil")
                     }
                     
                 }
@@ -166,6 +168,7 @@ struct SymptomDetailScreen: View {
                 Button(role: .destructive, action: { isDeleteConfirmationShown.toggle() }, label: {
                     Label("Delete Symptom", systemImage: "trash")
                 })
+                .tint(.red)
                 .confirmationDialog(
                     "Are you sure you want to delete the symptom \(symptom.name)?",
                     isPresented: $isDeleteConfirmationShown,

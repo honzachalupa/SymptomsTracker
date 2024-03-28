@@ -37,6 +37,8 @@ struct SymptomCreateScreen: View {
                         )
                     )
                 )
+                
+                dismiss()
             } else {
                 await dataStore.create(
                     Symptom(
@@ -45,6 +47,8 @@ struct SymptomCreateScreen: View {
                         note: note
                     )
                 )
+                
+                dismiss()
             }
         }
     }
@@ -73,9 +77,13 @@ struct SymptomCreateScreen: View {
             List {
                 if mode == .healthKit {
                     Picker("Data type", selection: $selectedHealthKitType) {
-                        ForEach(HealthKitTypes) { type in
-                            SymptomNameWithIconText(type.name, type.icon)
-                                .tag(type)
+                        ForEach(HealthKitTypeCategory.allCases, id: \.self) { category in
+                            ForEach(HealthKitTypes.filter { $0.category == category }) { type in
+                                SymptomNameWithIconText(type.name, type.icon)
+                                    .tag(type)
+                            }
+                            
+                            Divider()
                         }
                     }
                 } else {
@@ -102,9 +110,8 @@ struct SymptomCreateScreen: View {
         .toolbar(content: {
             Button("Create") {
                 create()
-                dismiss()
             }
-            .disabled(name.isEmpty && mode == .manual)
+            .disabled((name.isEmpty) && mode == .manual)
         })
         .onAppear() {
             if !healthKit.isHealthKitSupported {

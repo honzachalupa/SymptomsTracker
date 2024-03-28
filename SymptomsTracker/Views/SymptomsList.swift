@@ -4,6 +4,12 @@ struct SymptomsListSectionView: View {
     @EnvironmentObject var dataStore: DataStoreManager
     @Binding var selectedSymptom: Symptom?
     
+    func delete(_ symptom: Symptom) {
+        Task {
+            await dataStore.delete(symptom)
+        }
+    }
+    
     var body: some View {
         Section {
             ForEach(dataStore.symptoms, id: \.id) { symptom in
@@ -18,6 +24,11 @@ struct SymptomsListSectionView: View {
                         }
                     }
                     .padding(.leading, 3)
+                }
+                .swipeActions {
+                    Button("Delete", role: .destructive) {
+                        delete(symptom)
+                    }
                 }
             }
             

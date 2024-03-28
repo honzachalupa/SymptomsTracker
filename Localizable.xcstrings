@@ -11,6 +11,26 @@
         }
       }
     },
+    "Abdominal cramps" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Křeče v břiše"
+          }
+        }
+      }
+    },
+    "Acne" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Akné"
+          }
+        }
+      }
+    },
     "Add a your first symptom to start tracking." : {
       "localizations" : {
         "cs" : {
@@ -83,6 +103,16 @@
         }
       }
     },
+    "Appetite changes" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Změny chuti k jídlu"
+          }
+        }
+      }
+    },
     "Are you sure you want to delete all data?" : {
       "localizations" : {
         "cs" : {
@@ -103,6 +133,46 @@
         }
       }
     },
+    "Bladder incontinences" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inkontinence moči"
+          }
+        }
+      }
+    },
+    "Bloating" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nadýmání"
+          }
+        }
+      }
+    },
+    "Body ache" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bolest těla a svalů"
+          }
+        }
+      }
+    },
+    "Breast pain" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bolest prsou"
+          }
+        }
+      }
+    },
     "Cancel" : {
       "localizations" : {
         "cs" : {
@@ -113,12 +183,42 @@
         }
       }
     },
+    "Chest tightness or pain" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ztuhlost nebo bolest na hrudi"
+          }
+        }
+      }
+    },
+    "Chills" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zimnice"
+          }
+        }
+      }
+    },
     "Connected to Health app" : {
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Připojeno k aplikaci Zdraví"
+          }
+        }
+      }
+    },
+    "Constipation" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zácpa"
           }
         }
       }
@@ -253,6 +353,36 @@
         }
       }
     },
+    "Diarrhea" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Průjem"
+          }
+        }
+      }
+    },
+    "Dizziness" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Závratě"
+          }
+        }
+      }
+    },
+    "Dry skin" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Suchá kůže"
+          }
+        }
+      }
+    },
     "Edit" : {
       "localizations" : {
         "cs" : {
@@ -293,12 +423,42 @@
         }
       }
     },
+    "Fainting" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mdloby"
+          }
+        }
+      }
+    },
+    "Fatigue" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vyčerpání"
+          }
+        }
+      }
+    },
     "Fever" : {
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Horečka"
+          }
+        }
+      }
+    },
+    "Hair loss" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vypadávání vlasů"
           }
         }
       }
@@ -313,6 +473,16 @@
         }
       }
     },
+    "Hot flashes" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Návaly horka"
+          }
+        }
+      }
+    },
     "Loading..." : {
       "extractionState" : "stale",
       "localizations" : {
@@ -320,6 +490,46 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Načítání..."
+          }
+        }
+      }
+    },
+    "Loss of smell" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ztráta čichu"
+          }
+        }
+      }
+    },
+    "Loss of taste" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ztráta chuti"
+          }
+        }
+      }
+    },
+    "Lower back pain" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bolest dolní části zad"
+          }
+        }
+      }
+    },
+    "Memory lapse" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Výpadek paměti"
           }
         }
       }
@@ -344,12 +554,32 @@
         }
       }
     },
+    "Mood changes" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Změny nálady"
+          }
+        }
+      }
+    },
     "Name" : {
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Popis"
+          }
+        }
+      }
+    },
+    "Nausea" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nevolnost"
           }
         }
       }
@@ -384,6 +614,16 @@
         }
       }
     },
+    "Night sweats" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Noční pocení"
+          }
+        }
+      }
+    },
     "No" : {
       "localizations" : {
         "cs" : {
@@ -414,12 +654,52 @@
         }
       }
     },
+    "Overview" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Přehled"
+          }
+        }
+      }
+    },
+    "Pelvic pain" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bolest v pánevní oblasti"
+          }
+        }
+      }
+    },
+    "Rapid pounding or fluttering heartbeat" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zrychlený tep, bušení nebo flutter"
+          }
+        }
+      }
+    },
     "Relates to: %@" : {
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Souvisí s: %@"
+          }
+        }
+      }
+    },
+    "Runny nose" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rýma"
           }
         }
       }
@@ -464,6 +744,66 @@
         }
       }
     },
+    "Severity:" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Závažnost:"
+          }
+        }
+      }
+    },
+    "Shortness of breath" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dušnost"
+          }
+        }
+      }
+    },
+    "Sinus congestion" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zánět dutin"
+          }
+        }
+      }
+    },
+    "Skipped heartbeat" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vynechávání úderů srdce"
+          }
+        }
+      }
+    },
+    "Sleep changes" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Změny spánku"
+          }
+        }
+      }
+    },
+    "Sore throat" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bolest krku"
+          }
+        }
+      }
+    },
     "Symptoms" : {
       "localizations" : {
         "cs" : {
@@ -475,7 +815,14 @@
       }
     },
     "TODO" : {
-
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        }
+      }
     },
     "Triggers" : {
       "localizations" : {
@@ -483,6 +830,36 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Spouštěče"
+          }
+        }
+      }
+    },
+    "Vaginal dryness" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vaginální suchost"
+          }
+        }
+      }
+    },
+    "Vomiting" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zvracení"
+          }
+        }
+      }
+    },
+    "Wheezing" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sípání"
           }
         }
       }

@@ -1,9 +1,4 @@
 import SwiftUI
-import SwiftData
-
-enum TabKey {
-    case symptoms, triggers, settings
-}
 
 struct RootScreen: View {
     @Environment(\.scenePhase) private var scenePhase
@@ -24,8 +19,21 @@ struct RootScreen: View {
                 TriggersListSectionView()
             }
             .listStyle(.sidebar)
+            .refreshable {
+                Task {
+                    await dataStore.refreshData()
+                }
+            }
             .navigationTitle("Symptoms")
             .toolbar {
+                ToolbarItem {
+                    NavigationLink {
+                        SummaryChartView()
+                    } label: {
+                        Label("Overview", systemImage: "chart.bar.xaxis")
+                    }
+                }
+                
                 ToolbarItem {
                     NavigationLink {
                         SettingsScreen()
@@ -34,11 +42,7 @@ struct RootScreen: View {
                     }
                 }
             }
-            .refreshable {
-                Task {
-                    await dataStore.refreshData()
-                }
-            }
+            .toolbar(removing: .sidebarToggle)
         } detail: {
             if let symptom = selectedSymptom {
                 SymptomDetailScreen(symptom: symptom)
