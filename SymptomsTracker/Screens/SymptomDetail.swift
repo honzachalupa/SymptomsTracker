@@ -87,7 +87,7 @@ struct SymptomDetailScreen: View {
                         }
                     }
                     
-                    if triggerStats.count >= 3 {
+                    if triggerStats.count >= 2 {
                         Section("Your most common triggers") {
                             HStack {
                                 ForEach(triggerStats.prefix(3), id: \.id) { stat in

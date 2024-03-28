@@ -22,6 +22,7 @@ struct SymptomNameWithIcon: View {
             
             Text(name)
         }
+        .lineLimit(1)
     }
 }
 

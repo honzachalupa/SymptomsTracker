@@ -16,7 +16,7 @@ struct SymptomsListSectionView: View {
                 NavigationLink {
                     SymptomDetailScreen(symptom: symptom)
                 } label: {
-                    Group {
+                    HStack {
                         if UIDevice.isIPad {
                             SymptomNameWithIcon(symptom.name, symptom.icon, spacing: 3)
                         } else {
@@ -25,8 +25,10 @@ struct SymptomsListSectionView: View {
                         
                         Spacer()
                         
-                        UnitCount(.entry, symptom.entries!.count)
-                            .opacity(0.5)
+                        if symptom.entries!.count > 0 {
+                            UnitCount(.entry, symptom.entries!.count)
+                                .opacity(0.5)
+                        }
                     }
                     .padding(.leading, 3)
                 }

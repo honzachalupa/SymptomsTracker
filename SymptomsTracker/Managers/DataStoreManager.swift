@@ -5,7 +5,7 @@ import CoreData
 // https://dev.to/jameson/swiftui-with-swiftdata-through-repository-36d1
 
 // TODO: Data won't update properly
-// TODO: Data won't sync between device
+// TODO: Data won't sync between devices
 // TODO: Previews are corrupted and won't load
 
 class DataSource {
@@ -25,10 +25,9 @@ class DataSource {
             Insight.self
         ]
         
-        let schema = Schema(types)
-        let config = ModelConfiguration(cloudKitDatabase: .private("iCloud.janchalupa.SymptomsTracker"))
+        let config = ModelConfiguration()
         
-        /* #if DEBUG
+        #if DEBUG
          do {
              // Use an autorelease pool to make sure Swift deallocates the persistent
              // container before setting up the SwiftData stack.
@@ -39,7 +38,13 @@ class DataSource {
                  // Load the store synchronously so it completes before initializing the
                  // CloudKit schema.
                  desc.shouldAddStoreAsynchronously = false
-                 if let mom = NSManagedObjectModel.makeManagedObjectModel(for: types) {
+                 if let mom = NSManagedObjectModel.makeManagedObjectModel(for: [
+                                                                            Symptom.self,
+                                                                            Entry.self,
+                                                                            Trigger.self,
+                                                                            HealthKitType.self,
+                                                                            Insight.self
+                 ]) {
                      let container = NSPersistentCloudKitContainer(name: "SymptomsTracker", managedObjectModel: mom)
                      container.persistentStoreDescriptions = [desc]
                      container.loadPersistentStores {_, err in
@@ -58,10 +63,15 @@ class DataSource {
          } catch {
              fatalError(error.localizedDescription)
          }
-         #endif */
+         #endif
         
         self.modelContainer = try! ModelContainer(
-            for: schema,
+            for:
+                Symptom.self,
+                Entry.self,
+                Trigger.self,
+                HealthKitType.self,
+                Insight.self,
             configurations: config
         )
         

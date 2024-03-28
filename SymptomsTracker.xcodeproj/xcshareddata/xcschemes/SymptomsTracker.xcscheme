@@ -50,13 +50,6 @@
             ReferencedContainer = "container:SymptomsTracker.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <EnvironmentVariables>
-         <EnvironmentVariable
-            key = "OPEN_AI_API_KEY"
-            value = "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"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-      </EnvironmentVariables>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
