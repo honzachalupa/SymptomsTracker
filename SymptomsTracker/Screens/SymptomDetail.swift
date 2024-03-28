@@ -63,7 +63,7 @@ struct SymptomDetailScreen: View {
                             ForEach(entriesSorted, id: \.id) { entry in
                                 VStack {
                                     HStack {
-                                        Text(entry.date, formatter: dateFormatter)
+                                        Text(formatDate(entry.date, showTime: true))
                                         
                                         Spacer()
                                         

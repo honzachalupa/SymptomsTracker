@@ -1,6 +1,8 @@
 import HealthKit
 import SwiftData
 
+// Source: https://developer.apple.com/documentation/healthkit/data_types/symptom_type_identifiers#3577503
+
 enum TypeIdentifier: Codable {
     case abdominalCramps
     case bloating

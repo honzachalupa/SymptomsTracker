@@ -26,6 +26,7 @@
 		213064442BA58FE8007E55C0 /* TriggerCreate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213064432BA58FE8007E55C0 /* TriggerCreate.swift */; };
 		213064462BA5930C007E55C0 /* Trigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213064452BA5930C007E55C0 /* Trigger.swift */; };
 		2130644A2BA5FBD8007E55C0 /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213064492BA5FBD8007E55C0 /* Entry.swift */; };
+		213968A62BB5C1EE00A2FB92 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 213968A52BB5C1EE00A2FB92 /* InfoPlist.xcstrings */; };
 		2164D10D2BAAECF20051FDA8 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2164D10C2BAAECF20051FDA8 /* Settings.swift */; };
 		2164D1112BAB1D510051FDA8 /* Others.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2164D1102BAB1D510051FDA8 /* Others.swift */; };
 		2164D1142BAB2D190051FDA8 /* DataStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2164D1132BAB2D190051FDA8 /* DataStoreManager.swift */; };
@@ -65,8 +66,9 @@
 		213064432BA58FE8007E55C0 /* TriggerCreate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriggerCreate.swift; sourceTree = "<group>"; };
 		213064452BA5930C007E55C0 /* Trigger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trigger.swift; sourceTree = "<group>"; };
 		213064472BA5F6CD007E55C0 /* SymptomsTracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SymptomsTracker.entitlements; sourceTree = "<group>"; };
-		213064482BA5F6F4007E55C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		213064482BA5F6F4007E55C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		213064492BA5FBD8007E55C0 /* Entry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
+		213968A52BB5C1EE00A2FB92 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		2164D10C2BAAECF20051FDA8 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		2164D1102BAB1D510051FDA8 /* Others.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Others.swift; sourceTree = "<group>"; };
 		2164D1132BAB2D190051FDA8 /* DataStoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStoreManager.swift; sourceTree = "<group>"; };
@@ -101,6 +103,9 @@
 		213064082BA44FF7007E55C0 = {
 			isa = PBXGroup;
 			children = (
+				213064472BA5F6CD007E55C0 /* SymptomsTracker.entitlements */,
+				213064482BA5F6F4007E55C0 /* Info.plist */,
+				213968A52BB5C1EE00A2FB92 /* InfoPlist.xcstrings */,
 				2130643D2BA4A9A5007E55C0 /* Localizable.xcstrings */,
 				213064132BA44FF7007E55C0 /* SymptomsTracker */,
 				213064122BA44FF7007E55C0 /* Products */,
@@ -118,8 +123,6 @@
 		213064132BA44FF7007E55C0 /* SymptomsTracker */ = {
 			isa = PBXGroup;
 			children = (
-				213064482BA5F6F4007E55C0 /* Info.plist */,
-				213064472BA5F6CD007E55C0 /* SymptomsTracker.entitlements */,
 				213064142BA44FF7007E55C0 /* SymptomsTrackerApp.swift */,
 				2130641A2BA44FF8007E55C0 /* Assets.xcassets */,
 				213064242BA458DB007E55C0 /* Models */,
@@ -274,6 +277,7 @@
 			files = (
 				2130641E2BA44FF8007E55C0 /* Preview Assets.xcassets in Resources */,
 				2130641B2BA44FF8007E55C0 /* Assets.xcassets in Resources */,
+				213968A62BB5C1EE00A2FB92 /* InfoPlist.xcstrings in Resources */,
 				2130643E2BA4A9A5007E55C0 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -446,7 +450,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = SymptomsTracker/SymptomsTracker.entitlements;
+				CODE_SIGN_ENTITLEMENTS = SymptomsTracker.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -454,7 +458,7 @@
 				DEVELOPMENT_TEAM = 4XV9V3GJPT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = SymptomsTracker/Info.plist;
+				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Symptoms Tracker";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "This app uses HealtKit to track some of the symptoms";
@@ -484,7 +488,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = SymptomsTracker/SymptomsTracker.entitlements;
+				CODE_SIGN_ENTITLEMENTS = SymptomsTracker.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -492,7 +496,7 @@
 				DEVELOPMENT_TEAM = 4XV9V3GJPT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = SymptomsTracker/Info.plist;
+				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Symptoms Tracker";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "This app uses HealtKit to track some of the symptoms";
