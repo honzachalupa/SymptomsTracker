@@ -1,18 +1,45 @@
 import SwiftUI
 
+class TriggerStats: Identifiable {
+    var id = UUID()
+    var trigger: Trigger
+    var count: Int
+    
+    init(trigger: Trigger, count: Int) {
+        self.trigger = trigger
+        self.count = count
+    }
+}
+
 struct SymptomDetailScreen: View {
     var symptom: Symptom
     
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var dataStore: DataStoreManager
     @State private var entriesSorted: [Entry] = []
+    @State private var triggerStats: [TriggerStats] = []
     @State private var isSheetShown: Bool = false
     @State private var isDeleteConfirmationShown: Bool = false
     
     func processData() {
-        if let entries = symptom.entries {
-            entriesSorted = entries.sorted(by: { $0.date > $1.date })
-        }
+        entriesSorted = symptom.entries!
+            .sorted(by: { $0.date > $1.date })
+        
+        triggerStats = symptom.entries!
+            .compactMap { $0.triggers?.compactMap { $0 } }
+            .flatMap { $0 }
+            .unique()
+            .map { trigger in
+                let triggerCount = symptom.entries?
+                    .compactMap { $0.triggers }
+                    .flatMap { $0 }
+                    .filter { $0 == trigger }
+                    .count ?? 0
+                
+                return (trigger, triggerCount)
+            }
+            .map { TriggerStats(trigger: $0.0, count: $0.1) }
+            .sorted(by: { $0.count > $1.count })
     }
     
     func deleteEntry(_ entry: Entry) {
@@ -48,6 +75,32 @@ struct SymptomDetailScreen: View {
                     Section {
                         EntriesChartView(symptomEntries: entriesSorted)
                             .frame(height: 200)
+                        
+                        HStack {
+                            UnitCount(.entry, symptom.entries!.count)
+                                .opacity(0.5)
+                            
+                            Spacer()
+                            
+                            UnitCount(.trigger, triggerStats.count)
+                                .opacity(0.5)
+                        }
+                    }
+                    
+                    if triggerStats.count >= 3 {
+                        Section("Your most common triggers") {
+                            HStack {
+                                ForEach(triggerStats.prefix(3), id: \.id) { stat in
+                                    HStack {
+                                        Text("\(stat.trigger.name):")
+                                        
+                                        Text("\(stat.count)x")
+                                            .opacity(0.5)
+                                    }
+                                    .padding(.trailing, 5)
+                                }
+                            }
+                        }
                     }
                     
                     if let note = symptom.note, !note.isEmpty {
@@ -73,29 +126,27 @@ struct SymptomDetailScreen: View {
                                             .foregroundStyle(getSeverityColor(entry.severity))
                                     }
                                     
-                                    if let triggers = entry.triggers {
-                                        if triggers.count > 0 {
-                                            VStack(alignment: .leading) {
-                                                Text("Triggers")
-                                                    .textCase(.uppercase)
-                                                    .font(.footnote)
-                                                    .opacity(0.5)
-                                                    .padding(.bottom, 2)
-                                                
-                                                HStack {
-                                                    ForEach(triggers, id: \.self) { trigger in
-                                                        SymptomNameWithIcon(trigger.name, trigger.icon)
-                                                            .padding(.trailing, 10)
-                                                    }
-                                                    
-                                                    Spacer()
-                                                }
-                                            }
+                                    if entry.triggers!.count > 0 {
+                                        VStack(alignment: .leading) {
+                                            Text("Triggers")
+                                                .textCase(.uppercase)
+                                                .font(.footnote)
+                                                .opacity(0.5)
+                                                .padding(.bottom, 2)
                                             
-                                            .padding()
-                                            .background(.gray.opacity(0.1))
-                                            .cornerRadius(10)
+                                            HStack {
+                                                ForEach(entry.triggers!, id: \.self) { trigger in
+                                                    SymptomNameWithIcon(trigger.name, trigger.icon)
+                                                        .padding(.trailing, 10)
+                                                }
+                                                
+                                                Spacer()
+                                            }
                                         }
+                                        
+                                        .padding()
+                                        .background(.gray.opacity(0.1))
+                                        .cornerRadius(10)
                                     }
                                 }
                                 .swipeActions {

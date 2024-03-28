@@ -8,6 +8,8 @@ final class Trigger: Identifiable {
     var icon: String = ""
     var entriesRel: [Entry]? = []
     
+    init() { }
+    
     init(
         name: String,
         icon: String

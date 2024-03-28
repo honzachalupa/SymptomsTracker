@@ -31,7 +31,7 @@ struct SummaryChartView: View {
     @State var data: [SummaryChartRecords] = []
     
     private func calculateDateDomain() -> ClosedRange<Date> {
-        let sortedDates = dataStore.symptoms.flatMap { $0.entries ?? [] }.map { Locale.current.calendar.startOfDay(for: $0.date) }.sorted()
+        let sortedDates = dataStore.symptoms.flatMap { $0.entries! }.map { Locale.current.calendar.startOfDay(for: $0.date) }.sorted()
         let startDate = min(
             Calendar.current.date(byAdding: .day, value: -1, to: sortedDates.first ?? Date())!,
             Calendar.current.date(byAdding: .day, value: -7, to: Date())!
@@ -46,7 +46,7 @@ struct SummaryChartView: View {
             .map { symptom in
                 SummaryChartRecords(
                     symptom: symptom,
-                    entries: symptom.entries?
+                    entries: symptom.entries!
                         .sorted(by: {
                             $0.date < $1.date
                         })
@@ -55,7 +55,7 @@ struct SummaryChartView: View {
                                 date: Locale.current.calendar.startOfDay(for: entry.date),
                                 severity: entry.severity
                             )
-                        } ?? []
+                        }
                 )
             }
     }

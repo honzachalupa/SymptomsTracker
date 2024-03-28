@@ -398,8 +398,8 @@
             filePath = "SymptomsTracker/Screens/SymptomDetail.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "4"
-            endingLineNumber = "4"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
             landmarkName = "SymptomDetailScreen"
             landmarkType = "14">
          </BreakpointContent>

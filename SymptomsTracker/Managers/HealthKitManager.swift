@@ -47,7 +47,7 @@ struct HealthKitManager {
                 ]
             )
             
-            entry.triggers?.forEach { trigger in
+            entry.triggers!.forEach { trigger in
                 consoleLog("TRIGGER", trigger)
             }
             

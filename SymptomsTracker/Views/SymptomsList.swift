@@ -22,6 +22,11 @@ struct SymptomsListSectionView: View {
                         } else {
                             SymptomNameWithIcon(symptom.name, symptom.icon, spacing: 8)
                         }
+                        
+                        Spacer()
+                        
+                        UnitCount(.entry, symptom.entries!.count)
+                            .opacity(0.5)
                     }
                     .padding(.leading, 3)
                 }

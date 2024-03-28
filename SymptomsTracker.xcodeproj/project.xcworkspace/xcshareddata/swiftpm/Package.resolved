@@ -15,8 +15,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/alfianlosari/ChatGPTSwift.git",
       "state" : {
-        "revision" : "3add305675795c1eeec93d6175a9b04d6f415c15",
-        "version" : "1.4.0"
+        "revision" : "504d79273baf380ee51207a1f725bb18a1bb1cf9",
+        "version" : "1.5.0"
       }
     },
     {

@@ -6,6 +6,7 @@ import CoreData
 
 // TODO: Data won't update properly
 // TODO: Data won't sync between device
+// TODO: Previews are corrupted and won't load
 
 class DataSource {
     private let modelContainer: ModelContainer
@@ -25,8 +26,7 @@ class DataSource {
         ]
         
         let schema = Schema(types)
-        
-        let config = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
+        let config = ModelConfiguration(cloudKitDatabase: .private("iCloud.janchalupa.SymptomsTracker"))
         
         /* #if DEBUG
          do {
@@ -103,7 +103,7 @@ class DataSource {
                 return
             }
             
-            symptom.entries?.append(payload as! Entry)
+            symptom.entries!.append(payload as! Entry)
             
             consoleLog("creating entry \(symptom)", payload)
         } else {
@@ -263,22 +263,20 @@ struct DataStoreManagerPreview: View {
     var body: some View {
         List {
             Section("Symptoms") {
-                ForEach(dataStore.symptoms, id: \.id) { item in
-                    Text(item.name)
+                ForEach(dataStore.symptoms, id: \.id) { symptom in
+                    Text(symptom.name)
                     
                     Text("Entries")
                     
-                    if let entries = item.entries {
-                        ForEach(entries, id: \.id) { entry in
-                            Text(entry.date.formatted())
-                        }
+                    ForEach(symptom.entries!, id: \.id) { entry in
+                        Text(entry.date.formatted())
                     }
                 }
             }
             
             Section("Triggers") {
-                ForEach(dataStore.triggers, id: \.id) { item in
-                    Text(item.name)
+                ForEach(dataStore.triggers, id: \.id) { trigger in
+                    Text(trigger.name)
                 }
             }
         }

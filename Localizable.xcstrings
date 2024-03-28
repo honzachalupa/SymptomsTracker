@@ -11,6 +11,28 @@
         }
       }
     },
+    "%@:" : {
+
+    },
+    "%lldx" : {
+
+    },
+    "^[%lld entry](inflect: true)" : {
+
+    },
+    "^[%lld symptom](inflect: true)" : {
+
+    },
+    "^[%lld trigger](inflect: true)" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        }
+      }
+    },
     "Abdominal cramps" : {
       "localizations" : {
         "cs" : {
@@ -860,6 +882,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sípání"
+          }
+        }
+      }
+    },
+    "Your most common triggers" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vaše nejčastější spouštěče"
           }
         }
       }
